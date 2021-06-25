@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:sizer/sizer.dart';
 import 'package:form_field_validator/form_field_validator.dart';
+import 'package:pagescroll_app/menudrawer.dart';
+
 
 class SigninPage extends StatefulWidget {
   @override
@@ -29,6 +31,18 @@ class _SigninPageState extends State<SigninPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: MyDrawer(),
+      appBar: AppBar(
+        leading: Builder(
+          builder: (BuildContext context) {
+            return IconButton(
+              icon: const Icon(Icons.menu),
+              onPressed: () { Scaffold.of(context).openDrawer(); },
+              tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+            );
+          },
+        ),
+      ),
       body: SingleChildScrollView(
         child: Container(
             // padding: EdgeInsets.only(top:10.34.h, right: 6.4.w, left: 6.4.w,),

@@ -5,7 +5,7 @@ import 'package:otp_text_field/style.dart';
 import 'package:sizer/sizer.dart';
 import 'package:otp_text_field/otp_text_field.dart';
 import 'package:form_field_validator/form_field_validator.dart';
-// import 'package:pagescroll_app/onboarding_signin.dart';
+import 'package:pagescroll_app/onboarding_signin.dart';
 
 
 
@@ -465,27 +465,56 @@ class _ForgotPageState extends State<ForgotPage> {
                                                       margin: EdgeInsets.only(bottom: 4.43.h),
                                                     ),
                                                     GestureDetector(
-                                                      onTap: (){
-                                                        // Alert(
-                                                        //   context: context,
-                                                        //   type: AlertType.error,
-                                                        //   title: 'Your password has been reset', style:AlertStyle(
-                                                        //   backgroundColor:  Color(0xffffffff),
-                                                        // ),
-                                                        //     buttons: [
-                                                        //       DialogButton(child: Text('Sign In', style: TextStyle(
-                                                        //           color: Color(0xffffffff),
-                                                        //         fontStyle: FontStyle.normal,
-                                                        //         fontWeight: FontWeight.w700,
-                                                        //         fontSize: 16,
-                                                        //       ),),
-                                                        //           onPressed:(){
-                                                        //             Navigator.push(context, MaterialPageRoute(builder: (context) => SigninPage()),);
-                                                        //           }
-                                                        //           )
-                                                        //     ],
-                                                        // ).show();
-                                                      },
+                                                      onTap: () {
+                                                        showDialog<String>(
+                                                          context: context,
+                                                          builder: (
+                                                              BuildContext context) =>
+                                                              AlertDialog(
+                                                                insetPadding: EdgeInsets.only(left: 6.4.w, right: 6.4.w,top: 32.1.h, bottom: 43.1.h),
+                                                                // contentPadding: EdgeInsets.symmetric(horizontal: 6.4.w,vertical:3.94.h),
+
+                                                                content:Center(
+                                                                child:Container(
+                                                                  width:74.4.w,
+                                                                  // margin: EdgeInsets.only(bottom: 3.94.h),
+                                                                  child: Text(
+                                                                      'Your password has been reset',
+                                                                      style: TextStyle(
+                                                                          fontSize: 24,
+                                                                          fontWeight: FontWeight.bold,
+                                                                        color: Color(0xff10151a),
+                                                                      ),
+                                                                    textAlign: TextAlign.center,
+                                                                  ),
+                                                                ),),
+                                                                actions: <
+                                                                    Widget>[
+                                                               Center(
+                                                                 child: GestureDetector(
+                                                                  onTap:(){
+                                                                          Navigator.push(context,MaterialPageRoute(builder: (context)=> SigninPage()),);
+                                                                  },
+                                                                  child: Container(
+                                                                  width: 74.4.w,
+                                                                    height: 5.78.h,
+                                                                    decoration: BoxDecoration(
+                                                                      color: Color(0xff3a953c),
+                                                                      borderRadius: BorderRadius.circular(5.0),
+                                                                    ),
+                                                                    child: Center(
+                                                                      child: Text('Sign in', style: TextStyle(
+                                                                        color: Color(0xffffffff),
+                                                                        fontStyle: FontStyle.normal,
+                                                                        fontWeight: FontWeight.w700,
+                                                                        fontSize: 16.sp,
+                                                                      ),),
+                                                                    ),),
+                                                              ),
+                                                               ),
+                                                                ],
+                                                              ),
+                                                        );},
                                                       child: Container(
                                                         width: 87.2.w,
                                                         height: 5.78.h,
