@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:sbsc_capstone_team_jupiter/screens/auth/onboarding_forgot.dart';
-import 'package:sbsc_capstone_team_jupiter/screens/auth/onboarding_signin.dart';
+import 'package:sbsc_capstone_team_jupiter/screens/auth/login.dart';
+
 import 'package:sbsc_capstone_team_jupiter/screens/home/home.dart';
 import 'package:sbsc_capstone_team_jupiter/screens/tab_controller.dart';
 import 'package:sizer/sizer.dart';
-import 'screens/auth/onboarding_create.dart';
+import 'screens/auth/forgot_password.dart';
+
 import 'screens/auth/create_account.dart';
 import 'screens/landing_screen.dart';
 
@@ -27,11 +28,12 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
         ),
         routes: <String, WidgetBuilder>{
-          
-          '/': (context) => TabView(),
-          '/createPassPage': (context) => CreatePassPage(),
-          '/forgotPage': (context) => ForgotPage(),
-          '/signIn': (context) => SigninPage(),
+          '/': (context) => LoginPage(),
+          '/home': (context) => HomesCreen(),
+          '/loginPage': (context) => LoginPage(),
+          '/createAccount': (context) => CreateAccount(),
+          '/forgot_password': (context) => ForgotPassword(),
+          // '/signIn': (context) => SigninPage(),
         },
       );
     });

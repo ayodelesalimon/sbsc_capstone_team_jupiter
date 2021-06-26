@@ -2,11 +2,13 @@ import 'dart:async';
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:sbsc_capstone_team_jupiter/screens/auth/create_account.dart';
 import 'package:sbsc_capstone_team_jupiter/screens/tab_controller.dart';
 import 'package:sbsc_capstone_team_jupiter/widgets/colors.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-import 'auth/onboarding_create.dart';
+import 'auth/login.dart';
+
 
 class LandingScreen extends StatefulWidget {
   const LandingScreen({Key key}) : super(key: key);
@@ -263,10 +265,12 @@ class _LandingScreenState extends State<LandingScreen> {
            Center(
                   child: GestureDetector(
                     onTap: () async {
-                       Navigator.push(
-                                  context,
+                       Navigator.of(context).push(
                                   MaterialPageRoute(
-                                      builder: (context) => CreatePassPage()));
+                                    settings: RouteSettings(name: "/createAccount"),
+                                    builder: (context) => CreateAccount(),
+                                  ),
+                                );
                     },
                     child: SizedBox(
                         width: 360,
@@ -309,7 +313,14 @@ class _LandingScreenState extends State<LandingScreen> {
                           width: 5,
                         ),
                         GestureDetector(
-                          onTap: () {},
+                          onTap: () {
+                             Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                    settings: RouteSettings(name: "/loginPage"),
+                                    builder: (context) => LoginPage(),
+                                  ),
+                                );
+                          },
                           child: Text(
                             "Sign In",
                             softWrap: true,

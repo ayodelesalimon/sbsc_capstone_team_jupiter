@@ -60,68 +60,65 @@ class Input extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(left:24, right: 24),
-      child: TextFormField(
-          focusNode: focusNode,
-          inputFormatters: inputFormatters,
-          controller: controller,
-          key: key,
-          enabled: enable,
-          style: TextStyle(color: Color(0xFF3C4043)),
-          cursorColor: styleColor,
-          obscureText: obscureText,
-          maxLines: maxLines,
-          onChanged: onChanged,
-          decoration: InputDecoration(
-            floatingLabelBehavior: floatingLabelBehavior,
-            prefixIcon: prefix,
-            // suffixIcon: suffix,
-            filled: true,
-            fillColor: !enable ? Color(0xFFeeeeee) : Colors.transparent,
-            alignLabelWithHint: true,
-            labelText: hintText,
-            // hintText: hintText,
-            // prefixIcon: FaIcon(FontAwesomeIcons.arrowLeft, size: 10),
-            hintStyle: TextStyle(color: osloGrey),
-            isDense: true,
-            errorBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.red),
-            ),
-            focusedErrorBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.red),
-            ),
-            enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: borderColor),
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: borderColor),
-            ),
-            disabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: borderColor),
-            ),
-            // contentPadding: EdgeInsets.only(top: 10, bottom: 10),
-            suffixIcon: isPassword
-                ? GestureDetector(
-                    onTap: toggleEye,
-                    child: Icon(
-                      showObscureText ? Icons.visibility : Icons.visibility_off,
-                      color: Color(0xFFC0C1C3),
-                    ),
-                  )
-                : suffix,
+    return TextFormField(
+        focusNode: focusNode,
+        inputFormatters: inputFormatters,
+        controller: controller,
+        key: key,
+        enabled: enable,
+        style: TextStyle(color: Color(0xFF3C4043)),
+        cursorColor: styleColor,
+        obscureText: obscureText,
+        maxLines: maxLines,
+        onChanged: onChanged,
+        decoration: InputDecoration(
+          floatingLabelBehavior: floatingLabelBehavior,
+          prefixIcon: prefix,
+        // suffixIcon: suffix,
+          filled: true,
+          fillColor: !enable ? Color(0xFFeeeeee) : Colors.transparent,
+          //alignLabelWithHint: true,
+        //  labelText: hintText,
+        hintText: hintText,
+          // prefixIcon: FaIcon(FontAwesomeIcons.arrowLeft, size: 10),
+          hintStyle: TextStyle(color: osloGrey),
+          isDense: true,
+          errorBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.red),
           ),
-          validator: validator,
-          initialValue: init,
-          onSaved: onSaved,
-          // keyboardType: keyboard == KeyboardType.EMAIL
-          //     ? TextInputType.emailAddress
-          //     : keyboard == KeyboardType.NUMBER
-          //         ? TextInputType.number
-          //         : keyboard == KeyboardType.PHONE
-          //             ? TextInputType.phone
-          //             : TextInputType.text),
-      ),
+          focusedErrorBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.red),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: borderColor),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: borderColor),
+          ),
+          disabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: borderColor),
+          ),
+          // contentPadding: EdgeInsets.only(top: 10, bottom: 10),
+          suffixIcon: isPassword
+              ? GestureDetector(
+                  onTap: toggleEye,
+                  child: Icon(
+                    showObscureText ? Icons.visibility : Icons.visibility_off,
+                    color: Color(0xFFC0C1C3),
+                  ),
+                )
+              : suffix,
+        ),
+        validator: validator,
+        initialValue: init,
+        onSaved: onSaved,
+        // keyboardType: keyboard == KeyboardType.EMAIL
+        //     ? TextInputType.emailAddress
+        //     : keyboard == KeyboardType.NUMBER
+        //         ? TextInputType.number
+        //         : keyboard == KeyboardType.PHONE
+        //             ? TextInputType.phone
+        //             : TextInputType.text),
     );
   }
 }

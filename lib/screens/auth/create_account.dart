@@ -7,9 +7,10 @@ import 'package:sbsc_capstone_team_jupiter/widgets/input.dart';
 import 'package:validators/validators.dart' as validator;
 
 import 'login.dart';
-import 'onboarding_signin.dart';
+
 
 class CreateAccount extends StatefulWidget {
+  final String name = 'createAccount';
   const CreateAccount({Key key}) : super(key: key);
 
   @override
@@ -18,6 +19,9 @@ class CreateAccount extends StatefulWidget {
 
 class _CreateAccountState extends State<CreateAccount> {
   var _formKey = GlobalKey<FormState>();
+  bool showObscureText = true;
+  bool showObscureTextPassword = true;
+  bool showObscureTextPassword2 = true;
   TextEditingController email = TextEditingController();
   TextEditingController firstname = TextEditingController();
   TextEditingController lastname = TextEditingController();
@@ -29,6 +33,7 @@ class _CreateAccountState extends State<CreateAccount> {
       child: Scaffold(
         body: SingleChildScrollView(
           child: Container(
+            margin: EdgeInsets.only(right: 24, left: 24),
             child: Form(
                 autovalidateMode: AutovalidateMode.always,
                 child: Column(
@@ -40,7 +45,7 @@ class _CreateAccountState extends State<CreateAccount> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Container(
-                          margin: EdgeInsets.only(right: 24, left: 24),
+                          // margin: EdgeInsets.only(right: 24, left: 24),
                           //width: 64.w,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -50,7 +55,7 @@ class _CreateAccountState extends State<CreateAccount> {
                                 style: TextStyle(
                                   fontWeight: FontWeight.w700,
                                   fontStyle: FontStyle.normal,
-                                  fontSize: 18,
+                                  fontSize: 24,
                                   letterSpacing: 0.053,
                                   color: Color(0xff10151a),
                                 ),
@@ -60,7 +65,7 @@ class _CreateAccountState extends State<CreateAccount> {
                                 style: TextStyle(
                                   fontWeight: FontWeight.w700,
                                   fontStyle: FontStyle.normal,
-                                  fontSize: 18,
+                                  fontSize: 24,
                                   letterSpacing: 0.053,
                                   color: Color(0xff10151a),
                                 ),
@@ -69,15 +74,13 @@ class _CreateAccountState extends State<CreateAccount> {
                           ),
                         ),
                         Container(
-                          margin: EdgeInsets.only(right: 24),
-                          width: 30.3,
-                          height: 30.15,
+                          //  margin: EdgeInsets.only(right: 24),
+                          width: 50.3,
+                          height: 50.15,
                           child: CircleAvatar(
                             backgroundColor: Color.fromRGBO(58, 149, 60, 0.1),
                             child: Image.asset(
                               'assets/images/user.png',
-                              width: 4.26,
-                              height: 1.97,
                             ),
                           ),
                         ),
@@ -136,21 +139,18 @@ class _CreateAccountState extends State<CreateAccount> {
                     SizedBox(
                       height: 14,
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 24.0),
-                      child: Row(
-                        children: [
-                          Text(
-                            'First Name',
-                            style: TextStyle(
-                              color: Color(0xff10151a),
-                              fontSize: 15,
-                              fontStyle: FontStyle.normal,
-                              fontWeight: FontWeight.w700,
-                            ),
+                    Row(
+                      children: [
+                        Text(
+                          'First Name',
+                          style: TextStyle(
+                            color: Color(0xff10151a),
+                            fontSize: 15,
+                            fontStyle: FontStyle.normal,
+                            fontWeight: FontWeight.w700,
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                     SizedBox(
                       height: 14,
@@ -174,21 +174,18 @@ class _CreateAccountState extends State<CreateAccount> {
                     SizedBox(
                       height: 14,
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 24.0),
-                      child: Row(
-                        children: [
-                          Text(
-                            'Last Name',
-                            style: TextStyle(
-                              color: Color(0xff10151a),
-                              fontSize: 15,
-                              fontStyle: FontStyle.normal,
-                              fontWeight: FontWeight.w700,
-                            ),
+                    Row(
+                      children: [
+                        Text(
+                          'Last Name',
+                          style: TextStyle(
+                            color: Color(0xff10151a),
+                            fontSize: 15,
+                            fontStyle: FontStyle.normal,
+                            fontWeight: FontWeight.w700,
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                     SizedBox(
                       height: 10,
@@ -212,21 +209,18 @@ class _CreateAccountState extends State<CreateAccount> {
                     SizedBox(
                       height: 14,
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 24.0),
-                      child: Row(
-                        children: [
-                          Text(
-                            'Email Address',
-                            style: TextStyle(
-                              color: Color(0xff10151a),
-                              fontSize: 15,
-                              fontStyle: FontStyle.normal,
-                              fontWeight: FontWeight.w700,
-                            ),
+                    Row(
+                      children: [
+                        Text(
+                          'Email Address',
+                          style: TextStyle(
+                            color: Color(0xff10151a),
+                            fontSize: 15,
+                            fontStyle: FontStyle.normal,
+                            fontWeight: FontWeight.w700,
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                     SizedBox(
                       height: 14,
@@ -249,32 +243,38 @@ class _CreateAccountState extends State<CreateAccount> {
                     SizedBox(
                       height: 14,
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 24.0),
-                      child: Row(
-                        children: [
-                          Text(
-                            'Password',
-                            style: TextStyle(
-                              color: Color(0xff10151a),
-                              fontSize: 15,
-                              fontStyle: FontStyle.normal,
-                              fontWeight: FontWeight.w700,
-                            ),
+                    Row(
+                      children: [
+                        Text(
+                          'Password',
+                          style: TextStyle(
+                            color: Color(0xff10151a),
+                            fontSize: 15,
+                            fontStyle: FontStyle.normal,
+                            fontWeight: FontWeight.w700,
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                     SizedBox(
                       height: 14,
                     ),
                     Input(
                         //focusNode: emailFocus,
-                        controller: email,
+                        controller: password,
+                        isPassword: true,
                         hintText: 'Password',
                         styleColor: primaryColor,
-                        obscureText: false,
+                        showObscureText: showObscureTextPassword,
+                        isPasswordColor: Color(0xFF7C7C7C),
+                        obscureText: showObscureTextPassword,
+                        toggleEye: () {
+                          setState(() {
+                            showObscureTextPassword = !showObscureTextPassword;
+                          });
+                        },
                         hintStyleColor: Color(0xFF7C7C7C),
+                        // hintStyleColor: Color(0xFF7C7C7C),
                         validator: MultiValidator([
                           RequiredValidator(errorText: 'password is required'),
                           MinLengthValidator(8,
@@ -287,31 +287,37 @@ class _CreateAccountState extends State<CreateAccount> {
                     SizedBox(
                       height: 14,
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 24.0),
-                      child: Row(
-                        children: [
-                          Text(
-                            'Confirm Password',
-                            style: TextStyle(
-                              color: Color(0xff10151a),
-                              fontSize: 15,
-                              fontStyle: FontStyle.normal,
-                              fontWeight: FontWeight.w700,
-                            ),
+                    Row(
+                      children: [
+                        Text(
+                          'Confirm Password',
+                          style: TextStyle(
+                            color: Color(0xff10151a),
+                            fontSize: 15,
+                            fontStyle: FontStyle.normal,
+                            fontWeight: FontWeight.w700,
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                     SizedBox(
                       height: 14,
                     ),
                     Input(
                         //focusNode: emailFocus,
-                        controller: email,
+                        controller: confirmpassword,
+                        isPassword: true,
                         hintText: 'Confirm Password',
+                        showObscureText: showObscureTextPassword2,
+                        isPasswordColor: Color(0xFF7C7C7C),
+                        obscureText: showObscureTextPassword2,
+                        toggleEye: () {
+                          setState(() {
+                            showObscureTextPassword2 =
+                                !showObscureTextPassword2;
+                          });
+                        },
                         styleColor: primaryColor,
-                        obscureText: false,
                         hintStyleColor: Color(0xFF7C7C7C),
                         validator: MultiValidator([
                           RequiredValidator(errorText: 'password is required'),
@@ -371,7 +377,6 @@ class _CreateAccountState extends State<CreateAccount> {
                               "Have an account already?",
                               softWrap: true,
                               style: TextStyle(
-                                fontFamily: 'TT Norms Pro',
                                 color: Colors.grey,
                                 fontSize: 16,
                               ),
@@ -381,10 +386,12 @@ class _CreateAccountState extends State<CreateAccount> {
                             ),
                             GestureDetector(
                               onTap: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => LoginPage()));
+                                Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                    settings: RouteSettings(name: "/loginPage"),
+                                    builder: (context) => LoginPage(),
+                                  ),
+                                );
                               },
                               child: Text(
                                 "Sign In",
@@ -408,4 +415,3 @@ class _CreateAccountState extends State<CreateAccount> {
     );
   }
 }
-
