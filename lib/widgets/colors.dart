@@ -11,7 +11,7 @@ const Color deepPrimaryColor = Color(0xFF2788E9);
 const Color lightGrey = Color(0xFF5F6368);
 const Color darkGrey = Color(0xFF3C4043);
 const Color yellow = Color(0xFFFF9D00);
-const Color orange = Color(0xFFFF9254);
+const Color orange = Color(0xFFFDEFE9);
 const Color darkWhite = Color(0xFFFAFAFA);
 const Color cardWhite = Color(0xFFF2F2F2);
 const Color lighterGrey = Color(0xFFEAEAEA);
@@ -20,7 +20,15 @@ const Color gray53 = Color(0xFF878787);
 const Color osloGrey = Color(0xFF8F9295);
 const Color cadetBlue = Color(0xFFA6ACBE);
 const Color rollingStoneColor = Color(0xFF6F7577);
-const Color darkLiver = Color(0xFF4F4F4F);
+const Color darkLiver = Color(0xFFD16BEA);
+const Color darkRed = Color(0xFFBB2F48);
+const Color lightRed = Color(0xFFF8EAED);
+const Color liteGreen = Color(0xFFEBF0EC);
+
+
+
+
+
 
 List<Color> avatarColorArray = [
   Color(0xFFD16BEA),
