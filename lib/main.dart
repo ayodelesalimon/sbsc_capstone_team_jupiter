@@ -5,7 +5,7 @@ import 'package:sizer/sizer.dart';
 // import 'package:pagescroll_app/onboarding_create.dart';
 // import 'package:pagescroll_app/onboarding_forgot.dart';
 // import 'package:pagescroll_app/discover_search.dart';
-import 'package:pagescroll_app/zerocart.dart';
+import 'package:pagescroll_app/account_orders.dart';
 
 
 void main() {
@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           title: 'Capstone',
           home: Scaffold(
-            body:NoCartPage(),
+            body:OrdersPage(),
 
           ),
         );
