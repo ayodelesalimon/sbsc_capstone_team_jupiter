@@ -4,8 +4,8 @@ import 'package:flutter/services.dart';
 import 'package:sizer/sizer.dart';
 // import 'package:pagescroll_app/onboarding_create.dart';
 // import 'package:pagescroll_app/onboarding_forgot.dart';
-// import 'package:pagescroll_app/discover_search.dart';
-import 'package:pagescroll_app/account_orders.dart';
+// import 'package:pagescroll_shpp/discover_search.dart';
+import 'package:pagescroll_app/checkout_payment.dart';
 
 
 void main() {
@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           title: 'Capstone',
           home: Scaffold(
-            body:OrdersPage(),
+            body: PaymentPage(),
 
           ),
         );
