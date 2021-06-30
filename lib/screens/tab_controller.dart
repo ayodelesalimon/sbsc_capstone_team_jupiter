@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:sbsc_capstone_team_jupiter/screens/account/profile.dart';
 import 'package:sbsc_capstone_team_jupiter/screens/home/home.dart';
 import 'package:sbsc_capstone_team_jupiter/widgets/colors.dart';
+
+import 'discover/home.dart';
 
 
 class TabView extends StatefulWidget {
@@ -15,8 +18,8 @@ class _TabViewState extends State<TabView> {
    int _selectedIndex = 0;  
   static const List<Widget> _widgetOptions = <Widget>[  
    HomesCreen(),  
-    Text('Search Page', style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold)),  
-    Text('Profile Page', style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold)),  
+    DiscoverPage(),
+    Profile(),
   ];  
   
   void _onItemTapped(int index) {  

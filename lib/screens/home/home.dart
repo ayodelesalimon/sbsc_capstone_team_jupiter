@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:sbsc_capstone_team_jupiter/category/categories_grid.dart';
+import 'package:sbsc_capstone_team_jupiter/screens/cart/cart.dart';
 import 'package:sbsc_capstone_team_jupiter/widgets/colors.dart';
 import 'components/best_sell.dart';
 import 'components/category.dart';
@@ -26,6 +28,7 @@ final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
         body: SingleChildScrollView(
           child: Column(children: [
             Padding(
+               
               padding: const EdgeInsets.only(top: 8.0, left: 20, right: 24),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -42,9 +45,19 @@ final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
                     "Ayuaba Fresh",
                     style: TextStyle(fontWeight: FontWeight.w700, fontSize: 18),
                   ),
-                  CircleAvatar(
-                    backgroundColor: primaryColor,
-                    child: Image.asset('assets/images/shop.png'),
+                  GestureDetector(
+                    onTap: (){
+                       Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                    settings: RouteSettings(name: "/cartPage"),
+                                    builder: (context) => CartPage(),
+                                  ),
+                                );
+                    },
+                    child: CircleAvatar(
+                      backgroundColor: primaryColor,
+                      child: Image.asset('assets/images/shop.png'),
+                    ),
                   ),
                 ],
               ),
@@ -101,9 +114,19 @@ final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
                   ),
 
                   
-                  Row(
-                    children: [
-                      Text("View all"), SizedBox(width: 5,), FaIcon(FontAwesomeIcons.arrowRight, size: 16, color: darkGrey,)],
+                  GestureDetector(
+                    onTap: (){
+                       Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                    settings: RouteSettings(name: "/categoryPage"),
+                                    builder: (context) => CategoryGridPage(),
+                                  ),
+                                );
+                    },
+                    child: Row(
+                      children: [
+                        Text("View all"), SizedBox(width: 5,), FaIcon(FontAwesomeIcons.arrowRight, size: 16, color: darkGrey,)],
+                    ),
                   ),
                 ],
               ),
