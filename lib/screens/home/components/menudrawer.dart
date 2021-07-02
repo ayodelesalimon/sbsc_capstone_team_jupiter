@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:sbsc_capstone_team_jupiter/constants.dart';
+import 'package:sbsc_capstone_team_jupiter/screens/account/profile.dart';
+import 'package:sbsc_capstone_team_jupiter/screens/cart/cart.dart';
+import 'package:sbsc_capstone_team_jupiter/screens/category/categories_grid.dart';
+import 'package:sbsc_capstone_team_jupiter/screens/order/account_order.dart';
 
 class MyDrawer extends StatefulWidget {
   // final Function onTap;
@@ -87,7 +91,14 @@ class _MyDrawerState extends State<MyDrawer> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  settings: RouteSettings(name: "/cartPage"),
+                                  builder: (context) => CartPage(),
+                                ),
+                              );
+                        },
                         child: Container(
                           width: 74,
                           height: 24,
@@ -110,7 +121,14 @@ class _MyDrawerState extends State<MyDrawer> {
                       ),
                       spacer20,
                       GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  settings: RouteSettings(name: "/categoryPage"),
+                                  builder: (context) => CategoryGridPage(),
+                                ),
+                              );
+                        },
                         child: Container(
                           width: 123,
                           height: 24,
@@ -156,7 +174,14 @@ class _MyDrawerState extends State<MyDrawer> {
                       ),
                       spacer20,
                       GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  settings: RouteSettings(name: "/orderPage"),
+                                  builder: (context) => OrdersPage(),
+                                ),
+                              );
+                        },
                         child: Container(
                           width: 93,
                           height: 24,
@@ -179,7 +204,14 @@ class _MyDrawerState extends State<MyDrawer> {
                       ),
                       spacer20,
                       GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  settings: RouteSettings(name: "/profilePage"),
+                                  builder: (context) => Profile(),
+                                ),
+                              );
+                        },
                         child: Container(
                           width: 161,
                           height: 24,

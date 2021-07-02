@@ -16,7 +16,7 @@ class Auth {
     final url = '${adubaUrl}login';
     try {
       final response = await Api.post(url: url, body: login);
-      printData("Response", response);
+      printData("Response", response.body);
       ErrorModel.fromJson(jsonDecode(response.body));
     } catch (e) {
       throw e;
@@ -27,18 +27,19 @@ class Auth {
     final url = '${adubaUrl}register-user';
     try {
       final response = await Api.post(url: url, body: register);
+       printData("Response", response.body);
       print(response.statusCode);
-      if (response.statusCode != 201) {
-        print("sucess");
+      // if (response.statusCode == 200) {
+      //   print("sucess");
         throw ErrorModel.fromJson(jsonDecode(response.body));
-      }
+    //  }
      
       // if (response.statusCode != 201) {
       //   throw ErrorModel.fromJson(jsonDecode(response.body));
       // }
       // return await decodeAndStoreToken(data: response.body);
-      final deCoded = jsonDecode(response.body);
-      return deCoded;
+      // final deCoded = jsonDecode(response.body);
+      // return deCoded;
     } catch (e) {
       throw e;
     }
