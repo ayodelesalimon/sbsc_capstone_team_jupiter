@@ -58,7 +58,9 @@ class _CartPageState extends State<CartPage> {
                         onTap: () {
                           Navigator.pop(context);
                         },
-                        child: IconButton(icon: Icon(Icons.arrow_back), onPressed: (){})
+                        child: IconButton(icon: Icon(Icons.arrow_back), onPressed: (){
+                          Navigator.pop(context);
+                        })
                       ),
                      
                       Text(

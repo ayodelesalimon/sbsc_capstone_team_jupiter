@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
+import 'package:sbsc_capstone_team_jupiter/model/register.dart';
 import 'package:sbsc_capstone_team_jupiter/screens/auth/components/social_card.dart';
+import 'package:sbsc_capstone_team_jupiter/services/auth.dart';
+import 'package:sbsc_capstone_team_jupiter/widgets/alert.dart';
 import 'package:sbsc_capstone_team_jupiter/widgets/colors.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sbsc_capstone_team_jupiter/widgets/input.dart';
+import 'package:sbsc_capstone_team_jupiter/widgets/loader.dart';
 import 'package:validators/validators.dart' as validator;
 
 import 'login.dart';
-
 
 class CreateAccount extends StatefulWidget {
   final String name = 'createAccount';
@@ -19,6 +22,7 @@ class CreateAccount extends StatefulWidget {
 
 class _CreateAccountState extends State<CreateAccount> {
   var _formKey = GlobalKey<FormState>();
+  Register register = Register();
   bool showObscureText = true;
   bool showObscureTextPassword = true;
   bool showObscureTextPassword2 = true;
@@ -35,6 +39,7 @@ class _CreateAccountState extends State<CreateAccount> {
           child: Container(
             margin: EdgeInsets.only(right: 24, left: 24),
             child: Form(
+                key: _formKey,
                 autovalidateMode: AutovalidateMode.always,
                 child: Column(
                   children: [
@@ -164,12 +169,16 @@ class _CreateAccountState extends State<CreateAccount> {
                       styleColor: primaryColor,
                       obscureText: false,
                       hintStyleColor: Color(0xFF7C7C7C),
-                      // validator: (String value) {
-                      //   if (!validator.isAlpha(value) && value.length < 1) {
-                      //     return 'First Name is required';
-                      //   }
+                      validator: (String value) {
+                        if (!validator.isAlpha(value) && value.length < 1) {
+                          return 'First Name is required';
+                        }
+                        return null;
+                      },
 
-                      // },
+                      onSaved: (String value) {
+                        register.firstName = value;
+                      },
                     ),
                     SizedBox(
                       height: 14,
@@ -199,12 +208,15 @@ class _CreateAccountState extends State<CreateAccount> {
                       styleColor: primaryColor,
                       obscureText: false,
                       hintStyleColor: Color(0xFF7C7C7C),
-                      // validator: (String value) {
-                      //   if (!validator.isAlpha(value) && value.length < 1) {
-                      //     return 'First Name is required';
-                      //   }
-
-                      // },
+                      validator: (String value) {
+                        if (!validator.isAlpha(value) && value.length < 1) {
+                          return 'Last Name is required';
+                        }
+                        return null;
+                      },
+                      onSaved: (String value) {
+                        register.lastName = value;
+                      },
                     ),
                     SizedBox(
                       height: 14,
@@ -238,6 +250,10 @@ class _CreateAccountState extends State<CreateAccount> {
                         if (!validator.isEmail(value) && value.length < 1) {
                           return 'Email Address is required';
                         }
+                        return null;
+                      },
+                      onSaved: (String value) {
+                        register.email = value;
                       },
                     ),
                     SizedBox(
@@ -260,30 +276,34 @@ class _CreateAccountState extends State<CreateAccount> {
                       height: 14,
                     ),
                     Input(
-                        //focusNode: emailFocus,
-                        controller: password,
-                        isPassword: true,
-                        hintText: 'Password',
-                        styleColor: primaryColor,
-                        showObscureText: showObscureTextPassword,
-                        isPasswordColor: Color(0xFF7C7C7C),
-                        obscureText: showObscureTextPassword,
-                        toggleEye: () {
-                          setState(() {
-                            showObscureTextPassword = !showObscureTextPassword;
-                          });
-                        },
-                        hintStyleColor: Color(0xFF7C7C7C),
-                        // hintStyleColor: Color(0xFF7C7C7C),
-                        validator: MultiValidator([
-                          RequiredValidator(errorText: 'password is required'),
-                          MinLengthValidator(8,
-                              errorText:
-                                  'password must be at least 8 digits long'),
-                          PatternValidator(r'(?=.*?[#?!@$%^&*-])',
-                              errorText:
-                                  'passwords must have at least one special character')
-                        ])),
+                      //focusNode: emailFocus,
+                      controller: password,
+                      isPassword: true,
+                      hintText: 'Password',
+                      styleColor: primaryColor,
+                      showObscureText: showObscureTextPassword,
+                      isPasswordColor: Color(0xFF7C7C7C),
+                      obscureText: showObscureTextPassword,
+                      toggleEye: () {
+                        setState(() {
+                          showObscureTextPassword = !showObscureTextPassword;
+                        });
+                      },
+                      hintStyleColor: Color(0xFF7C7C7C),
+                      // hintStyleColor: Color(0xFF7C7C7C),
+                      validator: MultiValidator([
+                        RequiredValidator(errorText: 'password is required'),
+                        MinLengthValidator(8,
+                            errorText:
+                                'password must be at least 8 digits long'),
+                        PatternValidator(r'(?=.*?[#?!@$%^&*-])',
+                            errorText:
+                                'passwords must have at least one special character')
+                      ]),
+                      onSaved: (String value) {
+                        register.password = value;
+                      },
+                    ),
                     SizedBox(
                       height: 14,
                     ),
@@ -304,43 +324,64 @@ class _CreateAccountState extends State<CreateAccount> {
                       height: 14,
                     ),
                     Input(
-                        //focusNode: emailFocus,
-                        controller: confirmpassword,
-                        isPassword: true,
-                        hintText: 'Confirm Password',
-                        showObscureText: showObscureTextPassword2,
-                        isPasswordColor: Color(0xFF7C7C7C),
-                        obscureText: showObscureTextPassword2,
-                        toggleEye: () {
-                          setState(() {
-                            showObscureTextPassword2 =
-                                !showObscureTextPassword2;
-                          });
-                        },
-                        styleColor: primaryColor,
-                        hintStyleColor: Color(0xFF7C7C7C),
-                        validator: MultiValidator([
-                          RequiredValidator(errorText: 'password is required'),
-                          MinLengthValidator(8,
-                              errorText:
-                                  'password must be at least 8 digits long'),
-                          PatternValidator(r'(?=.*?[#?!@$%^&*-])',
-                              errorText:
-                                  'passwords must have at least one special character')
-                        ])),
+                      //focusNode: emailFocus,
+                      controller: confirmpassword,
+                      isPassword: true,
+                      hintText: 'Confirm Password',
+                      showObscureText: showObscureTextPassword2,
+                      isPasswordColor: Color(0xFF7C7C7C),
+                      obscureText: showObscureTextPassword2,
+                      toggleEye: () {
+                        setState(() {
+                          showObscureTextPassword2 = !showObscureTextPassword2;
+                        });
+                      },
+                      styleColor: primaryColor,
+                      hintStyleColor: Color(0xFF7C7C7C),
+                      validator: MultiValidator([
+                        RequiredValidator(errorText: 'password is required'),
+                        MinLengthValidator(8,
+                            errorText:
+                                'password must be at least 8 digits long'),
+                        PatternValidator(r'(?=.*?[#?!@$%^&*-])',
+                            errorText:
+                                'passwords must have at least one special character')
+                      ]),
+
+                      onSaved: (String value) {
+                        register..confirmPassword = value;
+                      },
+                    ),
                     SizedBox(
                       height: 20,
                     ),
                     Center(
                       child: GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            if (_formKey.currentState.validate()) {
-                              print('perfect');
-                            } else {
-                              return null;
+                        onTap: () async {
+                          if (_formKey.currentState.validate()) {
+                            _formKey.currentState.save();
+                            // showLoader(context);
+
+                            CircularProgressIndicator();
+                            try {
+                              final data = await Auth.userSignup(register);
+                              print(data);
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  settings: RouteSettings(name: "/loginPage"),
+                                  builder: (context) => LoginPage(),
+                                ),
+                              );
+                             // Loader.hide();
+                            } catch (e) {
+                             // hideLoader();
+                              // Alert(
+                              //   context: context,
+                              //   content: e,
+                              //   title: 'Login Error',
+                              // );
                             }
-                          });
+                          }
                         },
                         child: Container(
                           width: 360,

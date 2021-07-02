@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:sbsc_capstone_team_jupiter/category/categories_grid.dart';
+
 import 'package:sbsc_capstone_team_jupiter/screens/account/edit_profile.dart';
 import 'package:sbsc_capstone_team_jupiter/screens/account/profile.dart';
 import 'package:sbsc_capstone_team_jupiter/screens/auth/login.dart';
@@ -12,6 +12,7 @@ import 'package:sizer/sizer.dart';
 import 'screens/auth/forgot_password.dart';
 
 import 'screens/auth/create_account.dart';
+import 'screens/category/categories_grid.dart';
 import 'screens/discover/home.dart';
 import 'screens/landing_screen.dart';
 
@@ -42,7 +43,7 @@ class MyApp extends StatelessWidget {
           'editProfile': (context) => EditProfile(),
           '/categoryPage': (context) => CategoryGridPage(),
           '/cartPage': (context) => CartPage(),
-          
+
           // '/signIn': (context) => SigninPage(),
         },
       );

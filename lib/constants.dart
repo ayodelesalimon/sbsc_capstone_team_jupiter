@@ -71,3 +71,6 @@ OutlineInputBorder outlineInputBorder() {
     borderSide: BorderSide(color: kTextColor),
   );
 }
+printData(identifier, data) {
+  return debugPrint('===> $identifier <=== $data');
+}
