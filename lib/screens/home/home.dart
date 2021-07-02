@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:sbsc_capstone_team_jupiter/category/categories_grid.dart';
+//import 'package:sbsc_capstone_team_jupiter/category/categories_grid.dart';
 import 'package:sbsc_capstone_team_jupiter/screens/cart/cart.dart';
+import 'package:sbsc_capstone_team_jupiter/screens/category/categories_grid.dart';
 import 'package:sbsc_capstone_team_jupiter/widgets/colors.dart';
 import 'components/best_sell.dart';
 import 'components/category.dart';

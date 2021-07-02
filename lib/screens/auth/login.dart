@@ -2,16 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:sbsc_capstone_team_jupiter/constants.dart';
+import 'package:sbsc_capstone_team_jupiter/model/login.dart';
 import 'package:sbsc_capstone_team_jupiter/screens/home/home.dart';
 import 'package:sbsc_capstone_team_jupiter/screens/tab_controller.dart';
+import 'package:sbsc_capstone_team_jupiter/services/auth.dart';
+import 'package:sbsc_capstone_team_jupiter/widgets/alert.dart';
 import 'package:sbsc_capstone_team_jupiter/widgets/colors.dart';
 import 'package:sbsc_capstone_team_jupiter/widgets/input.dart';
+import 'package:sbsc_capstone_team_jupiter/widgets/loader.dart';
 import 'package:validators/validators.dart' as validator;
 
 import 'components/social_card.dart';
 import 'create_account.dart';
 import 'forgot_password.dart';
-
 
 class LoginPage extends StatefulWidget {
   final String name = 'loginPage';
@@ -22,6 +25,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  Login login = Login();
   final _formKey = GlobalKey<FormState>();
 
   TextEditingController email = TextEditingController();
@@ -38,6 +42,7 @@ class _LoginPageState extends State<LoginPage> {
         child: Container(
           margin: EdgeInsets.only(left: 24, right: 24),
           child: Form(
+              key: _formKey,
               autovalidateMode: AutovalidateMode.always,
               child: Column(children: [
                 SizedBox(
@@ -118,6 +123,9 @@ class _LoginPageState extends State<LoginPage> {
                       return 'Email Address is required';
                     }
                   },
+                  onSaved: (String value) {
+                    login.email = value;
+                  },
                 ),
                 SizedBox(
                   height: 14,
@@ -140,27 +148,31 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 Input(
                   isPassword: true,
-                    //focusNode: emailFocus,
-                    controller: password,
-                    showObscureText: showObscureTextPassword,
-                    isPasswordColor: Color(0xFF7C7C7C),
-                    obscureText: showObscureTextPassword,
-                    toggleEye: () {
-                      setState(() {
-                        showObscureTextPassword = !showObscureTextPassword;
-                      });
-                    },
-                    hintStyleColor: Color(0xFF7C7C7C),
-                    hintText: 'Password',
-                    styleColor: primaryColor,
-                    validator: MultiValidator([
-                      RequiredValidator(errorText: 'password is required'),
-                      MinLengthValidator(8,
-                          errorText: 'password must be at least 8 digits long'),
-                      PatternValidator(r'(?=.*?[#?!@$%^&*-])',
-                          errorText:
-                              'passwords must have at least one special character')
-                    ])),
+                  //focusNode: emailFocus,
+                  controller: password,
+                  showObscureText: showObscureTextPassword,
+                  isPasswordColor: Color(0xFF7C7C7C),
+                  obscureText: showObscureTextPassword,
+                  toggleEye: () {
+                    setState(() {
+                      showObscureTextPassword = !showObscureTextPassword;
+                    });
+                  },
+                  hintStyleColor: Color(0xFF7C7C7C),
+                  hintText: 'Password',
+                  styleColor: primaryColor,
+                  validator: MultiValidator([
+                    RequiredValidator(errorText: 'password is required'),
+                    MinLengthValidator(8,
+                        errorText: 'password must be at least 8 digits long'),
+                    PatternValidator(r'(?=.*?[#?!@$%^&*-])',
+                        errorText:
+                            'passwords must have at least one special character')
+                  ]),
+                  onSaved: (String value) {
+                    login.password = value;
+                  },
+                ),
                 spacer10,
                 GestureDetector(
                   onTap: () {
@@ -184,19 +196,31 @@ class _LoginPageState extends State<LoginPage> {
                 spacer20,
                 Center(
                   child: GestureDetector(
-                    onTap: () {
-                      // setState(() {
-                      //   if (_formKey.currentState.validate()) {
-                      //     print('perfect');
-                      //   } else {
-                      //     return null;
-                      //   }
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          settings: RouteSettings(name: "/home"),
-                          builder: (context) => TabView(),
-                        ),
-                      );
+                    onTap: () async {
+                      //FocusScope.of(context).unfocus();
+                      if (_formKey.currentState.validate()) {
+                        _formKey.currentState.save();
+                        showLoader(context);
+                        try {
+                         final data = await Auth.userLogin(login);
+
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              settings: RouteSettings(name: "/home"),
+                              builder: (context) => TabView(),
+                            ),
+                          );
+                          Loader.hide();
+                        } catch (e) {
+                          hideLoader();
+                          Alert(
+                            context: context,
+                            content: e,
+                            title: 'Login Error',
+                          );
+                        }
+                      }
+
                       //  });
                     },
                     child: Container(
