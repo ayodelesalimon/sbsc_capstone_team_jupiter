@@ -2,13 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class OrdersPage extends StatefulWidget {
+  final String name = 'orderPage';
   @override
   _OrdersPageState createState() => _OrdersPageState();
 }
 
 class _OrdersPageState extends State<OrdersPage> {
   var orderIDList = [
-   ' Order #: 341924186',
+    ' Order #: 341924186',
     ' Order #: 341924186',
     ' Order #: 341924186',
     ' Order #: 341924186',
@@ -26,7 +27,7 @@ class _OrdersPageState extends State<OrdersPage> {
     'assets/images/item1.png',
   ];
   var purchaseDateList = [
-   ' On 22 January, 2020 1:15 pm',
+    ' On 22 January, 2020 1:15 pm',
     ' On 22 January, 2020 1:15 pm',
     ' On 22 January, 2020 1:15 pm',
     ' On 22 January, 2020 1:15 pm',
@@ -50,7 +51,7 @@ class _OrdersPageState extends State<OrdersPage> {
               children: [
                 Container(
                   padding:
-                  EdgeInsets.only(bottom: 17, right: 24, left: 24, top: 40),
+                      EdgeInsets.only(bottom: 17, right: 24, left: 24, top: 40),
                   width: 375,
                   height: 142,
                   decoration: BoxDecoration(
@@ -65,7 +66,7 @@ class _OrdersPageState extends State<OrdersPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       GestureDetector(
-                        onTap: (){
+                        onTap: () {
                           Navigator.pop(context);
                         },
                         child: Image.asset(
@@ -112,38 +113,89 @@ class _OrdersPageState extends State<OrdersPage> {
                     margin: EdgeInsets.symmetric(horizontal: 24),
                     child: ListView(
                       children: [
-                        orderCard( imageList[0],orderIDList[0],'Estimated Delivery Date on 21 Dec', purchaseDateList[0], 0xffF2902F),
-                        orderCard( imageList[1],orderIDList[1],'Cancelled', purchaseDateList[1], 0xffBB2F48),
-                        orderCard( imageList[2],orderIDList[2],'Delivered on 31 Dec', purchaseDateList[2], 0xff3A953C),
-                        orderCard( imageList[3],orderIDList[3],'Estimated Delivery Date on 21 Dec', purchaseDateList[3], 0xffF2902F),
-                        orderCard( imageList[4],orderIDList[4],'Estimated Delivery Date on 21 Dec', purchaseDateList[4], 0xffF2902F),
-                        orderCard( imageList[5],orderIDList[5],'Estimated Delivery Date on 21 Dec', purchaseDateList[5], 0xffF2902F),
+                        orderCard(
+                            imageList[0],
+                            orderIDList[0],
+                            'Estimated Delivery Date on 21 Dec',
+                            purchaseDateList[0],
+                            0xffF2902F),
+                        orderCard(imageList[1], orderIDList[1], 'Cancelled',
+                            purchaseDateList[1], 0xffBB2F48),
+                        orderCard(
+                            imageList[2],
+                            orderIDList[2],
+                            'Delivered on 31 Dec',
+                            purchaseDateList[2],
+                            0xff3A953C),
+                        orderCard(
+                            imageList[3],
+                            orderIDList[3],
+                            'Estimated Delivery Date on 21 Dec',
+                            purchaseDateList[3],
+                            0xffF2902F),
+                        orderCard(
+                            imageList[4],
+                            orderIDList[4],
+                            'Estimated Delivery Date on 21 Dec',
+                            purchaseDateList[4],
+                            0xffF2902F),
+                        orderCard(
+                            imageList[5],
+                            orderIDList[5],
+                            'Estimated Delivery Date on 21 Dec',
+                            purchaseDateList[5],
+                            0xffF2902F),
                       ],
                     ),
                   ),
                 ),
-                SizedBox(height: 1,),
+                SizedBox(
+                  height: 1,
+                ),
                 Center(
                   child: Container(
                     decoration: BoxDecoration(
                       color: Color(0xffffffff),
                       boxShadow: [
-                        BoxShadow(color:Color.fromRGBO(0, -2, 20, 0.1),),
+                        BoxShadow(
+                          color: Color.fromRGBO(0, -2, 20, 0.1),
+                        ),
                       ],
                     ),
                     width: 375,
-                    height:88,
+                    height: 88,
                     child: Center(
-                      child:Container(
+                      child: Container(
                         width: 181.1,
                         height: 21.2,
                         child: Row(
                           children: [
-                            GestureDetector(onTap:(){},child: Image.asset('assets/images/home.png',width: 16.29,height: 15.41,color: Color(0xffDEDEDE),)),
+                            GestureDetector(
+                                onTap: () {},
+                                child: Image.asset(
+                                  'assets/images/home.png',
+                                  width: 16.29,
+                                  height: 15.41,
+                                  color: Color(0xffDEDEDE),
+                                )),
                             Spacer(),
-                            GestureDetector(onTap:(){},child: Image.asset('assets/images/search.png',width: 21.2,height: 21.2,color: Color(0xffDEDEDE),)),
+                            GestureDetector(
+                                onTap: () {},
+                                child: Image.asset(
+                                  'assets/images/search.png',
+                                  width: 21.2,
+                                  height: 21.2,
+                                  color: Color(0xffDEDEDE),
+                                )),
                             Spacer(),
-                            GestureDetector(onTap:(){},child: Image.asset('assets/images/dialog.png',width: 21.2,height: 21.2,color: Color(0xffDEDEDE),)),
+                            GestureDetector(
+                                onTap: () {},
+                                child: Image.asset(
+                                  'assets/images/dialog.png',
+                                  width: 21.2,
+                                  height: 21.2,
+                                  color: Color(0xffDEDEDE),
+                                )),
                           ],
                         ),
                       ),
@@ -159,57 +211,78 @@ class _OrdersPageState extends State<OrdersPage> {
   }
 }
 
- orderCard (
- String image,
-     String   orderID,
-     String     deliveryStatus,
-     String   purchaseDate,
-     int   color,
-     ) {
-    return Container(
-      width: 316,
-      // height: 78,
-      child: Column(
-        children:[
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Image.asset(image,width: 75,height: 78,),
-              Container(
-                width: 225,
-                height: 78,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      width: 224,
-                      child: Text(orderID,
-                        style: TextStyle(fontSize: 15,color: Color(0xff000000),fontWeight: FontWeight.normal),
+orderCard(
+  String image,
+  String orderID,
+  String deliveryStatus,
+  String purchaseDate,
+  int color,
+) {
+  return Container(
+    width: 316,
+    // height: 78,
+    child: Column(
+      children: [
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Image.asset(
+              image,
+              width: 75,
+              height: 78,
+            ),
+            Container(
+              width: 225,
+              height: 78,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    width: 224,
+                    child: Text(
+                      orderID,
+                      style: TextStyle(
+                          fontSize: 15,
+                          color: Color(0xff000000),
+                          fontWeight: FontWeight.normal),
+                    ),
+                  ),
+                  SizedBox(height: 5),
+                  Text(
+                    purchaseDate,
+                    style: TextStyle(
+                        fontSize: 13,
+                        color: Color(0xffbbbbbb),
+                        fontWeight: FontWeight.normal),
+                  ),
+                  SizedBox(height: 21),
+                  Expanded(
+                    child: Container(
+                      width: 225,
+                      child: Text(
+                        deliveryStatus,
+                        style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.normal,
+                          color: Color(color),
+                        ),
                       ),
                     ),
-                    SizedBox(height:5),
-                    Text(purchaseDate,style: TextStyle(fontSize:13,color: Color(0xffbbbbbb),fontWeight:FontWeight.normal),),
-                    SizedBox(height:21),
-                    Expanded(
-                      child: Container(
-                        width:225,
-                        child: Text(deliveryStatus,style: TextStyle(fontSize: 15,fontWeight: FontWeight.normal, color:Color(color),),),
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-            ],
-          ),
-      Padding(
-        padding: EdgeInsets.symmetric(vertical: 24),
-        child: Divider(
-          thickness: 1,
-          color: Color(0xfff5f5f5),
+            ),
+          ],
         ),
-      ),
-        ],
-      ),
-    );
-  }
+        Padding(
+          padding: EdgeInsets.symmetric(vertical: 24),
+          child: Divider(
+            thickness: 1,
+            color: Color(0xfff5f5f5),
+          ),
+        ),
+      ],
+    ),
+  );
+}

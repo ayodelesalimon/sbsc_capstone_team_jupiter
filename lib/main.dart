@@ -7,6 +7,7 @@ import 'package:sbsc_capstone_team_jupiter/screens/auth/login.dart';
 import 'package:sbsc_capstone_team_jupiter/screens/cart/cart.dart';
 
 import 'package:sbsc_capstone_team_jupiter/screens/home/home.dart';
+import 'package:sbsc_capstone_team_jupiter/screens/order/account_order.dart';
 import 'package:sbsc_capstone_team_jupiter/screens/tab_controller.dart';
 import 'package:sizer/sizer.dart';
 import 'screens/auth/forgot_password.dart';
@@ -34,7 +35,8 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
         ),
         routes: <String, WidgetBuilder>{
-          '/': (context) => LoginPage(),
+          '/': (context) => LandingScreen(),
+         // '/': (context) => LoginPage(),
           '/home': (context) => HomesCreen(),
           '/loginPage': (context) => LoginPage(),
           '/createAccount': (context) => CreateAccount(),
@@ -43,6 +45,7 @@ class MyApp extends StatelessWidget {
           'editProfile': (context) => EditProfile(),
           '/categoryPage': (context) => CategoryGridPage(),
           '/cartPage': (context) => CartPage(),
+          '/orderPage': (context) => OrdersPage(),
 
           // '/signIn': (context) => SigninPage(),
         },

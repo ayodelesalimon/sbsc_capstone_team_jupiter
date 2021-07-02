@@ -1245,58 +1245,58 @@ class _CategoryGridPageState extends State<CategoryGridPage> {
                     ),
                   ),
                 ),
-                Expanded(
-                  child: Center(
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: Color(0xffffffff),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Color.fromRGBO(0, -2, 20, 0.1),
-                          ),
-                        ],
-                      ),
-                      width: 375,
-                      height: 88,
-                      child: Center(
-                        child: Container(
-                          width: 181.1,
-                          height: 21.2,
-                          child: Row(
-                            children: [
-                              GestureDetector(
-                                  onTap: () {},
-                                  child: Image.asset(
-                                    'assets/images/home.png',
-                                    width: 16.29,
-                                    height: 15.41,
-                                    color: Color(0xff3A953C),
-                                  )),
-                              Spacer(),
-                              GestureDetector(
-                                  onTap: () {},
-                                  child: Image.asset(
-                                    'assets/images/search.png',
-                                    width: 21.2,
-                                    height: 21.2,
-                                    color: Color(0xffDEDEDE),
-                                  )),
-                              Spacer(),
-                              GestureDetector(
-                                  onTap: () {},
-                                  child: Image.asset(
-                                    'assets/images/dialog.png',
-                                    width: 21.2,
-                                    height: 21.2,
-                                    color: Color(0xffDEDEDE),
-                                  )),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
+                // Expanded(
+                //   child: Center(
+                //     child: Container(
+                //       decoration: BoxDecoration(
+                //         color: Color(0xffffffff),
+                //         boxShadow: [
+                //           BoxShadow(
+                //             color: Color.fromRGBO(0, -2, 20, 0.1),
+                //           ),
+                //         ],
+                //       ),
+                //       width: 375,
+                //       height: 88,
+                //       child: Center(
+                //         child: Container(
+                //           width: 181.1,
+                //           height: 21.2,
+                //           child: Row(
+                //             children: [
+                //               GestureDetector(
+                //                   onTap: () {},
+                //                   child: Image.asset(
+                //                     'assets/images/home.png',
+                //                     width: 16.29,
+                //                     height: 15.41,
+                //                     color: Color(0xff3A953C),
+                //                   )),
+                //               Spacer(),
+                //               GestureDetector(
+                //                   onTap: () {},
+                //                   child: Image.asset(
+                //                     'assets/images/search.png',
+                //                     width: 21.2,
+                //                     height: 21.2,
+                //                     color: Color(0xffDEDEDE),
+                //                   )),
+                //               Spacer(),
+                //               GestureDetector(
+                //                   onTap: () {},
+                //                   child: Image.asset(
+                //                     'assets/images/dialog.png',
+                //                     width: 21.2,
+                //                     height: 21.2,
+                //                     color: Color(0xffDEDEDE),
+                //                   )),
+                //             ],
+                //           ),
+                //         ),
+                //       ),
+                //     ),
+                //   ),
+                // ),
               ],
             ),
           ),

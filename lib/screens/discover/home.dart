@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:sbsc_capstone_team_jupiter/screens/discover/components/discover_list.dart';
+import 'package:sbsc_capstone_team_jupiter/screens/home/components/menudrawer.dart';
 import 'package:sbsc_capstone_team_jupiter/widgets/colors.dart';
 
 import '../../constants.dart';
@@ -25,6 +26,9 @@ class _DiscoverPageState extends State<DiscoverPage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+         endDrawerEnableOpenDragGesture: false,
+        key: _scaffoldKey,
+        drawer: MyDrawer(),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
