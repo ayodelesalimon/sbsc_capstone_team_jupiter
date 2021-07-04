@@ -1,73 +1,76 @@
 import 'package:flutter/material.dart';
-import 'package:sbsc_capstone_team_jupiter/screens/home/home.dart';
+import 'package:sbsc_capstone_team_jupiter/firstscreen.dart';
+import 'dart:async';
+
 
 class SplashScreen extends StatefulWidget {
+
   @override
   _SplashScreenState createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen>
-    with SingleTickerProviderStateMixin {
-  Animation<double> opacity;
-  AnimationController controller;
+class _SplashScreenState extends State<SplashScreen> {
+
 
   @override
-  void initState() {
+  void initState(){
     super.initState();
-    controller = AnimationController(
-        duration: Duration(milliseconds: 5500), vsync: this);
-    opacity = Tween<double>(begin: 1.0, end: 0.0).animate(controller)
-      ..addListener(() {
-        setState(() {});
-      });
-    controller.forward().then((_) {
-      navigationPage();
-    });
+    startTime();
+  }
+
+
+  startTime() async{
+    var duration =  Duration(seconds: 6);
+    return Timer(duration, route);
+  }
+
+  route(){
+    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => FirstScreen()),);
   }
 
   @override
-  void dispose() {
-    controller.dispose();
-    super.dispose();
-  }
-
-  void navigationPage() {
-    Navigator.of(context)
-        .pushReplacement(MaterialPageRoute(builder: (_) => HomesCreen()));
-  }
-
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-          image: DecorationImage(
-              image: AssetImage('assets/launch_image.png'), fit: BoxFit.cover)),
-      child: Container(
-        decoration: BoxDecoration(color: Colors.white),
-        child: SafeArea(
-          child: new Scaffold(
-            body: Column(
-              children: <Widget>[
-                Expanded(
-                  child: Opacity(
-                      opacity: opacity.value,
-                      child: new Image.asset('assets/launch_image.png')),
+    return Scaffold(
+      body: SingleChildScrollView(
+        child: Stack(
+          children: [
+            Container(
+              width: 375,
+              height: 812,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SizedBox(
+                      height:295.78,
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(right: 67.73,left: 67.65),
+                      // width: 239.62,
+                      // height: 130.43,
+                      child:Image.asset('assets/images/aduabafresh.png',width: 239.62,height: 130.43,),
+                    ),
+                    SizedBox(
+                      height:385.78,
+                    ),
+                  ],
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: RichText(
-                    text: TextSpan(
-                        style: TextStyle(color: Colors.black),
-                        children: [
-                          TextSpan(text: 'Powered by '),
-                          TextSpan(
-                              text: 'int2.io',
-                              style: TextStyle(fontWeight: FontWeight.bold))
-                        ]),
-                  ),
-                )
-              ],
+              ),
+            Positioned(child:
+             Image.asset('assets/images/orange.png',width:195,height: 195,),left: 0,top: 662,
             ),
-          ),
+            Positioned(child:
+            Image.asset('assets/images/berry.png',width:195,height: 195,),right: 0,top: 662,
+            ),
+                  Container(
+                  width: 375,
+                  height: 812,
+                  color: Colors.transparent,
+                  child: GestureDetector(
+                  onTap: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => FirstScreen()),);
+                  },
+                  ),),
+          ],
         ),
       ),
     );

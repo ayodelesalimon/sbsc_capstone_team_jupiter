@@ -3,12 +3,13 @@ import 'package:form_field_validator/form_field_validator.dart';
 import 'package:sbsc_capstone_team_jupiter/model/register.dart';
 import 'package:sbsc_capstone_team_jupiter/screens/auth/components/social_card.dart';
 import 'package:sbsc_capstone_team_jupiter/services/auth.dart';
-import 'package:sbsc_capstone_team_jupiter/widgets/alert.dart';
+// import 'package:sbsc_capstone_team_jupiter/widgets/alert.dart';
 import 'package:sbsc_capstone_team_jupiter/widgets/colors.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+// import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sbsc_capstone_team_jupiter/widgets/input.dart';
-import 'package:sbsc_capstone_team_jupiter/widgets/loader.dart';
+// import 'package:sbsc_capstone_team_jupiter/widgets/loader.dart';
 import 'package:validators/validators.dart' as validator;
+import 'package:sbsc_capstone_team_jupiter/size_config.dart';
 
 import 'login.dart';
 
@@ -33,18 +34,22 @@ class _CreateAccountState extends State<CreateAccount> {
   TextEditingController confirmpassword = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: SingleChildScrollView(
+    return Scaffold(
+      body: SingleChildScrollView(
+        child: Container(
+          width: SizeConfig.screenWidth,
+          height: SizeConfig.screenHeight,
           child: Container(
-            margin: EdgeInsets.only(right: 24, left: 24),
+            margin: EdgeInsets.symmetric(horizontal: 24),
             child: Form(
                 key: _formKey,
-                autovalidateMode: AutovalidateMode.always,
-                child: Column(
+                // autovalidateMode: AutovalidateMode.always,
+                child: ListView(
                   children: [
-                    SizedBox(
-                      height: 20,
+                    SafeArea(
+                      child: SizedBox(
+                        height: 40,
+                      ),
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -58,20 +63,20 @@ class _CreateAccountState extends State<CreateAccount> {
                               Text(
                                 'Create',
                                 style: TextStyle(
-                                  fontWeight: FontWeight.w700,
+                                  fontWeight: FontWeight.bold,
                                   fontStyle: FontStyle.normal,
                                   fontSize: 24,
-                                  letterSpacing: 0.053,
+                                  // letterSpacing: 0.053,
                                   color: Color(0xff10151a),
                                 ),
                               ),
                               Text(
                                 'your account',
                                 style: TextStyle(
-                                  fontWeight: FontWeight.w700,
+                                  fontWeight: FontWeight.bold,
                                   fontStyle: FontStyle.normal,
                                   fontSize: 24,
-                                  letterSpacing: 0.053,
+                                  // letterSpacing: 0.2,
                                   color: Color(0xff10151a),
                                 ),
                               ),
@@ -80,52 +85,58 @@ class _CreateAccountState extends State<CreateAccount> {
                         ),
                         Container(
                           //  margin: EdgeInsets.only(right: 24),
-                          width: 50.3,
-                          height: 50.15,
-                          child: CircleAvatar(
-                            backgroundColor: Color.fromRGBO(58, 149, 60, 0.1),
-                            child: Image.asset(
-                              'assets/images/user.png',
-                            ),
+                          width: 50,
+                          height: 50,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: Color.fromRGBO(58, 149, 60, 0.1),
                           ),
+                          child: Center(child: Image.asset('assets/images/user.png', width: 16,height: 16,)),
                         ),
                       ],
                     ),
                     SizedBox(
-                      height: 20,
+                      height: 40,
                     ),
                     SocialLogin(
-                      name: 'Register with Google',
-                      textColor: Color(0xff10151a),
-                      cardColor: Colors.white,
+                      title: 'Register with Google',
+                      textColor: Color(0xff000000),
+                      cardColor: Color(0xffffffff),
                       onTap: () {},
-                      icon: FontAwesomeIcons.google,
-                      fontColor: Color(0xff000000),
+                      image: 'assets/images/google.png',
+                      imgwidth: 17.46,
+                      imgheight: 17.87,
+                      marginright: 13.51,
+                      borderWidth: 1,
                     ),
                     SizedBox(
-                      height: 20,
+                      height: 16,
                     ),
                     SocialLogin(
-                      name: 'Register with Facebook ',
+                      title: 'Register with Facebook',
                       textColor: Color(0xffffffff),
                       cardColor: Color(0xff3D5B96),
-                      fontColor: Color(0xffffffff),
                       onTap: () {},
-                      icon: FontAwesomeIcons.facebook,
+                      image: 'assets/images/facebook.png',
+                      imgwidth: 9.34,
+                      imgheight: 18,
+                      marginright: 17.33,
                     ),
                     SizedBox(
-                      height: 20,
+                      height: 16
                     ),
                     SocialLogin(
-                      name: 'Sign in Apple ID ',
+                      title: 'Sign in Apple ID',
                       textColor: Color(0xffffffff),
-                      fontColor: Color(0xffffffff),
                       cardColor: Color(0xff000000),
                       onTap: () {},
-                      icon: FontAwesomeIcons.apple,
+                      image: 'assets/images/apple.png',
+                      imgwidth: 16.38,
+                      imgheight: 19.5,
+                      marginright: 13.8,
                     ),
                     SizedBox(
-                      height: 14,
+                      height: 24,
                     ),
                     Container(
                       child: Center(
@@ -134,15 +145,14 @@ class _CreateAccountState extends State<CreateAccount> {
                           style: TextStyle(
                             color: Color(0xff999999),
                             fontStyle: FontStyle.normal,
-                            fontWeight: FontWeight.w500,
+                            fontWeight: FontWeight.normal,
                             fontSize: 13,
                           ),
                         ),
                       ),
-                      margin: EdgeInsets.only(bottom: 2.95),
                     ),
                     SizedBox(
-                      height: 14,
+                      height: 24,
                     ),
                     Row(
                       children: [
@@ -152,13 +162,13 @@ class _CreateAccountState extends State<CreateAccount> {
                             color: Color(0xff10151a),
                             fontSize: 15,
                             fontStyle: FontStyle.normal,
-                            fontWeight: FontWeight.w700,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
                       ],
                     ),
                     SizedBox(
-                      height: 14,
+                      height: 16,
                     ),
                     Input(
                       //focusNode: emailFocus,
@@ -168,7 +178,7 @@ class _CreateAccountState extends State<CreateAccount> {
 
                       styleColor: primaryColor,
                       obscureText: false,
-                      hintStyleColor: Color(0xFF7C7C7C),
+                      hintStyleColor: Color(0xFFBABABA),
                       validator: (String value) {
                         if (!validator.isAlpha(value) && value.length < 1) {
                           return 'First Name is required';
@@ -181,7 +191,7 @@ class _CreateAccountState extends State<CreateAccount> {
                       },
                     ),
                     SizedBox(
-                      height: 14,
+                      height: 16,
                     ),
                     Row(
                       children: [
@@ -191,13 +201,13 @@ class _CreateAccountState extends State<CreateAccount> {
                             color: Color(0xff10151a),
                             fontSize: 15,
                             fontStyle: FontStyle.normal,
-                            fontWeight: FontWeight.w700,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
                       ],
                     ),
                     SizedBox(
-                      height: 10,
+                      height: 16,
                     ),
                     Input(
                       //focusNode: emailFocus,
@@ -207,7 +217,7 @@ class _CreateAccountState extends State<CreateAccount> {
 
                       styleColor: primaryColor,
                       obscureText: false,
-                      hintStyleColor: Color(0xFF7C7C7C),
+                      hintStyleColor: Color(0xFFBABABA),
                       validator: (String value) {
                         if (!validator.isAlpha(value) && value.length < 1) {
                           return 'Last Name is required';
@@ -219,7 +229,7 @@ class _CreateAccountState extends State<CreateAccount> {
                       },
                     ),
                     SizedBox(
-                      height: 14,
+                      height: 16,
                     ),
                     Row(
                       children: [
@@ -229,13 +239,13 @@ class _CreateAccountState extends State<CreateAccount> {
                             color: Color(0xff10151a),
                             fontSize: 15,
                             fontStyle: FontStyle.normal,
-                            fontWeight: FontWeight.w700,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
                       ],
                     ),
                     SizedBox(
-                      height: 14,
+                      height: 16,
                     ),
                     Input(
                       //focusNode: emailFocus,
@@ -245,7 +255,7 @@ class _CreateAccountState extends State<CreateAccount> {
 
                       styleColor: primaryColor,
                       obscureText: false,
-                      hintStyleColor: Color(0xFF7C7C7C),
+                      hintStyleColor: Color(0xFFbababa),
                       validator: (String value) {
                         if (!validator.isEmail(value) && value.length < 1) {
                           return 'Email Address is required';
@@ -257,7 +267,7 @@ class _CreateAccountState extends State<CreateAccount> {
                       },
                     ),
                     SizedBox(
-                      height: 14,
+                      height: 16,
                     ),
                     Row(
                       children: [
@@ -267,13 +277,13 @@ class _CreateAccountState extends State<CreateAccount> {
                             color: Color(0xff10151a),
                             fontSize: 15,
                             fontStyle: FontStyle.normal,
-                            fontWeight: FontWeight.w700,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
                       ],
                     ),
                     SizedBox(
-                      height: 14,
+                      height: 16,
                     ),
                     Input(
                       //focusNode: emailFocus,
@@ -321,7 +331,7 @@ class _CreateAccountState extends State<CreateAccount> {
                       ],
                     ),
                     SizedBox(
-                      height: 14,
+                      height: 16,
                     ),
                     Input(
                       //focusNode: emailFocus,
@@ -337,7 +347,7 @@ class _CreateAccountState extends State<CreateAccount> {
                         });
                       },
                       styleColor: primaryColor,
-                      hintStyleColor: Color(0xFF7C7C7C),
+                      hintStyleColor: Color(0xFFbababa),
                       validator: MultiValidator([
                         RequiredValidator(errorText: 'password is required'),
                         MinLengthValidator(8,
@@ -353,7 +363,7 @@ class _CreateAccountState extends State<CreateAccount> {
                       },
                     ),
                     SizedBox(
-                      height: 20,
+                      height: 24,
                     ),
                     Center(
                       child: GestureDetector(
@@ -384,7 +394,7 @@ class _CreateAccountState extends State<CreateAccount> {
                           }
                         },
                         child: Container(
-                          width: 360,
+                          width: 327,
                           height: 52,
                           decoration: BoxDecoration(
                             color: Color(0xff3a953c),
@@ -396,56 +406,51 @@ class _CreateAccountState extends State<CreateAccount> {
                               style: TextStyle(
                                 color: Color(0xffffffff),
                                 fontStyle: FontStyle.normal,
-                                fontWeight: FontWeight.w700,
+                                fontWeight: FontWeight.bold,
                                 fontSize: 16,
                               ),
                             ),
                           ),
-                          margin: EdgeInsets.only(bottom: 2.95),
                         ),
                       ),
                     ),
                     SizedBox(
-                      height: 14,
+                      height: 24,
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 25.0),
-                      child: Center(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              "Have an account already?",
+                    Center(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            "Have an account already?",
+                            softWrap: true,
+                            style: TextStyle(
+                              color: Color(0xff999999),
+                              fontSize: 14,
+                            ),
+                          ),
+                          SizedBox(
+                            width: 5,
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  settings: RouteSettings(name: "/loginPage"),
+                                  builder: (context) => LoginPage(),
+                                ),
+                              );
+                            },
+                            child: Text(
+                              "Sign In",
                               softWrap: true,
                               style: TextStyle(
-                                color: Colors.grey,
-                                fontSize: 16,
+                                color: primaryColor,
+                                fontSize: 14,
                               ),
                             ),
-                            SizedBox(
-                              width: 5,
-                            ),
-                            GestureDetector(
-                              onTap: () {
-                                Navigator.of(context).push(
-                                  MaterialPageRoute(
-                                    settings: RouteSettings(name: "/loginPage"),
-                                    builder: (context) => LoginPage(),
-                                  ),
-                                );
-                              },
-                              child: Text(
-                                "Sign In",
-                                softWrap: true,
-                                style: TextStyle(
-                                  color: primaryColor,
-                                  fontWeight: FontWeight.w800,
-                                  fontSize: 16,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                     ),
                   ],

@@ -4,13 +4,13 @@ import 'package:form_field_validator/form_field_validator.dart';
 import 'package:sbsc_capstone_team_jupiter/constants.dart';
 import 'package:sbsc_capstone_team_jupiter/model/login.dart';
 import 'package:sbsc_capstone_team_jupiter/screens/home/home.dart';
-import 'package:sbsc_capstone_team_jupiter/screens/tab_controller.dart';
 import 'package:sbsc_capstone_team_jupiter/services/auth.dart';
 import 'package:sbsc_capstone_team_jupiter/widgets/alert.dart';
 import 'package:sbsc_capstone_team_jupiter/widgets/colors.dart';
 import 'package:sbsc_capstone_team_jupiter/widgets/input.dart';
 import 'package:sbsc_capstone_team_jupiter/widgets/loader.dart';
 import 'package:validators/validators.dart' as validator;
+import 'package:sbsc_capstone_team_jupiter/size_config.dart';
 
 import 'components/social_card.dart';
 import 'create_account.dart';
@@ -36,42 +36,47 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-          body: SingleChildScrollView(
+    return Scaffold(
+        body: SingleChildScrollView(
+      child: Container(
+        width: SizeConfig.screenWidth,
+        height: SizeConfig.screenHeight,
         child: Container(
-          margin: EdgeInsets.only(left: 24, right: 24),
+          margin: EdgeInsets.symmetric(horizontal: 24),
           child: Form(
               key: _formKey,
-              autovalidateMode: AutovalidateMode.always,
-              child: Column(children: [
-                SizedBox(
-                  height: 20,
+              // autovalidateMode: AutovalidateMode.always,
+              child: ListView(children: [
+                SafeArea(
+                  child: SizedBox(
+                    height: 40,
+                  ),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Container(
+                      width: 327,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
                             'Sign In',
                             style: TextStyle(
-                              fontWeight: FontWeight.w700,
+                              fontWeight: FontWeight.bold,
                               fontStyle: FontStyle.normal,
                               fontSize: 24,
-                              letterSpacing: 0.053,
+                              // letterSpacing: 0.053,
                               color: Color(0xff10151a),
                             ),
                           ),
                           Text(
                             ' to your account',
                             style: TextStyle(
-                              fontWeight: FontWeight.w700,
+                              fontWeight: FontWeight.bold,
                               fontStyle: FontStyle.normal,
                               fontSize: 24,
-                              letterSpacing: 0.053,
+                              // letterSpacing: 0.053,
                               color: Color(0xff10151a),
                             ),
                           ),
@@ -79,19 +84,19 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ),
                     Container(
-                      width: 50.3,
-                      height: 50.15,
-                      child: CircleAvatar(
-                        backgroundColor: Color.fromRGBO(58, 149, 60, 0.1),
-                        child: Image.asset(
-                          'assets/images/user.png',
-                        ),
+                      //  margin: EdgeInsets.only(right: 24),
+                      width: 50,
+                      height: 50,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Color.fromRGBO(58, 149, 60, 0.1),
                       ),
+                      child: Center(child: Image.asset('assets/images/user.png', width: 16,height: 16,)),
                     ),
                   ],
                 ),
                 SizedBox(
-                  height: 20,
+                  height: 48,
                 ),
                 Row(
                   children: [
@@ -101,13 +106,13 @@ class _LoginPageState extends State<LoginPage> {
                         color: Color(0xff10151a),
                         fontSize: 15,
                         fontStyle: FontStyle.normal,
-                        fontWeight: FontWeight.w700,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
                   ],
                 ),
                 SizedBox(
-                  height: 14,
+                  height: 16,
                 ),
                 Input(
                   //focusNode: emailFocus,
@@ -117,7 +122,7 @@ class _LoginPageState extends State<LoginPage> {
 
                   styleColor: primaryColor,
                   obscureText: false,
-                  hintStyleColor: Color(0xFF7C7C7C),
+                  hintStyleColor: Color(0xFFbababa),
                   validator: (String value) {
                     if (!validator.isEmail(value) && value.length < 1) {
                       return 'Email Address is required';
@@ -128,37 +133,33 @@ class _LoginPageState extends State<LoginPage> {
                   },
                 ),
                 SizedBox(
-                  height: 14,
+                  height: 16,
                 ),
-                Row(
-                  children: [
-                    Text(
-                      'Password',
-                      style: TextStyle(
-                        color: Color(0xff10151a),
-                        fontSize: 15,
-                        fontStyle: FontStyle.normal,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                  ],
+                Text(
+                  'Password',
+                  style: TextStyle(
+                    color: Color(0xff10151a),
+                    fontSize: 15,
+                    fontStyle: FontStyle.normal,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
                 SizedBox(
-                  height: 14,
+                  height: 16,
                 ),
                 Input(
                   isPassword: true,
                   //focusNode: emailFocus,
                   controller: password,
                   showObscureText: showObscureTextPassword,
-                  isPasswordColor: Color(0xFF7C7C7C),
+                  isPasswordColor: Color(0xFFbababa),
                   obscureText: showObscureTextPassword,
                   toggleEye: () {
                     setState(() {
                       showObscureTextPassword = !showObscureTextPassword;
                     });
                   },
-                  hintStyleColor: Color(0xFF7C7C7C),
+                  hintStyleColor: Color(0xFFbababa),
                   hintText: 'Password',
                   styleColor: primaryColor,
                   validator: MultiValidator([
@@ -173,7 +174,7 @@ class _LoginPageState extends State<LoginPage> {
                     login.password = value;
                   },
                 ),
-                spacer10,
+                SizedBox(height: 16,),
                 GestureDetector(
                   onTap: () {
                     Navigator.of(context).push(
@@ -188,7 +189,7 @@ class _LoginPageState extends State<LoginPage> {
                     children: [
                       Text(
                         "Forgot Password?",
-                        style: TextStyle(color: lightGrey, fontSize: 14),
+                        style: TextStyle(color:Color(0xff819272), fontSize: 13, fontWeight: FontWeight.w500),
                       )
                     ],
                   ),
@@ -207,7 +208,7 @@ class _LoginPageState extends State<LoginPage> {
                           Navigator.of(context).push(
                             MaterialPageRoute(
                               settings: RouteSettings(name: "/home"),
-                              builder: (context) => TabView(),
+                              builder: (context) => HomesCreen(),
                             ),
                           );
                           Loader.hide();
@@ -224,7 +225,7 @@ class _LoginPageState extends State<LoginPage> {
                       //  });
                     },
                     child: Container(
-                      width: 360,
+                      width: 327,
                       height: 52,
                       decoration: BoxDecoration(
                         color: Color(0xff3a953c),
@@ -236,17 +237,16 @@ class _LoginPageState extends State<LoginPage> {
                           style: TextStyle(
                             color: Color(0xffffffff),
                             fontStyle: FontStyle.normal,
-                            fontWeight: FontWeight.w700,
+                            fontWeight: FontWeight.bold,
                             fontSize: 16,
                           ),
                         ),
                       ),
-                      margin: EdgeInsets.only(bottom: 2.95),
                     ),
                   ),
                 ),
                 SizedBox(
-                  height: 14,
+                  height: 24,
                 ),
                 Container(
                   child: Center(
@@ -260,87 +260,89 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ),
                   ),
-                  margin: EdgeInsets.only(bottom: 2.95),
                 ),
                 SizedBox(
-                  height: 20,
+                  height: 24,
                 ),
                 SocialLogin(
-                  name: 'Register with Google',
-                  textColor: Color(0xff10151a),
-                  cardColor: Colors.white,
+                  title: 'Sign in Apple ID',
+                  textColor: Color(0xffffffff),
+                  cardColor:Color(0xff000000),
                   onTap: () {},
-                  icon: FontAwesomeIcons.google,
-                  fontColor: Color(0xff000000),
+                  image: 'assets/images/apple.png',
+                  imgheight: 19.5,
+                  imgwidth: 16.38,
+                  marginright: 13.8,
                 ),
                 SizedBox(
-                  height: 20,
+                  height: 16,
                 ),
                 SocialLogin(
-                  name: 'Register with Facebook ',
+                  title: 'Sign in with Google',
+                  textColor: Color(0xff000000),
+                  cardColor: Color(0xffffffff),
+                  onTap: () {},
+                  image: 'assets/images/google.png',
+                  imgwidth: 17.46,
+                  imgheight: 17.87,
+                  marginright: 13.51,
+                  borderWidth: 1,
+                ),
+                SizedBox(
+                  height: 16,
+                ),
+                SocialLogin(
+                  title: 'Sign in with Facebook',
                   textColor: Color(0xffffffff),
                   cardColor: Color(0xff3D5B96),
-                  fontColor: Color(0xffffffff),
                   onTap: () {},
-                  icon: FontAwesomeIcons.facebook,
+                  image: 'assets/images/facebook.png',
+                  imgwidth: 9.34,
+                  imgheight: 18,
+                  marginright: 17.33,
                 ),
                 SizedBox(
-                  height: 20,
+                  height: 24,
                 ),
-                SocialLogin(
-                  name: 'Sign in Apple ID ',
-                  textColor: Color(0xffffffff),
-                  fontColor: Color(0xffffffff),
-                  cardColor: Color(0xff000000),
-                  onTap: () {},
-                  icon: FontAwesomeIcons.apple,
-                ),
-                SizedBox(
-                  height: 14,
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 25.0),
-                  child: Center(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          'Don’t have an account? ',
+                Center(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Don’t have an account? ',
+                        softWrap: true,
+                        style: TextStyle(
+                          color: Color(0xff999999),
+                          fontSize: 14,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 5,
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              settings: RouteSettings(name: "/createAccount"),
+                              builder: (context) => CreateAccount(),
+                            ),
+                          );
+                        },
+                        child: Text(
+                          "Get Started",
                           softWrap: true,
                           style: TextStyle(
-                            color: Colors.grey,
-                            fontSize: 16,
+                            color: primaryColor,
+                            fontSize: 14,
                           ),
                         ),
-                        SizedBox(
-                          width: 5,
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.of(context).push(
-                              MaterialPageRoute(
-                                settings: RouteSettings(name: "/createAccount"),
-                                builder: (context) => CreateAccount(),
-                              ),
-                            );
-                          },
-                          child: Text(
-                            "Get Started",
-                            softWrap: true,
-                            style: TextStyle(
-                              color: primaryColor,
-                              fontWeight: FontWeight.w800,
-                              fontSize: 16,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
               ])),
         ),
-      )),
-    );
+      ),
+    ));
   }
 }

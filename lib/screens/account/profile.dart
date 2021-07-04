@@ -1,10 +1,10 @@
 import 'dart:ui';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sbsc_capstone_team_jupiter/constants.dart';
 import 'package:sbsc_capstone_team_jupiter/screens/account/edit_profile.dart';
 
-import '../tab_controller.dart';
 
 class Profile extends StatefulWidget {
   final String name = 'profilePage';
@@ -19,206 +19,210 @@ class _ProfileState extends State<Profile> {
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     // final height = MediaQuery.of(context).size.height;
-    return SafeArea(
-      child: Scaffold(
-        body: Column(
-          children: [
-            Container(
-              width: width,
-              height: 120,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(10),
-                    topRight: Radius.circular(10),
-                    bottomLeft: Radius.circular(10),
-                    bottomRight: Radius.circular(10)),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.5),
-                    spreadRadius: 5,
-                    blurRadius: 7,
-                    offset: Offset(0, 3), // changes position of shadow
-                  ),
-                ],
-              ),
-              child: Padding(
-                padding: const EdgeInsets.only(left: 18.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    IconButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      icon: Icon(
-                        Icons.arrow_back,
-                        size: 30,
-                      ),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Text(
-                      "Account",
-                      style:
-                          TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
-                    ),
-                  ],
+    return Scaffold(
+        body: SingleChildScrollView(
+        child: SafeArea(
+        child: Container(
+        width:375,
+        height:812,
+        child: ListView(
+        children: [
+          Container(
+            margin: EdgeInsets.only(top: 40,right: 24,left: 24,bottom: 17),
+            width: 375,
+            height: 116,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.white.withOpacity(0.1),
+                  spreadRadius: 2,
                 ),
-              ),
+              ],
             ),
-            Container(
-              child: Padding(
-                padding: const EdgeInsets.only(left: 24.0, right: 24.0),
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: 40,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          children: [
-                            CircleAvatar(
-                              radius: 25,
-                              child: Image.asset("assets/images/Profile.png"),
-                            ),
-                            SizedBox(
-                              width: 20,
-                            ),
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Image.asset('assets/images/back.png', width: 23,height: 14,),
+                Text(
+                  "Account",
+                  style:
+                  TextStyle(fontSize: 24, fontWeight: FontWeight.bold,color: Color(0xff819272)),
+                ),
+              ],
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.symmetric(horizontal: 24),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(height:48 ,),
+                    Container(
+                      width: 327,height: 68,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Container(
+                              width:60,height:60,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                              ),
+                              child: Image.asset("assets/images/Profile.png",width: 60,height: 60,),
+                          ),
+                          SizedBox(
+                            width: 16,
+                          ),
+                          Container(
+                            width: 217,height: 68,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  "Oga Hafis",
+                                  "Andrea Charles",
                                   style: TextStyle(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w700),
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.bold,color: Color(0xff10151a)),
                                 ),
-                                spacer5,
-                                Text("ogahafis@sbsc.com"),
-                                spacer5,
-                                Text("+@346969699666")
+                                Text("Andrea_charles@gmail.com", style: TextStyle(
+                                    fontSize: 13,color: Color(0xff999999)),),
+                                Text("+234 809 202 3024", style: TextStyle(
+                                    fontSize: 13,
+                                    color: Color(0xff999999)),)
                               ],
                             ),
-                          ],
-                        ),
-                        Column(
-                          children: [
-                            IconButton(
-                                icon: Icon(Icons.edit_outlined),
-                                onPressed: () {
-                                  Navigator.of(context).push(
-                                    MaterialPageRoute(
-                                      settings:
-                                          RouteSettings(name: "/editProfile"),
-                                      builder: (context) => EditProfile(),
-                                    ),
-                                  );
-                                }),
-                            SizedBox(
-                              height: 5,
-                            )
-                          ],
-                        )
-                      ],
-                    ),
-                    spacer10,
-                    ListTile(
-                      leading: Icon(
-                        Icons.favorite_outlined,
-                        color: Colors.red,
+                          ),
+                          SizedBox(
+                            height: 14,
+                          ),
+                          Image.asset("assets/images/edit.png",width: 16,height: 15.94,),
+                        ],
                       ),
-                      title: Text("My WishList"),
                     ),
-                    Divider(),
-                    ListTile(
-                      leading: Icon(
-                        Icons.shopping_cart,
-                        color: Colors.deepOrange,
+                SizedBox(
+                  height: 78,
+                ),
+                    Container(
+                      width:122,
+                      height: 24,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Image.asset('assets/images/heart.png',width: 17,height: 14.99,),
+                          Text('My wishllist',style: TextStyle(color: Color(0xff10151a),fontSize:17),),
+                        ],
                       ),
-                      title: Text("My Orders"),
                     ),
-                    Divider(),
-                    ListTile(
-                      leading: Icon(
-                        Icons.credit_card,
-                        color: Colors.green,
+                    Padding(
+                      padding:EdgeInsets.symmetric(vertical: 24),
+                      child: Divider(
+                        color: Color(0xfff5f5f5),
+                        thickness: 1,
                       ),
-                      title: Text("Payments"),
                     ),
-                    Divider(),
-                    ListTile(
-                      leading: Icon(
-                        Icons.delivery_dining,
-                        color: Colors.yellow,
-                      ),
-                      title: Text("Shipping Details"),
-                    ),
-                    Divider(
-                      thickness: 1,
-                    ),
-                    ListTile(
-                      leading: Icon(
-                        Icons.settings,
-                        color: Colors.grey,
-                      ),
-                      title: Text("Settings"),
-                    ),
-                    Divider(
-                      thickness: 1,
-                    ),
+                Container(
+                  width:116,
+                  height: 24,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Image.asset('assets/images/orangecart.png',width: 17.7,height: 17,),
+                      Text('My orders',style: TextStyle(color: Color(0xff10151a),fontSize:17),),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding:EdgeInsets.symmetric(vertical: 24),
+                  child: Divider(
+                    color: Color(0xfff5f5f5),
+                    thickness: 1,
+                  ),
+                ),
+                Container(
+                  width:108,
+                  height: 24,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Image.asset('assets/images/track.png',width: 20.36,height: 16,),
+                      Text('Payment',style: TextStyle(color: Color(0xff10151a),fontSize:17),),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding:EdgeInsets.symmetric(vertical: 24),
+                  child: Divider(
+                    color: Color(0xfff5f5f5),
+                    thickness: 1,
+                  ),
+                ),
+                Container(
+                  width:161,
+                  height: 24,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Image.asset('assets/images/delivery.png',width: 20,height: 16,),
+                      Text('Shipping details',style: TextStyle(color: Color(0xff10151a),fontSize:17),),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding:EdgeInsets.symmetric(vertical: 24),
+                  child: Divider(
+                    color: Color(0xfff5f5f5),
+                    thickness: 1,
+                  ),
+                ),
+                Container(
+                  width:103,
+                  height: 24,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Image.asset('assets/images/setting.png',width: 19.86,height: 20.97,),
+                      Text('Settings',style: TextStyle(color: Color(0xff10151a),fontSize:17),),
+                    ],
+                  ),
+                ),
                   ],
                 ),
               ),
-            ),
-            spacer5,
-            Center(
-              child: GestureDetector(
-                onTap: () {
-                  // setState(() {
-                  //   if (_formKey.currentState.validate()) {
-                  //     print('perfect');
-                  //   } else {
-                  //     return null;
-                  //   }
-                  // Navigator.of(context).push(
-                  //   MaterialPageRoute(
-                  //     settings: RouteSettings(name: "/home"),
-                  //     builder: (context) => TabView(),
-                  //   ),
-                  // );
-                  //  });
-                },
-                child: Container(
-                  width: 360,
-                  height: 52,
-                  decoration: BoxDecoration(
-                    color: Colors.redAccent,
-                    borderRadius: BorderRadius.circular(5.0),
-                  ),
-                  child: Center(
-                    child: Text(
-                      'Log Out',
-                      style: TextStyle(
-                        color: Color(0xffffffff),
-                        fontStyle: FontStyle.normal,
-                        fontWeight: FontWeight.w700,
-                        fontSize: 16,
-                      ),
-                    ),
-                  ),
-                  margin: EdgeInsets.only(bottom: 2.95),
+            SizedBox(height: 94,),
+          Center(
+            child: GestureDetector(
+              onTap:(){},
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Color(0xffBB2F48),
+                  borderRadius: BorderRadius.circular(5),
                 ),
+                child: Center(
+                  child: Text(
+                    'Log Out',
+                    style: TextStyle(
+                        color: Color(0xffffffff),
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+                width: 327,
+                height: 47,
               ),
             ),
+          ),
           ],
         ),
-      ),
+      ),),),
     );
   }
 }

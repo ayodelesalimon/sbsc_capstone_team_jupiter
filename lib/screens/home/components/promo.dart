@@ -12,25 +12,23 @@ class Promo extends StatelessWidget {
       {"text": "More", "textColor": darkLiver, "cardColor": cadetBlue},
     ];
     return Container(
-     padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 24.0),
-        height: MediaQuery.of(context).size.height * 0.35,
-      margin: EdgeInsets.symmetric(vertical: 10.0),
+      margin: EdgeInsets.only(right: 16),
+      height: 181,
       child: ListView(scrollDirection: Axis.horizontal, children: [
-        Padding(
-          padding: EdgeInsets.all(20),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: List.generate(
-              categories.length,
-              (index) => PromoCard(
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: List.generate(
+            categories.length,
+            (index) => Padding(
+              padding: const EdgeInsets.only(right: 16),
+              child: PromoCard(
                 textColor: categories[index]["textColor"],
                 cardColor: categories[index]["cardColor"],
                 text: categories[index]["text"],
                 press: () {},
               ),
-              
             ),
+
           ),
         ),
       ]),
