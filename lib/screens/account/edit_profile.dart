@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sbsc_capstone_team_jupiter/constants.dart';
 import 'package:sbsc_capstone_team_jupiter/widgets/colors.dart';
@@ -18,101 +19,90 @@ class _EditProfileState extends State<EditProfile> {
   TextEditingController phone = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
+    // final width = MediaQuery.of(context).size.width;
     // final height = MediaQuery.of(context).size.height;
-    return SafeArea(
-      child: Scaffold(
+    return Scaffold(
         body: SingleChildScrollView(
-          child: Column(
-            children: [
-              Container(
-                width: width,
-                height: 120,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(10),
-                      topRight: Radius.circular(10),
-                      bottomLeft: Radius.circular(10),
-                      bottomRight: Radius.circular(10)),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.5),
-                      spreadRadius: 5,
-                      blurRadius: 7,
-                      offset: Offset(0, 3), // changes position of shadow
-                    ),
-                  ],
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 18.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      IconButton(
-                        icon: Icon(
-                          Icons.arrow_back,
-                          size: 30,
+          child: SafeArea(
+            child: Container(
+              width:375,
+              height:812,
+              child: ListView(
+                children: [
+                  Container(
+                    margin: EdgeInsets.only(top: 40,right: 24,left: 24,bottom: 17),
+                    width: 375,
+                    height: 116,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.white.withOpacity(0.1),
+                          spreadRadius: 2, 
                         ),
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Text(
-                        "Edit Profile",
-                        style:
-                            TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
-                      ),
-                    ],
+                      ],
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                       Image.asset('assets/images/back.png', width: 23,height: 14,),
+                        Text(
+                          "Edit Profile",
+                          style:
+                              TextStyle(fontSize: 24, fontWeight: FontWeight.bold,color: Color(0xff819272)),
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 24.0, right: 24.0),
-                child: SingleChildScrollView(
-                  child: Container(
+                  Container(
+                    margin: EdgeInsets.symmetric(horizontal: 24),
                     child: Column(
                       children: [
-                        spacer30,
+                        SizedBox(height:48 ,),
                         Center(
-                          child: Stack(
-                            children: [
-                              CircleAvatar(
-                                maxRadius: 90,
-                                backgroundColor: Colors.red,
-                              ),
-                              Positioned(
-                                top: 20,
-                                left: 140,
-                                child: CircleAvatar(
-                                    backgroundColor: Colors.grey,
-                                    child: IconButton(
-                                        icon: Icon(Icons.image),
-                                        onPressed: () {})),
-                              )
-                            ],
+                          child: Container(
+                            width: 129,height: 129,
+                            child: Stack(
+                              children: [
+                                Container(
+                                  width: 129,height: 129,
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                  ),
+                                  child: Image.asset('assets/images/Profile.png'),
+                                ),
+                                Positioned(
+                                  top: 0,
+                                  right: 0,
+                                  child: Container(
+                                    width: 40,height: 40,
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      border: Border.all(color: Colors.white,width: 3),
+                                        color: Color(0xff979797),
+                                    ),
+                                    child: Image.asset('assets/images/photo.png',width: 16,height: 14,color: Color(0xffffffff),),
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
-                        spacer30,
-                        Row(
-                          children: [
-                            Text(
-                              'First Name',
-                              style: TextStyle(
-                                color: Color(0xff10151a),
-                                fontSize: 15,
-                                fontStyle: FontStyle.normal,
-                                fontWeight: FontWeight.w700,
-                              ),
-                            ),
-                          ],
+                        SizedBox(
+                          height: 72,
+                        ),
+                        Text(
+                          'First Name',
+                          style: TextStyle(
+                            color: Color(0xff10151a),
+                            fontSize: 15,
+                            fontStyle: FontStyle.normal,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                         SizedBox(
-                          height: 14,
+                          height: 16,
                         ),
                         Input(
                           //focusNode: emailFocus,
@@ -120,9 +110,9 @@ class _EditProfileState extends State<EditProfile> {
 
                           hintText: 'First Name',
 
-                          styleColor: primaryColor,
+                          styleColor: Colors.black,
                           obscureText: false,
-                          hintStyleColor: Color(0xFF7C7C7C),
+                          hintStyleColor: Color(0xFFbababa),
                           // validator: (String value) {
                           //   if (!validator.isAlpha(value) && value.length < 1) {
                           //     return 'First Name is required';
@@ -131,33 +121,28 @@ class _EditProfileState extends State<EditProfile> {
                           // },
                         ),
                         SizedBox(
-                          height: 14,
+                          height: 16,
                         ),
-                        Row(
-                          children: [
-                            Text(
-                              'Last Name',
-                              style: TextStyle(
-                                color: Color(0xff10151a),
-                                fontSize: 15,
-                                fontStyle: FontStyle.normal,
-                                fontWeight: FontWeight.w700,
-                              ),
-                            ),
-                          ],
+                        Text(
+                          'Last Name',
+                          style: TextStyle(
+                            color: Color(0xff10151a),
+                            fontSize: 15,
+                            fontStyle: FontStyle.normal,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                         SizedBox(
-                          height: 10,
+                          height: 16,
                         ),
                         Input(
                           //focusNode: emailFocus,
                           controller: lastname,
 
                           hintText: 'Last Name',
-
-                          styleColor: primaryColor,
+                          styleColor: Colors.black,
                           obscureText: false,
-                          hintStyleColor: Color(0xFF7C7C7C),
+                          hintStyleColor: Color(0xFFbababa),
                           // validator: (String value) {
                           //   if (!validator.isAlpha(value) && value.length < 1) {
                           //     return 'First Name is required';
@@ -166,85 +151,66 @@ class _EditProfileState extends State<EditProfile> {
                           // },
                         ),
                         SizedBox(
-                          height: 14,
+                          height: 16,
                         ),
-                        Row(
-                          children: [
-                            Text(
-                              'Phone',
-                              style: TextStyle(
-                                color: Color(0xff10151a),
-                                fontSize: 15,
-                                fontStyle: FontStyle.normal,
-                                fontWeight: FontWeight.w700,
-                              ),
-                            ),
-                          ],
+                        Text(
+                          'Phone',
+                          style: TextStyle(
+                            color: Color(0xff10151a),
+                            fontSize: 15,
+                            fontStyle: FontStyle.normal,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                         SizedBox(
-                          height: 14,
+                          height: 16,
                         ),
                         Input(
                           //focusNode: emailFocus,
                           controller: phone,
 
-                          hintText: '+2345969565765',
-
+                          hintText: '+234 809 202 3024',
                           styleColor: primaryColor,
                           obscureText: false,
-                          hintStyleColor: Color(0xFF7C7C7C),
+                          hintStyleColor: Color(0xFFbababa),
                           validator: (String value) {
                             if (!validator.isNumeric(value) && value.length < 1) {
                               return 'Number is required';
                             }
                           },
                         ),
-                        spacer10,
+                        SizedBox(height:74),
                         Center(
-                            child: GestureDetector(
-                          onTap: () {
-                            // setState(() {
-                            //   if (_formKey.currentState.validate()) {
-                            //     print('perfect');
-                            //   } else {
-                            //     return null;
-                            //   }
-                            // Navigator.of(context).push(
-                            //   MaterialPageRoute(
-                            //     settings: RouteSettings(name: "/home"),
-                            //     builder: (context) => TabView(),
-                            //   ),
-                            // );
-                            //  });
-                          },
-                          child: Container(
-                              width: 360,
-                              height: 52,
+                          child: GestureDetector(
+                            onTap:(){},
+                            child: Container(
                               decoration: BoxDecoration(
-                                color: primaryColor,
-                                borderRadius: BorderRadius.circular(5.0),
+                                color: Color(0xff3A953C),
+                                borderRadius: BorderRadius.circular(5),
                               ),
                               child: Center(
                                 child: Text(
                                   'Save Changes',
                                   style: TextStyle(
-                                    color: Color(0xffffffff),
-                                    fontStyle: FontStyle.normal,
-                                    fontWeight: FontWeight.w700,
-                                    fontSize: 16,
-                                  ),
+                                      color: Color(0xffffffff),
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold),
+                                  textAlign: TextAlign.center,
                                 ),
-                              )),
-                        ))
+                              ),
+                              width: 327,
+                              height: 47,
+                            ),
+                          ),
+                        ),
                       ],
                     ),
-                  ),
-                ),
-              )
-            ],
+                  )
+                ],
+              ),
+            ),
           ),
         ),
-      ),
     );
   }
 }

@@ -6,22 +6,14 @@ class PromoSection extends StatelessWidget {
   PromoSection();
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 24.0, right: 24.0),
-      child: Container(
-       
-        child: SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: Row(
-           children: [
-                PromoCard(),
-                PromoCard(),
-                // PromoCard(flavorColor: Colors.blueAccent, flavor: 'Blueberry'),
-                // PromoCard(flavorColor: Colors.amberAccent, flavor: 'Lemon'),
-                // PromoCard(flavorColor: Colors.greenAccent, flavor: 'Mint'),
-              ],
-          ),
-        ),
+    return Container(
+      child: ListView(
+        scrollDirection: Axis.horizontal,
+         children: [
+              PromoCard(),
+              PromoCard(),
+              PromoCard(),
+            ],
       ),
     );
   }
@@ -29,69 +21,62 @@ class PromoSection extends StatelessWidget {
 
 class PromoCard extends StatelessWidget {
   const PromoCard();
-
- 
-
   @override
   Widget build(BuildContext context) {
     return
         Container(
         decoration: BoxDecoration(
-          border: Border.all(color: Color(0xffeeeeee), width: 2.0),
-          color: Colors.white38,
+          color: Color(0xff7f7f7),
           borderRadius: BorderRadius.all(Radius.circular(8.0)),
           boxShadow: [
             BoxShadow(
-              color: Colors.white10,
+              color: Color.fromRGBO(104, 117, 130, 0.05),
               blurRadius: 4,
-              spreadRadius: 2,
-              offset: Offset(0, 2),
             ),
           ],
         ),
-        margin: EdgeInsets.all(8),
-        height: 200,
-        width: 300,
-        child: 
-        
-     
+            margin: EdgeInsets.only(right: 16),
+            height: 181,
+            width: 305,
+        child:
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Padding(
-              padding: const EdgeInsets.only(left: 24.0, top: 24),
+            Container(
+              width: 139,
+              height: 131,
+              margin: EdgeInsets.only(left: 18,top: 18),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Text("Organic Brands", style: TextStyle(color: primaryColor, fontWeight: FontWeight.w700, fontSize: 12)),
-                  SizedBox(height: 5,),
-                  Text("exclusive", style: TextStyle(fontWeight: FontWeight.w700, fontSize: 28)),
-                  SizedBox(height: 5,),
-                  Text("brands", style: TextStyle(fontWeight: FontWeight.w700, fontSize: 28)),
-                  SizedBox(height: 5,),
-                  Text("Visit our shop for a complete ", style: TextStyle(fontWeight: FontWeight.w200, fontSize: 11),),
-                  SizedBox(height: 5,),
-                  Text("list of our  products", style: TextStyle(fontWeight: FontWeight.w200, fontSize: 11), ),
+                  Text("Organic Brands", style: TextStyle(color:Color(0xff3A953C), fontWeight: FontWeight.bold, fontSize: 12)),
+                  Container(width: 109.35,
+                      child: Text("exclusive", style: TextStyle(fontWeight: FontWeight.w700, fontSize: 28,color:Color(0xff10151a),))),
+                  Container(width: 109.35,
+                      child: Text("brands", style: TextStyle(fontWeight: FontWeight.w700, fontSize: 28,color:Color(0xff10151a),))),
                   SizedBox(height: 8,),
-                   Row(
-                     children: [
-                       Text("Shop Now", style: TextStyle(color: primaryColor, fontWeight: FontWeight.w700, fontSize: 12)),
-                       SizedBox(width: 8,),
-                       Icon(Icons.arrow_forward_ios, color: primaryColor, size: 15,)
-                     ],
+                  Text("Visit our shop for a complete list of our exclusive and premium food brand. ", style: TextStyle(fontWeight: FontWeight.w200, fontSize: 10,color:Color(0xff999999),),),
+                  SizedBox(height: 9.5,),
+                   Container(
+                     width: 74,
+                     child: Row(
+                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                       children: [
+                         Text("Shop now", style: TextStyle(color: Color(0xff8AB543), fontWeight: FontWeight.bold, fontSize: 12),),
+                         IconButton(onPressed: (){}, icon: Image.asset('assets/images/shortarrow.png',width: 3.75,height: 7.5,),),
+                       ],
+                     ),
                    ),
-
                 ],
               ),
             ),
- Image.asset("assets/fruit.png"
-          ),
-        
-           
+               Container(
+                 margin: EdgeInsets.symmetric(vertical: 18),
+                 child: Image.asset("assets/fruit.png", height: 145, width: 127,),
+               ),
           ],
         ),
-    
     );
   }
 }
