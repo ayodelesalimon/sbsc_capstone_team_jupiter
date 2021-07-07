@@ -1,23 +1,19 @@
+// @dart=2.9
+
 import 'package:flutter/material.dart';
+// import 'package:pagescroll_app/onboarding_signin.dart';
 import 'package:flutter/services.dart';
-
-import 'package:sbsc_capstone_team_jupiter/screens/account/edit_profile.dart';
-import 'package:sbsc_capstone_team_jupiter/screens/account/profile.dart';
-import 'package:sbsc_capstone_team_jupiter/screens/auth/login.dart';
-import 'package:sbsc_capstone_team_jupiter/screens/cart/cart.dart';
-
-import 'package:sbsc_capstone_team_jupiter/screens/home/home.dart';
-import 'package:sbsc_capstone_team_jupiter/screens/order/account_order.dart';
-import 'package:sbsc_capstone_team_jupiter/screens/tab_controller.dart';
 import 'package:sizer/sizer.dart';
-import 'screens/auth/forgot_password.dart';
+// import 'package:pagescroll_app/onboarding_create.dart';
+// import 'package:pagescroll_app/onboarding_forgot.dart';
+// import 'package:pagescroll_shpp/discover_search.dart';
+import 'package:sbsc_capstone_team_jupiter/splashscreen.dart';
 
-import 'screens/auth/create_account.dart';
-import 'screens/category/categories_grid.dart';
-import 'screens/discover/home.dart';
-import 'screens/landing_screen.dart';
 
-void main() => runApp(MyApp());
+
+void main() {
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override
@@ -26,30 +22,17 @@ class MyApp extends StatelessWidget {
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
-    return Sizer(builder: (context, orientation, deviceType) {
-      return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'CapStone',
-        theme: ThemeData(
-          fontFamily: 'TT Norms Pro',
-          primarySwatch: Colors.blue,
-        ),
-        routes: <String, WidgetBuilder>{
-          '/': (context) => LandingScreen(),
-         // '/': (context) => LoginPage(),
-          '/home': (context) => HomesCreen(),
-          '/loginPage': (context) => LoginPage(),
-          '/createAccount': (context) => CreateAccount(),
-          '/forgot_password': (context) => ForgotPassword(),
-          '/profilePage': (context) => Profile(),
-          'editProfile': (context) => EditProfile(),
-          '/categoryPage': (context) => CategoryGridPage(),
-          '/cartPage': (context) => CartPage(),
-          '/orderPage': (context) => OrdersPage(),
+    return Sizer(
+      builder: (context, orientation, deviceType) {
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'Capstone',
+          home: Scaffold(
+            body: SplashScreen(),
 
-          // '/signIn': (context) => SigninPage(),
-        },
-      );
-    });
+          ),
+        );
+      },
+    );
   }
 }
