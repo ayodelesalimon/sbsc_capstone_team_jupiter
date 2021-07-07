@@ -12,9 +12,10 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sbsc_capstone_team_jupiter/menu_drawer.dart';
 import 'package:sbsc_capstone_team_jupiter/cart.dart';
 import 'package:sbsc_capstone_team_jupiter/category.dart';
+import 'package:sbsc_capstone_team_jupiter/discover_search.dart';
+import 'package:sbsc_capstone_team_jupiter/discovery_detail.dart';
 
 class HomeScreen extends StatefulWidget {
-
 
   @override
   _HomeScreenState createState() => _HomeScreenState();
@@ -27,43 +28,43 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          leading: Builder(
-            builder: (BuildContext context) {
-              return Padding(
-                padding: const EdgeInsets.only(left: 24),
-                child: IconButton(
-                  icon:  Image.asset('assets/menu.png',width: 22,height: 22,),
-                  onPressed: () { Scaffold.of(context).openDrawer(); },
-                  tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
-                ),
-              );
-            },
-          ),
-          title: Text(
-            "Aduaba Fresh",
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Color(0xff000000),),
-          ),
-          centerTitle: true,
-          actions: [
-            Padding(
-              padding: const EdgeInsets.only(right:24),
-              child: Container(
-                height: 30,width: 30,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color:Color(0xff3A953C),
-                ),
-                child: IconButton(
-                  onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) =>CartPage()),);
-                  },
-                  icon: Image.asset('assets/images/shop.png',width: 16.13,height:14.36),),
-              ),
-            ),
-          ],
-          backgroundColor: Colors.white,
-        ),
+        // appBar: AppBar(
+        //   leading: Builder(
+        //     builder: (BuildContext context) {
+        //       return Padding(
+        //         padding: const EdgeInsets.only(left: 24),
+        //         child: IconButton(
+        //           icon:  Image.asset('assets/menu.png',width: 22,height: 22,),
+        //           onPressed: () { Scaffold.of(context).openDrawer(); },
+        //           tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+        //         ),
+        //       );
+        //     },
+        //   ),
+        //   title: Text(
+        //     "Aduaba Fresh",
+        //     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Color(0xff000000),),
+        //   ),
+        //   centerTitle: true,
+        //   actions: [
+        //     Padding(
+        //       padding: const EdgeInsets.only(right:24),
+        //       child: Container(
+        //         height: 30,width: 30,
+        //         decoration: BoxDecoration(
+        //           shape: BoxShape.circle,
+        //           color:Color(0xff3A953C),
+        //         ),
+        //         child: IconButton(
+        //           onPressed: () {
+        //             Navigator.push(context, MaterialPageRoute(builder: (context) =>CartPage()),);
+        //           },
+        //           icon: Image.asset('assets/images/shop.png',width: 16.13,height:14.36),),
+        //       ),
+        //     ),
+        //   ],
+        //   backgroundColor: Colors.white,
+        // ),
         // endDrawerEnableOpenDragGesture: false,
         // key: _scaffoldKey,
         drawer: MyDrawer(),
@@ -76,6 +77,37 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        Container(
+                          height:35, width:327,
+                          margin: EdgeInsets.symmetric(horizontal: 24),
+                         child: Row(
+                           mainAxisAlignment: MainAxisAlignment.start,
+                           crossAxisAlignment: CrossAxisAlignment.center ,
+                           children: [
+                             GestureDetector(onTap:(){
+                               Navigator.push(context,MaterialPageRoute(builder: (context)=> MyDrawer()),);
+                             },
+                                 child: Image.asset('assets/menu.png',width: 22,height: 22,)),
+                             Text(
+                               "Aduaba Fresh",
+                               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Color(0xff000000),),
+                             ),
+                             GestureDetector(
+                               onTap:(){
+                                 Navigator.push(context,MaterialPageRoute(builder: (context)=> CartPage()),);
+                               },
+                               child: Container(
+                                 width: 35,height: 35,
+                                 decoration: BoxDecoration(
+                                   shape: BoxShape.circle,
+                                   color: Color(0xff3A953C),
+                                 ),
+                                 child: Image.asset('assets/images/shop.png',width: 16.13,height: 14.36,),
+                               ),
+                             ),
+                           ],
+                         ),
+                        ),
                         SizedBox(
                           height: 32,
                         ),
@@ -98,24 +130,30 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         ),
                         SizedBox(height: 24),
-                        Container(
-                          margin: EdgeInsets.symmetric(horizontal: 24),
-                          width: 327,
-                          height: 47,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                          child: TextField(
-                            decoration: InputDecoration(
-                              fillColor: Color(0xfff7f7f7),
-                              hintText: "Search product",
-                              hintStyle: TextStyle(
-                                fontSize: 15, color: Color(0xffbababa),
-                              ),
-                              prefixIcon:
-                                 Padding(
-                                  padding: const EdgeInsets.only(left: 16,right: 13),
-                                  child: Image.asset('assets/images/search.png', width: 16,height: 16,),
+                        GestureDetector(
+                          onLongPress:(){
+                            Navigator.push(context,MaterialPageRoute(builder: (context)=> DiscoverSearchPage()),);
+                          },
+                          child: Container(
+                            margin: EdgeInsets.symmetric(horizontal: 24),
+                            width: 327,
+                            height: 47,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(5),
+                              color: Color(0xfff7f7f7),
+                            ),
+                            child: TextField(
+                              decoration: InputDecoration(
+                                fillColor: Color(0xfff7f7f7),
+                                hintText: "Search product",
+                                hintStyle: TextStyle(
+                                  fontSize: 15, color: Color(0xffbababa),
+                                ),
+                                prefixIcon:
+                                   Padding(
+                                    padding: const EdgeInsets.only(left: 16,right: 13),
+                                    child: Image.asset('assets/images/search.png', width: 16,height: 16,color: Color(0xffBABABA),),
+                                ),
                               ),
                             ),
                           ),
@@ -220,25 +258,15 @@ class _HomeScreenState extends State<HomeScreen> {
                                   "Best Selling",
                                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17, color: Color(0xff3C673D),),
                                 ),
-                                GestureDetector(
-                                  onTap: (){
-                                    // Navigator.of(context).push(
-                                    //   MaterialPageRoute(
-                                    //     settings: RouteSettings(name: "/categoryPage"),
-                                    //     builder: (context) => CategoryGridPage(),
-                                    //   ),
-                                    // );
-                                  },
-                                  child: Container(
-                                    width: 58,height: 16,
-                                    child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      crossAxisAlignment: CrossAxisAlignment.center,
-                                      children: [
-                                        Text("View all", style: TextStyle(fontWeight: FontWeight.normal, fontSize: 13, color: Color(0xff999999),),),
-                                        Image.asset('assets/images/arrow.png',width: 5.88,height: 10,color: Color(0xff999999),),
-                                      ],
-                                    ),
+                                Container(
+                                  width: 58,height: 16,
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    children: [
+                                      Text("View all", style: TextStyle(fontWeight: FontWeight.normal, fontSize: 13, color: Color(0xff999999),),),
+                                      Image.asset('assets/images/arrow.png',width: 5.88,height: 10,color: Color(0xff999999),),
+                                    ],
                                   ),
                                 ),
                               ],
@@ -315,11 +343,17 @@ class _HomeScreenState extends State<HomeScreen> {
                           height: 21.2,
                           child: Row(
                             children: [
-                              GestureDetector(onTap:(){},child: Image.asset('assets/images/home.png',width: 16.29,height: 15.41,color: Color(0xff3A953C),)),
+                              GestureDetector(onTap:(){
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen()),);
+                              },child: Image.asset('assets/images/home.png',width: 16.29,height: 15.41,color: Color(0xff3A953C),)),
                               Spacer(),
-                              GestureDetector(onTap:(){},child: Image.asset('assets/images/search.png',width: 21.2,height: 21.2,color: Color(0xffDEDEDE),)),
+                              GestureDetector(onTap:(){
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => DiscoverSearchPage()),);
+                              },child: Image.asset('assets/images/search.png',width: 21.2,height: 21.2,color: Color(0xffDEDEDE),)),
                               Spacer(),
-                              GestureDetector(onTap:(){},child: Image.asset('assets/images/dialog.png',width: 21.2,height: 21.2,color: Color(0xffDEDEDE),)),
+                              GestureDetector(onTap:(){
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => MyDrawer()),);
+                              },child: Image.asset('assets/images/dialog.png',width: 21.2,height: 21.2,color: Color(0xffDEDEDE),)),
                             ],
                           ),
                         ),
@@ -341,9 +375,9 @@ class FeaturedProductsSection extends StatelessWidget {
       child: ListView(
         scrollDirection: Axis.horizontal,
         children: [
-          FeaturedProductsCard("assets/images/coffee.png", "Emmanuel Produce"),
-          FeaturedProductsCard("assets/images/strawberry.png", "Emmanuel Produce"),
-          FeaturedProductsCard("assets/drugs.png", "Emmanuel Produce"),
+          FeaturedProductsCard(image:"assets/food.png",name: "Emmanuel Produce",product: 'Herbsconnect Organic Acai Berry Powder Freeze Dried',availability: 'In stock',price: '₦35,000.00'),
+          FeaturedProductsCard(image:"assets/drugs.png",name: "Emmanuel Produce",product: 'Herbsconnect Organic Acai Berry Powder Freeze Dried',availability: 'In stock',price: '₦35,000.00'),
+          FeaturedProductsCard(image:"assets/drugs.png",name: "Emmanuel Produce",product: 'Herbsconnect Organic Acai Berry Powder Freeze Dried',availability: 'In stock',price: '₦35,000.00'),
         ],
       ),
     );
@@ -353,69 +387,80 @@ class FeaturedProductsSection extends StatelessWidget {
 
 
 class FeaturedProductsCard extends StatelessWidget {
-  const FeaturedProductsCard(this.image, this.name);
+  const FeaturedProductsCard({required this.image,required this.name,required this.product,required this.availability,required this.price,});
 
-  final String image, name;
+  final String image, name,price,product,availability;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.only(right: 16),
-      height: 259,width: 156,
-      decoration: BoxDecoration(
-        color: Color.fromRGBO(104, 117, 130, 0.05),
-      ),
-      child: ListView(
-        children: [
-          Stack(
-            children: [
-            Container(
-              decoration: BoxDecoration(
-                image: DecorationImage(image: AssetImage(image), fit: BoxFit.cover),
-                borderRadius: BorderRadius.all(Radius.circular(4.0)),
-              ),
-              height: 156,
-              width: 156,
-            ),
-              Positioned(
-               top: 10.25, right: 10.5,
-                child:Image.asset('assets/images/heart.png',color: Color(0xffffffff),width: 15.01,height: 13.24,),
-              ),
-            ],
-          ),
-          SizedBox(
-            height: 8,
-          ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Text(
-                name, style: TextStyle(fontWeight: FontWeight.w300, fontSize: 10,color: Color(0xff819272)),
-              ),
-              SizedBox(
-                height: 4,
-              ),
-              Text("Herbsconnect Organic \nAcai Berry Powder Freeze \nDried",style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16,color: Color(0xff000000)),),
-              SizedBox(
-                height: 8,
-              ),
+    return GestureDetector(
+      onTap:(){
+        showProdDetails(
+          context,
+          image,
+          price,
+          name,
+          product,
+        );
+      },
+      child: Container(
+        margin: EdgeInsets.only(right: 16),
+        height: 259,width: 156,
+        decoration: BoxDecoration(
+          color: Color.fromRGBO(104, 117, 130, 0.05),
+        ),
+        child: ListView(
+          children: [
+            Stack(
+              children: [
               Container(
-                width: 156,
-                height: 20,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text("₦35,000.00",style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13, color: Color(0xffF39E28),),),
-                    Text(".",style: TextStyle( fontSize: 14, color: Color(0xffD8D8D8)),),
-                    Text("In stock",style: TextStyle(fontSize: 13, color: Color(0xff3A953C)),),
-                  ],
+                decoration: BoxDecoration(
+                  image: DecorationImage(image: AssetImage(image), fit: BoxFit.cover),
+                  borderRadius: BorderRadius.all(Radius.circular(4.0)),
                 ),
+                height: 156,
+                width: 156,
               ),
-            ],
-          ),
-        ],
+                Positioned(
+                 top: 10.25, right: 10.5,
+                  child:Image.asset('assets/images/heart.png',color: Color(0xffffffff),width: 15.01,height: 13.24,),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 8,
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Text(
+                  name, style: TextStyle(fontWeight: FontWeight.w300, fontSize: 10,color: Color(0xff819272)),
+                ),
+                SizedBox(
+                  height: 4,
+                ),
+                Text(product,style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16,color: Color(0xff000000)),),
+                SizedBox(
+                  height: 8,
+                ),
+                Container(
+                  width: 156,
+                  height: 20,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text(price,style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13, color: Color(0xffF39E28),),),
+                      Text(".",style: TextStyle( fontSize: 14, color: Color(0xffD8D8D8)),),
+                      Text(availability,style: TextStyle(fontSize: 13, color: Color(0xff3A953C)),),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -430,9 +475,9 @@ class BestSellSection extends StatelessWidget {
       child: ListView(
         scrollDirection: Axis.horizontal,
         children: [
-          BestSellCard("assets/food.png", "Emmanuel Produce"),
-          BestSellCard("assets/drugs.png", "Emmanuel Produce"),
-          BestSellCard("assets/drugs.png", "Emmanuel Produce"),
+          BestSellCard(image:"assets/food.png",name: "Emmanuel Produce",product: 'Herbsconnect Organic Acai Berry Powder Freeze Dried',availability: 'In stock',price: '₦35,000.00'),
+          BestSellCard(image:"assets/drugs.png",name: "Emmanuel Produce",product: 'Herbsconnect Organic Acai Berry Powder Freeze Dried',availability: 'In stock',price: '₦35,000.00'),
+          BestSellCard(image:"assets/drugs.png",name: "Emmanuel Produce",product: 'Herbsconnect Organic Acai Berry Powder Freeze Dried',availability: 'In stock',price: '₦35,000.00'),
         ],
       ),
     );
@@ -440,69 +485,80 @@ class BestSellSection extends StatelessWidget {
 }
 
 class BestSellCard extends StatelessWidget {
-  const BestSellCard(this.image, this.name);
+  BestSellCard({required this.image,required this.name,required this.product,required this.availability,required this.price,});
 
-  final String image, name;
+  final String image, name,price,product,availability;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 259,width: 156,
-      margin: EdgeInsets.only(right: 16),
-      decoration: BoxDecoration(
-        color: Color(0xffe5e5e5),
-      ),
-      child: ListView(
-        children: [
-          Stack(
-            children: [
-              Container(
-              decoration: BoxDecoration(
-                image: DecorationImage(image: AssetImage(image), fit: BoxFit.cover),
-                borderRadius: BorderRadius.all(Radius.circular(4.0)),
-              ),
-              height: 156,
-              width: 156,
-            ),
-              Positioned(
-              top: 10.25, right: 10.5,
-                child:Image.asset('assets/images/heart.png',color: Color(0xffffffff),width: 15.01,height: 13.24,),
-              ),
-            ],
-          ),
-          SizedBox(
-            height: 8,
-          ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Text(
-                name, style: TextStyle(fontWeight: FontWeight.w300, fontSize: 10,color: Color(0xff819272)),
-              ),
-              SizedBox(
-                height: 4,
-              ),
-              Text("Herbsconnect Organic \nAcai Berry Powder Freeze \nDried",style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16,color: Color(0xff000000)),),
-              SizedBox(
-                height: 8,
-              ),
-              Container(
-                width: 156,
-                height: 20,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text("₦35,000.00",style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13, color: Color(0xffF39E28),),),
-                    Text(".",style: TextStyle( fontSize: 14, color: Color(0xffD8D8D8)),),
-                    Text("In stock",style: TextStyle(fontSize: 13, color: Color(0xff3A953C)),),
-                  ],
+    return GestureDetector(
+      onTap: (){
+        showProdDetails(
+            context,
+            image,
+            price,
+            name,
+            product,
+        );
+      },
+      child: Container(
+        height: 259,width: 156,
+        margin: EdgeInsets.only(right: 16),
+        decoration: BoxDecoration(
+          color: Color(0xffe5e5e5),
+        ),
+        child: ListView(
+          children: [
+            Stack(
+              children: [
+                Container(
+                decoration: BoxDecoration(
+                  image: DecorationImage(image: AssetImage(image), fit: BoxFit.cover),
+                  borderRadius: BorderRadius.all(Radius.circular(4.0)),
                 ),
+                height: 156,
+                width: 156,
               ),
-            ],
-          ),
-        ],
+                Positioned(
+                top: 10.25, right: 10.5,
+                  child:Image.asset('assets/images/heart.png',color: Color(0xffffffff),width: 15.01,height: 13.24,),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 8,
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Text(
+                  name, style: TextStyle(fontWeight: FontWeight.w300, fontSize: 10,color: Color(0xff819272)),
+                ),
+                SizedBox(
+                  height: 4,
+                ),
+                Text("Herbsconnect Organic \nAcai Berry Powder Freeze \nDried",style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16,color: Color(0xff000000)),),
+                SizedBox(
+                  height: 8,
+                ),
+                Container(
+                  width: 156,
+                  height: 20,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text("₦35,000.00",style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13, color: Color(0xffF39E28),),),
+                      Text(".",style: TextStyle( fontSize: 14, color: Color(0xffD8D8D8)),),
+                      Text("In stock",style: TextStyle(fontSize: 13, color: Color(0xff3A953C)),),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:sbsc_capstone_team_jupiter/checkout_shipping.dart';
 
 class CheckoutPage extends StatefulWidget {
   @override
@@ -208,7 +209,9 @@ class _CheckoutPageState extends State<CheckoutPage> {
                 SizedBox(height:40),
                 Center(
                   child: GestureDetector(
-                    onTap:(){},
+                    onTap:(){
+                      Navigator.push(context,MaterialPageRoute(builder: (context)=> ShippingPage()),);
+                    },
                     child: Container(
                       decoration: BoxDecoration(
                         color: Color(0xff3A953C),

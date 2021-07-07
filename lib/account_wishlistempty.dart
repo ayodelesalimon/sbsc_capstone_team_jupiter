@@ -1,5 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:sbsc_capstone_team_jupiter/home.dart';
+import 'package:sbsc_capstone_team_jupiter/discover_search.dart';
+import 'package:sbsc_capstone_team_jupiter/menu_drawer.dart';
 
 
 enum Button{
@@ -145,6 +148,7 @@ class _ZeroWishListPageState extends State<ZeroWishListPage> {
                   ],
                 ),
               ),
+
               Positioned(
                 bottom: 0,
                 child: Center(
@@ -163,11 +167,17 @@ class _ZeroWishListPageState extends State<ZeroWishListPage> {
                         height: 21.2,
                         child: Row(
                           children: [
-                            GestureDetector(onTap:(){},child: Image.asset('assets/images/home.png',width: 16.29,height: 15.41,color: Color(0xffDEDEDE),)),
+                            GestureDetector(onTap:(){
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen()),);
+                            },child: Image.asset('assets/images/home.png',width: 16.29,height: 15.41,color: Color(0xffDEDEDE),)),
                             Spacer(),
-                            GestureDetector(onTap:(){},child: Image.asset('assets/images/search.png',width: 21.2,height: 21.2,color: Color(0xffDEDEDE),)),
+                            GestureDetector(onTap:(){
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => DiscoverSearchPage()),);
+                            },child: Image.asset('assets/images/search.png',width: 21.2,height: 21.2,color: Color(0xffDEDEDE),)),
                             Spacer(),
-                            GestureDetector(onTap:(){},child: Image.asset('assets/images/dialog.png',width: 21.2,height: 21.2,color: Color(0xff3A953C),)),
+                            GestureDetector(onTap:(){
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => MyDrawer()),);
+                            },child: Image.asset('assets/images/dialog.png',width: 21.2,height: 21.2,color:  Color(0xff3A953C),)),
                           ],
                         ),
                       ),

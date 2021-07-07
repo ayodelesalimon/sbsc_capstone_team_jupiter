@@ -17,6 +17,9 @@ class _AccountCheckoutState extends State<AccountCheckout> {
   final FocusNode passwordFocus = FocusNode();
   TextEditingController password = TextEditingController();
   TextEditingController confirmpassword = TextEditingController();
+  TextEditingController number = TextEditingController();
+  TextEditingController lastname = TextEditingController();
+  TextEditingController date = TextEditingController();
   @override
   void dispose() {
     password.dispose();
@@ -93,44 +96,107 @@ class _AccountCheckoutState extends State<AccountCheckout> {
                                 ),
                               ),
                               SizedBox(height:16),
-                              // Input(
-                              //   hintText:'Input account name',
-                              //   isPassword:true,
-                              //   showObscureText:showObscureTextPassword,
-                              //   styleColor:Color(0xFFbababa),
-                              //   hintStyleColor:Color(0xFFbababa),
-                              //   validator:(String
-                              //   value) {
-                              //     if (value.length <3) {
-                              //       return 'enter your account name';
-                              //     }
-                              //     return null;
-                              //   },
-                              // ),
+                              Container(
+                                width: 327,
+                                height: 47,
+                                decoration: BoxDecoration(
+                                  color: Color(0xfff7f7f7),
+                                  borderRadius: BorderRadius.circular(5.0),
+                                ),
+                                child: TextFormField(
+                                  textAlign: TextAlign.start,
+                                  keyboardType: TextInputType.text,
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontStyle: FontStyle.normal,
+                                    fontWeight: FontWeight.normal,
+                                    fontSize: 15,
+                                  ),
+                                  decoration: InputDecoration(
+                                    border: OutlineInputBorder(),
+                                    hintText: 'Andrea',
+                                    hintStyle: TextStyle(
+                                      fontStyle: FontStyle.normal,
+                                      fontWeight: FontWeight.normal,
+                                      fontSize: 15,
+                                      color: Color(0xffbababa),
+                                    ),
+                                  ),
+                                  onSaved: (value){
+                                    lastname = value as TextEditingController;
+                                  },
+                                ),
+                              ),
                               SizedBox(height:16),
                               Text('Card Number',
                                 style:TextStyle(color:Color(0xff10151a),fontSize:15,fontStyle:FontStyle.normal,fontWeight:FontWeight.bold,),),
                               SizedBox(height:16),
-                              // Input(
-                              //   hintText:'Confirm Card Number',styleColor:Color(0xFFbababa),
-                              //   hintStyleColor:
-                              //   Color(0xFFbababa),
-                              //   validator:(String value) {
-                              //     if (value.length <16) {
-                              //       return 'enter valid card number';
-                              //     }
-                              //     return null;
-                              //   },
-                              // ),
+                              Container(
+                                width: 327,
+                                height: 47,
+                                decoration: BoxDecoration(
+                                  color: Color(0xfff7f7f7),
+                                  borderRadius: BorderRadius.circular(5.0),
+                                ),
+                                child: TextFormField(
+                                  textAlign: TextAlign.start,
+                                  keyboardType: TextInputType.text,
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontStyle: FontStyle.normal,
+                                    fontWeight: FontWeight.normal,
+                                    fontSize: 15,
+                                  ),
+                                  decoration: InputDecoration(
+                                    border: OutlineInputBorder(),
+                                    hintText: '*** ***** 2458',
+                                    hintStyle: TextStyle(
+                                      fontStyle: FontStyle.normal,
+                                      fontWeight: FontWeight.normal,
+                                      fontSize: 15,
+                                      color: Color(0xffbababa),
+                                    ),
+                                  ),
+                                  onSaved: (value){
+                                    number = value as TextEditingController;
+                                  },
+                                ),
+                              ),
                               SizedBox(height:16),
                               Text('Expiry Date',
                                 style:TextStyle(color:Color(0xff10151a),fontSize:15,fontStyle:FontStyle.normal,fontWeight:FontWeight.bold,),),
                               SizedBox(height:16),
-                              // Input(
-                              //   hintText:'month/year - 12/23',styleColor:Color(0xFFbababa),
-                              //   hintStyleColor:
-                              //   Color(0xFFbababa),
-                              // ),
+                              Container(
+                                width: 327,
+                                height: 47,
+                                decoration: BoxDecoration(
+                                  color: Color(0xfff7f7f7),
+                                  borderRadius: BorderRadius.circular(5.0),
+                                ),
+                                child: TextFormField(
+                                  textAlign: TextAlign.start,
+                                  keyboardType: TextInputType.text,
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontStyle: FontStyle.normal,
+                                    fontWeight: FontWeight.normal,
+                                    fontSize: 15,
+                                  ),
+                                  decoration: InputDecoration(
+                                    border: OutlineInputBorder(),
+                                    hintText: '08/21-(MM/YY)',
+                                    hintStyle: TextStyle(
+                                      fontStyle: FontStyle.normal,
+                                      fontWeight: FontWeight.normal,
+                                      fontSize: 15,
+                                      color: Color(0xffbababa),
+                                    ),
+                                  ),
+                                  onSaved: (value){
+                                    date = value as TextEditingController;
+                                  },
+                                ),
+                              ),
                               SizedBox(height:16),
                               Text('CVV',
                                 style:TextStyle(color:Color(0xff10151a),fontSize:15,fontStyle:FontStyle.normal,fontWeight:FontWeight.bold,),),

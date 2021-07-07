@@ -1,5 +1,11 @@
+
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:sbsc_capstone_team_jupiter/order_summary.dart';
+import 'package:sbsc_capstone_team_jupiter/home.dart';
+import 'package:sbsc_capstone_team_jupiter/discover_search.dart';
+import 'package:sbsc_capstone_team_jupiter/menu_drawer.dart';
 
 enum Button{
   home, search, menu,
@@ -118,12 +124,12 @@ class _OrdersPageState extends State<OrdersPage> {
                         margin: EdgeInsets.symmetric(horizontal: 24),
                         child: ListView(
                           children: [
-                            orderCard( imageList[0],orderIDList[0],'Estimated Delivery Date on 21 Dec', purchaseDateList[0], 0xffF2902F),
-                            orderCard( imageList[1],orderIDList[1],'Cancelled', purchaseDateList[1], 0xffBB2F48),
-                            orderCard( imageList[2],orderIDList[2],'Delivered on 31 Dec', purchaseDateList[2], 0xff3A953C),
-                            orderCard( imageList[3],orderIDList[3],'Estimated Delivery Date on 21 Dec', purchaseDateList[3], 0xffF2902F),
-                            orderCard( imageList[4],orderIDList[4],'Estimated Delivery Date on 21 Dec', purchaseDateList[4], 0xffF2902F),
-                            orderCard( imageList[5],orderIDList[5],'Estimated Delivery Date on 21 Dec', purchaseDateList[5], 0xffF2902F),
+                            orderCard( context,imageList[0],orderIDList[0],'Estimated Delivery Date on 21 Dec', purchaseDateList[0], 0xffF2902F),
+                            orderCard( context,imageList[1],orderIDList[1],'Cancelled', purchaseDateList[1], 0xffBB2F48),
+                            orderCard(context, imageList[2],orderIDList[2],'Delivered on 31 Dec', purchaseDateList[2], 0xff3A953C),
+                            orderCard( context,imageList[3],orderIDList[3],'Estimated Delivery Date on 21 Dec', purchaseDateList[3], 0xffF2902F),
+                            orderCard( context,imageList[4],orderIDList[4],'Estimated Delivery Date on 21 Dec', purchaseDateList[4], 0xffF2902F),
+                            orderCard(context, imageList[5],orderIDList[5],'Estimated Delivery Date on 21 Dec', purchaseDateList[5], 0xffF2902F),
                           ],
                         ),
                       ),
@@ -150,11 +156,17 @@ class _OrdersPageState extends State<OrdersPage> {
                         height: 21.2,
                         child: Row(
                           children: [
-                            GestureDetector(onTap:(){},child: Image.asset('assets/images/home.png',width: 16.29,height: 15.41,color: Color(0xffDEDEDE),)),
+                            GestureDetector(onTap:(){
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen()),);
+                            },child: Image.asset('assets/images/home.png',width: 16.29,height: 15.41,color: Color(0xffDEDEDE),)),
                             Spacer(),
-                            GestureDetector(onTap:(){},child: Image.asset('assets/images/search.png',width: 21.2,height: 21.2,color: Color(0xffDEDEDE),)),
+                            GestureDetector(onTap:(){
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => DiscoverSearchPage()),);
+                            },child: Image.asset('assets/images/search.png',width: 21.2,height: 21.2,color: Color(0xffDEDEDE),)),
                             Spacer(),
-                            GestureDetector(onTap:(){},child: Image.asset('assets/images/dialog.png',width: 21.2,height: 21.2,color: Color(0xff3A953C),)),
+                            GestureDetector(onTap:(){
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => MyDrawer()),);
+                            },child: Image.asset('assets/images/dialog.png',width: 21.2,height: 21.2,color:  Color(0xff3A953C),)),
                           ],
                         ),
                       ),
@@ -168,11 +180,12 @@ class _OrdersPageState extends State<OrdersPage> {
 }
 
 orderCard (
+    context,
     String image,
-    String   orderID,
-    String     deliveryStatus,
-    String   purchaseDate,
-    int   color,
+    String  orderID,
+    String  deliveryStatus,
+    String  purchaseDate,
+    int  color,
     ) {
   return Container(
     width: 316,
@@ -183,7 +196,11 @@ orderCard (
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Image.asset(image,width: 75,height: 78,),
+            GestureDetector(onTap: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context) => TrackOrderPage()),);
+            },
+                child: Image.asset(image,width: 75,height: 78,),
+            ),
             Container(
               width: 225,
               height: 78,
@@ -221,3 +238,4 @@ orderCard (
     ),
   );
 }
+

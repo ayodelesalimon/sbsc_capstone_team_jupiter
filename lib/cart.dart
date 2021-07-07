@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:sbsc_capstone_team_jupiter/checkout.dart';
+import 'package:sbsc_capstone_team_jupiter/discover.dart';
 
 
 
@@ -368,7 +370,9 @@ class _CartPageState extends State<CartPage> {
                 SizedBox(height:32),
                 Center(
                   child: GestureDetector(
-                    onTap:(){},
+                    onTap:(){
+                      Navigator.push(context,MaterialPageRoute(builder: (context)=> CheckoutPage()),);
+                    },
                     child: Container(
                       decoration: BoxDecoration(
                         color: Color(0xff3A953C),
@@ -392,7 +396,9 @@ class _CartPageState extends State<CartPage> {
                 SizedBox(height:16),
                 Center(
                   child: GestureDetector(
-                    onTap:(){},
+                    onTap:(){
+                      Navigator.push(context,MaterialPageRoute(builder: (context)=> DiscoverGridPage()),);
+                    },
                     child: Container(
                       decoration: BoxDecoration(
                         color: Color(0xffe5e5e5),

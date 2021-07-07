@@ -7,6 +7,9 @@ class PaymentPage extends StatefulWidget {
 }
 
 class _PaymentPageState extends State<PaymentPage> {
+
+  bool selected =false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -138,7 +141,14 @@ class _PaymentPageState extends State<PaymentPage> {
                             ],
                           ),
                         ),
-                        Center(child: Image.asset('assets/images/inactive_elipse.png',width: 16,height: 16,)),
+                        Center(
+                          child:IconButton(
+                            onPressed:(){},
+                            icon:Icon(Icons.radio_button_checked),
+                            iconSize: 16,
+                            color: selected? Colors.deepOrange: Colors.transparent,
+                          ),
+                          ),
                       ],
                     ),
                   ),
@@ -164,7 +174,14 @@ class _PaymentPageState extends State<PaymentPage> {
                               color: Color(0xff10151a),
                               fontWeight: FontWeight.bold),
                           ),),
-                        Center(child: Image.asset('assets/images/inactive_elipse.png',width: 16,height: 16,)),
+                          Center(
+                            child:IconButton(
+                              onPressed:(){},
+                              icon:Icon(Icons.radio_button_checked),
+                              iconSize: 16,
+                              color: selected? Colors.deepOrange: Colors.transparent,
+                            ),
+                          ),
                       ],
                     ),
                   ),
@@ -172,7 +189,9 @@ class _PaymentPageState extends State<PaymentPage> {
                 SizedBox(height: 254,),
                 Center(
                   child: GestureDetector(
-                    onTap:(){},
+                    onTap:(){
+                        // checkout card payment route
+                    },
                     child: Container(
                       decoration: BoxDecoration(
                         color: Color(0xff3A953C),

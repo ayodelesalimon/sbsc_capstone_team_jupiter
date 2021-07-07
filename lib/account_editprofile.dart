@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:validators/validators.dart' as validator;
+import 'package:sbsc_capstone_team_jupiter/account_profile.dart';
+
 
 class EditProfile extends StatefulWidget {
   final String name = "editProfile";
@@ -95,22 +97,51 @@ class _EditProfileState extends State<EditProfile> {
                       SizedBox(
                         height: 16,
                       ),
-                      // Input(
-                      //   //focusNode: emailFocus,
-                      //   controller: firstname,
-                      //
-                      //   hintText: 'First Name',
-                      //
-                      //   styleColor: Colors.black,
-                      //   obscureText: false,
-                      //   hintStyleColor: Color(0xFFbababa),
-                      //   // validator: (String value) {
-                      //   //   if (!validator.isAlpha(value) && value.length < 1) {
-                      //   //     return 'First Name is required';
-                      //   //   }
-                      //
-                      //   // },
-                      // ),
+                      Container(
+                        // width: 26.66.w,
+                        height:20,
+                        child: Text(
+                          'Full Name',
+                          style: TextStyle(
+                            color: Color(0xff10151a),
+                            fontSize: 15,
+                            fontStyle: FontStyle.normal,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: 16,),
+                      Container(
+                        width: 327,
+                        height: 47,
+                        decoration: BoxDecoration(
+                          color: Color(0xfff7f7f7),
+                          borderRadius: BorderRadius.circular(5.0),
+                        ),
+                        child: TextFormField(
+                          textAlign: TextAlign.start,
+                          keyboardType: TextInputType.text,
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontStyle: FontStyle.normal,
+                            fontWeight: FontWeight.normal,
+                            fontSize: 15,
+                          ),
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(),
+                            hintText: 'Andrea',
+                            hintStyle: TextStyle(
+                              fontStyle: FontStyle.normal,
+                              fontWeight: FontWeight.normal,
+                              fontSize: 15,
+                              color: Color(0xffbababa),
+                            ),
+                          ),
+                          onSaved: (value){
+                            firstname = value as TextEditingController;
+                          },
+                        ),
+                      ),
                       SizedBox(
                         height: 16,
                       ),
@@ -126,26 +157,42 @@ class _EditProfileState extends State<EditProfile> {
                       SizedBox(
                         height: 16,
                       ),
-                      // Input(
-                      //   //focusNode: emailFocus,
-                      //   controller: lastname,
-                      //
-                      //   hintText: 'Last Name',
-                      //   styleColor: Colors.black,
-                      //   obscureText: false,
-                      //   hintStyleColor: Color(0xFFbababa),
-                      //   // validator: (String value) {
-                      //   //   if (!validator.isAlpha(value) && value.length < 1) {
-                      //   //     return 'First Name is required';
-                      //   //   }
-                      //
-                      //   // },
-                      // ),
+                      Container(
+                        width: 327,
+                        height: 47,
+                        decoration: BoxDecoration(
+                          color: Color(0xfff7f7f7),
+                          borderRadius: BorderRadius.circular(5.0),
+                        ),
+                        child: TextFormField(
+                          textAlign: TextAlign.start,
+                          keyboardType: TextInputType.text,
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontStyle: FontStyle.normal,
+                            fontWeight: FontWeight.normal,
+                            fontSize: 15,
+                          ),
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(),
+                            hintText: 'Charles',
+                            hintStyle: TextStyle(
+                              fontStyle: FontStyle.normal,
+                              fontWeight: FontWeight.normal,
+                              fontSize: 15,
+                              color: Color(0xffbababa),
+                            ),
+                          ),
+                          onSaved: (value){
+                            lastname = value as TextEditingController;
+                          },
+                        ),
+                      ),
                       SizedBox(
                         height: 16,
                       ),
                       Text(
-                        'Phone',
+                        'Phone Number',
                         style: TextStyle(
                           color: Color(0xff10151a),
                           fontSize: 15,
@@ -156,24 +203,48 @@ class _EditProfileState extends State<EditProfile> {
                       SizedBox(
                         height: 16,
                       ),
-                      // Input(
-                      //   //focusNode: emailFocus,
-                      //   controller: phone,
-                      //
-                      //   hintText: '+234 809 202 3024',
-                      //   styleColor: primaryColor,
-                      //   obscureText: false,
-                      //   hintStyleColor: Color(0xFFbababa),
-                      //   validator: (String value) {
-                      //     if (!validator.isNumeric(value) && value.length < 1) {
-                      //       return 'Number is required';
-                      //     }
-                      //   },
-                      // ),
+                      Container(
+                        width: 327,
+                        height: 47,
+                        decoration: BoxDecoration(
+                          color: Color(0xfff7f7f7),
+                          borderRadius: BorderRadius.circular(5.0),
+                        ),
+                        child: TextFormField(
+                          textAlign: TextAlign.start,
+                          keyboardType: TextInputType.text,
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontStyle: FontStyle.normal,
+                            fontWeight: FontWeight.normal,
+                            fontSize: 15,
+                          ),
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(),
+                            hintText: '+234 809 202 3024',
+                            hintStyle: TextStyle(
+                              fontStyle: FontStyle.normal,
+                              fontWeight: FontWeight.normal,
+                              fontSize: 15,
+                              color: Color(0xffbababa),
+                            ),
+                          ),
+                          // validator:(value){
+                          //   if(value == ''){
+                          //     return 'FullName is required.';
+                          //   }
+                          // },
+                          onSaved: (value){
+                            phone = value as TextEditingController;
+                          },
+                        ),
+                      ),
                       SizedBox(height:74),
                       Center(
                         child: GestureDetector(
-                          onTap:(){},
+                          onTap:(){
+                            Navigator.push(context,MaterialPageRoute(builder: (context)=> Profile()),);
+                          },
                           child: Container(
                             decoration: BoxDecoration(
                               color: Color(0xff3A953C),
