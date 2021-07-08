@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:sbsc_capstone_team_jupiter/widgets/colors.dart';
 
 Alert({String title, String content, BuildContext context}) {
   return showDialog(
@@ -14,7 +15,7 @@ Alert({String title, String content, BuildContext context}) {
               ),
               content: new Text(
                 content,
-                style: TextStyle(color: Color(0xFF2788E9)),
+                style: TextStyle(color: primaryColor),
               ),
               backgroundColor: Colors.white,
               shape: RoundedRectangleBorder(
@@ -23,7 +24,7 @@ Alert({String title, String content, BuildContext context}) {
                 FlatButton(
                   child: new Text(
                     'Ok',
-                    style: TextStyle(color: Color(0xFF2788E9)),
+                    style: TextStyle(color: primaryColor),
                   ),
                   onPressed: () {
                     Navigator.of(context).pop();

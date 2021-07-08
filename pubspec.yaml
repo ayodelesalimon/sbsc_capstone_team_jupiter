@@ -40,6 +40,7 @@ dependencies:
   http:
   dio:
   shared_preferences:
+  connectivity:
   
 dev_dependencies:
   flutter_test:

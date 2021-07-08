@@ -92,8 +92,8 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                         backgroundColor: Color.fromRGBO(58, 149, 60, 0.1),
                         child: Image.asset(
                           'assets/images/lock.png',
-                          width: 4.26,
-                          height: 1.97,
+                          width: 54.26,
+                          height: 50.97,
                         ),
                       ),
                     ),
@@ -198,7 +198,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                           child: CircleAvatar(
                             backgroundColor: Color.fromRGBO(58, 149, 60, 0.1),
                             child: Image.asset(
-                              'assets/phone.png',
+                              'assets/images/mail.png',
                             ),
                           ),
                         ),
@@ -212,14 +212,14 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'via sms',
+                                'via email',
                                 style: TextStyle(
                                     color: Color(0xff10151A),
                                     fontSize: 16,
                                     fontWeight: FontWeight.bold),
                               ),
                               Text(
-                                '*** **** 7767',
+                                '*@gmail.com',
                                 style: TextStyle(
                                     color: Color(0xff999999),
                                     fontSize: 14,
@@ -807,3 +807,6 @@ class _ForgotPasswordState extends State<ForgotPassword> {
     );
   }
 }
+
+
+

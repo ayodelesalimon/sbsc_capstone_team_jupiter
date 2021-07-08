@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
-import 'package:sbsc_capstone_team_jupiter/model/register.dart';
+import 'package:sbsc_capstone_team_jupiter/model/auth/register.dart';
 import 'package:sbsc_capstone_team_jupiter/screens/auth/components/social_card.dart';
 import 'package:sbsc_capstone_team_jupiter/services/auth.dart';
 import 'package:sbsc_capstone_team_jupiter/widgets/alert.dart';
@@ -291,15 +291,15 @@ class _CreateAccountState extends State<CreateAccount> {
                       },
                       hintStyleColor: Color(0xFF7C7C7C),
                       // hintStyleColor: Color(0xFF7C7C7C),
-                      validator: MultiValidator([
-                        RequiredValidator(errorText: 'password is required'),
-                        MinLengthValidator(8,
-                            errorText:
-                                'password must be at least 8 digits long'),
-                        PatternValidator(r'(?=.*?[#?!@$%^&*-])',
-                            errorText:
-                                'passwords must have at least one special character')
-                      ]),
+                      // validator: MultiValidator([
+                      //   RequiredValidator(errorText: 'password is required'),
+                      //   MinLengthValidator(8,
+                      //       errorText:
+                      //           'password must be at least 8 digits long'),
+                      //   PatternValidator(r'(?=.*?[#?!@$%^&*-])',
+                      //       errorText:
+                      //           'passwords must have at least one special character')
+                      // ]),
                       onSaved: (String value) {
                         register.password = value;
                       },
@@ -338,15 +338,15 @@ class _CreateAccountState extends State<CreateAccount> {
                       },
                       styleColor: primaryColor,
                       hintStyleColor: Color(0xFF7C7C7C),
-                      validator: MultiValidator([
-                        RequiredValidator(errorText: 'password is required'),
-                        MinLengthValidator(8,
-                            errorText:
-                                'password must be at least 8 digits long'),
-                        PatternValidator(r'(?=.*?[#?!@$%^&*-])',
-                            errorText:
-                                'passwords must have at least one special character')
-                      ]),
+                      // validator: MultiValidator([
+                      //   RequiredValidator(errorText: 'password is required'),
+                      //   MinLengthValidator(8,
+                      //       errorText:
+                      //           'password must be at least 8 digits long'),
+                      //   PatternValidator(r'(?=.*?[#?!@$%^&*-])',
+                      //       errorText:
+                      //           'passwords must have at least one special character')
+                      // ]),
 
                       onSaved: (String value) {
                         register..confirmPassword = value;
@@ -374,14 +374,14 @@ class _CreateAccountState extends State<CreateAccount> {
                               );
                              // Loader.hide();
                             } catch (e) {
-                             // hideLoader();
-                              // Alert(
-                              //   context: context,
-                              //   content: e,
-                              //   title: 'Login Error',
-                              // );
-                            }
-                          }
+                             hideLoader();
+                              Alert(
+                                context: context,
+                                content: e,
+                                title: 'Login Error',
+                              );
+                           }
+                         }
                         },
                         child: Container(
                           width: 360,
