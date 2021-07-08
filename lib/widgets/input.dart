@@ -76,7 +76,7 @@ class Input extends StatelessWidget {
           prefixIcon: prefix,
         // suffixIcon: suffix,
           filled: true,
-          fillColor: !enable ? Color(0xFFeeeeee) : Colors.transparent,
+          fillColor: !enable ? Color(0xFFF7F7F7) : Colors.transparent,
           //alignLabelWithHint: true,
         //  labelText: hintText,
         hintText: hintText,

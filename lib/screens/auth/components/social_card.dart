@@ -4,16 +4,18 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 class SocialLogin extends StatelessWidget {
   const SocialLogin({
     Key key,
-    this.name,
+    this.title,
     this.textColor,
     this.icon,
     this.cardColor,
     this.onTap,
-    this.fontColor,
+    this.borderWidth,
+    this.image,this.imgheight,this.imgwidth,this.marginright,
   }) : super(key: key);
-  final String name;
-  final Color textColor, fontColor, cardColor;
+  final String title,image;
+  final Color textColor,cardColor;
   final IconData icon;
+  final double borderWidth,imgwidth,imgheight,marginright;
 
   final Function onTap;
   @override
@@ -22,7 +24,7 @@ class SocialLogin extends StatelessWidget {
       child: GestureDetector(
         onTap: onTap,
         child: SizedBox(
-            width: 360,
+            width: 327,
             height: 52,
             child: Container(
               child: Center(
@@ -30,20 +32,16 @@ class SocialLogin extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    FaIcon(
-                      icon,
-                      size: 16,
-                      color: fontColor,
-                    ),
+                   Image.asset(image,width: imgwidth,height: imgheight,),
                     SizedBox(
-                      width: 8,
+                      width: marginright,
                     ),
                     Text(
-                      name,
+                      title,
                       style: TextStyle(
                         color: textColor,
                         // fontStyle: FontStyle.,
-                        fontWeight: FontWeight.w800,
+                        fontWeight: FontWeight.w500,
                         fontSize: 16,
                       ),
                       textAlign: TextAlign.center,
@@ -53,11 +51,11 @@ class SocialLogin extends StatelessWidget {
               ),
               decoration: BoxDecoration(
                   border: Border.all(
-                      //color: Color(0xff10151a),
-                      width: 2.0,
+                      color: Color(0xff10151a),
+                      width: borderWidth,
                       style: BorderStyle.solid),
                   color: cardColor,
-                  borderRadius: BorderRadius.circular(10)),
+                  borderRadius: BorderRadius.circular(5)),
             )),
       ),
     );

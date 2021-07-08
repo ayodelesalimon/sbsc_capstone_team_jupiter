@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:sbsc_capstone_team_jupiter/screens/auth/create_account.dart';
-import 'package:sbsc_capstone_team_jupiter/screens/tab_controller.dart';
+
 import 'package:sbsc_capstone_team_jupiter/widgets/colors.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
