@@ -277,7 +277,7 @@ class _DiscoverSearchPageState extends State<DiscoverSearchPage> {
                                         Container(
                                           height: 82,
                                           width: 75,
-                                          child: Image.asset(imageList[index]),
+                                          child: Image.network(imageList[index]),
                                         ),
                                       ],
                                     ),

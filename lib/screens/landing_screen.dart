@@ -9,8 +9,8 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import 'auth/login.dart';
 
-
 class LandingScreen extends StatefulWidget {
+  final String name = "onboardPage";
   const LandingScreen({Key key}) : super(key: key);
 
   @override
@@ -163,7 +163,7 @@ class _LandingScreenState extends State<LandingScreen> {
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.end,
+        mainAxisAlignment: MainAxisAlignment.end,
         children: [
           Padding(
             padding: const EdgeInsets.only(left: 18.0, bottom: 50),
@@ -256,85 +256,82 @@ class _LandingScreenState extends State<LandingScreen> {
                 //         ),
                 //       ),
                 //     )),
-
-               
               ],
             ),
           ),
-
-           Center(
-                  child: GestureDetector(
-                    onTap: () async {
-                       Navigator.of(context).push(
-                                  MaterialPageRoute(
-                                    settings: RouteSettings(name: "/createAccount"),
-                                    builder: (context) => CreateAccount(),
-                                  ),
-                                );
-                    },
-                    child: SizedBox(
-                        width: 360,
-                        height: 52,
-                        child: Container(
-                          child: Center(
-                              child: Text(
-                            'Get Started',
-                             style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w800,
-                              fontSize: 16,
-                            ),
-                          )),
-                          decoration: BoxDecoration(
-                              color: primaryColor,
-                              borderRadius: BorderRadius.circular(10)),
-                        )),
+          Center(
+            child: GestureDetector(
+              onTap: () async {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    settings: RouteSettings(name: "/createAccount"),
+                    builder: (context) => CreateAccount(),
                   ),
-                ),
-                SizedBox(
-                  height: 15,
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 25.0),
-                  child: Center(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          "Have an account already?",
-                          softWrap: true,
-                          style: TextStyle(
-                            fontFamily: 'TT Norms Pro',
-                            color: Colors.white,
-                            fontSize: 16,
-                          ),
-                        ),
-                        SizedBox(
-                          width: 5,
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                             Navigator.of(context).push(
-                                  MaterialPageRoute(
-                                    settings: RouteSettings(name: "/loginPage"),
-                                    builder: (context) => LoginPage(),
-                                  ),
-                                );
-                          },
-                          child: Text(
-                            "Sign In",
-                            softWrap: true,
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w800,
-                              fontSize: 16,
-                            ),
-                          ),
-                        ),
-                      ],
+                );
+              },
+              child: SizedBox(
+                  width: 360,
+                  height: 52,
+                  child: Container(
+                    child: Center(
+                        child: Text(
+                      'Get Started',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w800,
+                        fontSize: 16,
+                      ),
+                    )),
+                    decoration: BoxDecoration(
+                        color: primaryColor,
+                        borderRadius: BorderRadius.circular(10)),
+                  )),
+            ),
+          ),
+          SizedBox(
+            height: 15,
+          ),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 25.0),
+            child: Center(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "Have an account already?",
+                    softWrap: true,
+                    style: TextStyle(
+                      fontFamily: 'TT Norms Pro',
+                      color: Colors.white,
+                      fontSize: 16,
                     ),
                   ),
-                ),
+                  SizedBox(
+                    width: 5,
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          settings: RouteSettings(name: "/loginPage"),
+                          builder: (context) => LoginPage(),
+                        ),
+                      );
+                    },
+                    child: Text(
+                      "Sign In",
+                      softWrap: true,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w800,
+                        fontSize: 16,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
         ],
       ),
     );

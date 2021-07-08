@@ -1,96 +1,69 @@
-import 'dart:async';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:sizer/sizer.dart';
-import 'package:sbsc_capstone_team_jupiter/firstscreen.dart';
+import 'package:sbsc_capstone_team_jupiter/screens/tab_controller.dart';
+import 'dart:async';
 
+import 'screens/auth/create_account.dart';
+import 'screens/auth/login.dart';
 
-class SplashScreen extends StatefulWidget {
-
+class SplashScreenPage extends StatefulWidget {
   @override
-  _SplashScreenState createState() => _SplashScreenState();
+  _SplashScreenPageState createState() => _SplashScreenPageState();
 }
 
-class _SplashScreenState extends State<SplashScreen> {
-
-
+class _SplashScreenPageState extends State<SplashScreenPage> {
   @override
-  void initState(){
+  void initState() {
     super.initState();
-    startTime();
+   new Future.delayed(
+        const Duration(seconds: 3),
+        () => Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => LoginPage()),
+            ));
   }
 
+  // startTime() async {
+  //   var duration = Duration(milliseconds: 250);
+  //   return Timer(duration, route);
+  // }
 
-  startTime() async{
-    var duration =  Duration(seconds: 6);
-    return Timer(duration, route);
-  }
-
-  route(){
-    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => FirstScreen()),);
-  }
+  // route() {
+  //   Navigator.pushNamed(context, '/home');
+  //   //Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoginPage()),);
+  // }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Container(
-          width: 100.w,
-          height: 100.h,
-          child: GestureDetector(
-            onTap: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context) => FirstScreen()),);
-            },
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  height: 5.54.h,
-                  width: 50.93.w,
-                  // height: MediaQuery.of(context).size.height,
-                  // width:  MediaQuery.of(context).size.width,
-                  margin: EdgeInsets.only(
-                    top:28.81.h,
-                    bottom:1.97.h,
-                  ),
-                  child: Image(
-                    image: AssetImage('assets/images/rockherocolor.png'),
-                  ),
+      body: Container(
+        decoration: BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage(
+                  'assets/launch_image.png',
                 ),
-                Container(
-                  height: 2.33.h,
-                  width: 466.67.h,
-                  margin: EdgeInsets.only(
-                    bottom:49.5.h,
-                  ),
-                  child: Text(
-                    'You Shop, We Deliver.',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Color(0xFF010F07),
-                      fontStyle: FontStyle.normal,
-                      fontWeight: FontWeight.w600,
-                      fontSize: 16.sp,
-                      letterSpacing: 0.2,
-                    ),
-                  ),
-                ),
-
-                Container(
-                  child: Text(
-                    'Version: 2.0',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Color(0xFF868686),
-                      fontStyle: FontStyle.normal,
-                      fontWeight: FontWeight.normal,
-                      fontSize: 13.sp,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
+                fit: BoxFit.cover)),
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
+        //  child: Column(
+        //    children: [
+        //     SizedBox(height: 295.78,
+        //     ),
+        //      Image.asset('assets/logo.png',width: 500.62,height: 130.43,),
+        //      Spacer(),
+        //      Container(
+        //       // height: 195,width: 375,
+        //        child: Row(
+        //          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        //          children: [
+        //            Image.asset('assets/images/orange.png'),
+        //            Image.asset('assets/images/berry.png',),
+        //          ],
+        //        ),
+        //      ),
+        //    ],
+        //  ),
+        // child:Center(child: Image.asset('assets/logo.png',width: 300.62,height: 130.43,)),
       ),
     );
   }
