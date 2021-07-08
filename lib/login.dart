@@ -5,7 +5,7 @@ import 'package:sizer/sizer.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:sbsc_capstone_team_jupiter/forgot.dart';
 import 'package:sbsc_capstone_team_jupiter/home.dart';
-
+import 'package:sbsc_capstone_team_jupiter/create_account.dart';
 
 
 class SigninPage extends StatefulWidget {
@@ -356,28 +356,33 @@ class _SigninPageState extends State<SigninPage> {
                   ),
                   margin: EdgeInsets.only(bottom: 2.95.h),
                 ),
-                Container(
-                  child: Center(
-                    child:RichText(
-                      text: TextSpan(
-                        text: 'Don’t have an account? ',
-                        style: TextStyle(
-                          color: Color(0xff999999),
-                          fontStyle: FontStyle.normal,
-                          fontWeight: FontWeight.w700,
-                          fontSize: 14.sp,
-                        ),
-                        children: [
-                          TextSpan(
-                            text: 'Get Started',
-                            style: TextStyle(
-                              color: Color(0xff3A953C),
-                              fontStyle: FontStyle.normal,
-                              fontWeight: FontWeight.w700,
-                              fontSize: 14.sp,
-                            ),
+                GestureDetector(
+                  onTap: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => CreatePassPage()),);
+                  },
+                  child: Container(
+                    child: Center(
+                      child:RichText(
+                        text: TextSpan(
+                          text: 'Don’t have an account? ',
+                          style: TextStyle(
+                            color: Color(0xff999999),
+                            fontStyle: FontStyle.normal,
+                            fontWeight: FontWeight.w700,
+                            fontSize: 14.sp,
                           ),
-                        ],
+                          children: [
+                            TextSpan(
+                              text: 'Get Started',
+                              style: TextStyle(
+                                color: Color(0xff3A953C),
+                                fontStyle: FontStyle.normal,
+                                fontWeight: FontWeight.w700,
+                                fontSize: 14.sp,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),

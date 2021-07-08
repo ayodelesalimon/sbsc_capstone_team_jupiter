@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:sbsc_capstone_team_jupiter/checkout_pay.dart';
 
 class ShippingPage extends StatefulWidget {
   @override
@@ -7,6 +8,8 @@ class ShippingPage extends StatefulWidget {
 }
 
 class _ShippingPageState extends State<ShippingPage> {
+
+  bool selected = false;
 
   var _formKey = GlobalKey<FormState>();
 
@@ -242,7 +245,61 @@ class _ShippingPageState extends State<ShippingPage> {
                                                   // width: 26.66.w,
                                                   height:20,
                                                   child: Text(
-                                                    'Address',
+                                                    'Additional Phone Number',
+                                                    style: TextStyle(
+                                                      color: Color(0xff10151a),
+                                                      fontSize: 15,
+                                                      fontStyle: FontStyle.normal,
+                                                      fontWeight: FontWeight.w700,
+                                                    ),
+                                                  ),
+                                                ),
+                                                SizedBox(height: 16,),
+                                                Container(
+                                                  width: 327,
+                                                  height: 47,
+                                                  decoration: BoxDecoration(
+                                                    color: Color(0xfff7f7f7),
+                                                    borderRadius: BorderRadius.circular(5.0),
+                                                  ),
+                                                  child: TextFormField(
+                                                    textAlign: TextAlign.start,
+                                                    keyboardType: TextInputType.number,
+                                                    style: TextStyle(
+                                                      color: Colors.black,
+                                                      fontStyle: FontStyle.normal,
+                                                      fontWeight: FontWeight.normal,
+                                                      fontSize: 15,
+                                                    ),
+                                                    decoration: InputDecoration(
+                                                      prefixText:'+234',
+                                                      border: OutlineInputBorder(),
+                                                      hintText: '80*******2',
+                                                      hintStyle: TextStyle(
+                                                        fontStyle: FontStyle.normal,
+                                                        fontWeight: FontWeight.normal,
+                                                        fontSize: 15,
+                                                        color: Color(0xffbababa),
+                                                      ),
+                                                    ),
+                                                    // validator:(value){
+                                                    //   if(value == ''){
+                                                    //     return 'Phone Number is required';
+                                                    //   }
+                                                    // },
+                                                    onSaved: (value){
+                                                      phone = value as TextEditingController;
+                                                    },
+                                                  ),
+                                                ),
+                                                SizedBox(
+                                                  height: 16,
+                                                ),
+                                                Container(
+                                                  // width: 26.66.w,
+                                                  height:20,
+                                                  child: Text(
+                                                    'Address / State Region',
                                                     style: TextStyle(
                                                       color: Color(0xff10151a),
                                                       fontSize: 15,
@@ -397,7 +454,14 @@ class _ShippingPageState extends State<ShippingPage> {
                                   ),
                                 ),
                                 Spacer(),
-                                Center(child: Image.asset('assets/images/inactive_elipse.png',width: 20,height: 20,)),
+                                Center(child:  Center(
+                                  child:IconButton(
+                                    onPressed:(){},
+                                    icon:Icon(Icons.radio_button_checked),
+                                    iconSize: 20,
+                                    color: selected? Colors.deepOrange: Colors.transparent,
+                                  ),
+                                ),),
                               ],
                             ),
                           );
@@ -419,7 +483,9 @@ class _ShippingPageState extends State<ShippingPage> {
                 SizedBox(height: 98,),
                 Center(
                   child: GestureDetector(
-                    onTap:(){},
+                    onTap:(){
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => PaymentPage()),);
+                    },
                     child: Container(
                       decoration: BoxDecoration(
                         color: Color(0xff3A953C),

@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:sbsc_capstone_team_jupiter/first_screen.dart';
@@ -32,29 +33,30 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body:Stack(
-          children:[
-            Container(
-              width:100.w,height:100.h,
-             child:Center(child: Image.asset('assets/logo.png',width: 300.62,height: 130.43,)),
-            ),
-            Container(
-              width:100.w,height:100.h,
-              child:Positioned(
-                child:Image.asset('assets/images/orange.png',width:195,height: 195,),left: 0,bottom:0,
-                //         ),
+        body: SingleChildScrollView(
+              child: Container(
+                width:375,height: 812,
+               child: Column(
+                 children: [
+                  SizedBox(height: 295.78,
+                  ),
+                   Image.asset('assets/logo.png',width: 300.62,height: 130.43,),
+                   Spacer(),
+                   Container(
+                     height: 195,width: 375,
+                     child: Row(
+                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                       children: [
+                         Image.asset('assets/images/orange.png',width: 195,height: 195,),
+                         Image.asset('assets/images/berry.png',width: 195,height: 195,),
+                       ],
+                     ),
+                   ),
+                 ],
+               ),
+               // child:Center(child: Image.asset('assets/logo.png',width: 300.62,height: 130.43,)),
               ),
             ),
-            Container(
-              width:100.w,height:100.h,
-              child:Positioned(
-                child:Image.asset('assets/images/berry.png',width:195,height: 195,),left: 0,bottom:0,
-                //         ),
-              ),
-            ),
-          ],
-
-        ),
     );
   }
 }

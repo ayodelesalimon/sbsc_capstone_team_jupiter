@@ -1,5 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:sbsc_capstone_team_jupiter/menu_drawer.dart';
+import 'package:sbsc_capstone_team_jupiter/discover_search.dart';
+import 'package:sbsc_capstone_team_jupiter/cart.dart';
+import 'package:sbsc_capstone_team_jupiter/discovery_detail.dart';
+import 'package:sbsc_capstone_team_jupiter/home.dart';
+
 
 
 
@@ -11,12 +17,12 @@ class DiscoverGridPage extends StatefulWidget {
 
 class _DiscoverGridPageState extends State<DiscoverGridPage> {
   List <CaregoryCard> CategotyCardList = [
-    CaregoryCard(image:'assets/images/turkeybg.png', vendor: 'Emmanuel produce',),
-    CaregoryCard(image:'assets/images/seafood.png', vendor: 'Emmanuel produce',),
-    CaregoryCard(image:'assets/images/sushi.png', vendor: 'Emmanuel produce',),
-    CaregoryCard(image:'assets/images/rice.png', vendor: 'Emmanuel produce',),
-    CaregoryCard(image:'assets/images/tomatoes.png', vendor: 'Emmanuel produce',),
-    CaregoryCard(image:'assets/images/paint.png', vendor: 'Emmanuel produce',),
+    CaregoryCard(image:"assets/images/turkeybg.png",name: "Emmanuel Produce",product: 'Herbsconnect Organic Acai Berry Powder Freeze Dried',availability: 'In stock',price: '₦35,000.00'),
+    CaregoryCard(image:"assets/images/seafoodfood.png",name: "Emmanuel Produce",product: 'Herbsconnect Organic Acai Berry Powder Freeze Dried',availability: 'In stock',price: '₦35,000.00'),
+    CaregoryCard(image:"assets/images/sushi.png",name: "Emmanuel Produce",product: 'Herbsconnect Organic Acai Berry Powder Freeze Dried',availability: 'In stock',price: '₦35,000.00'),
+    CaregoryCard(image:"assets/images/rice.png",name: "Emmanuel Produce",product: 'Herbsconnect Organic Acai Berry Powder Freeze Dried',availability: 'In stock',price: '₦35,000.00'),
+    CaregoryCard(image:"assets/images/tomatoes.png",name: "Emmanuel Produce",product: 'Herbsconnect Organic Acai Berry Powder Freeze Dried',availability: 'In stock',price: '₦35,000.00'),
+    CaregoryCard(image:"assets/food.png",name: "Emmanuel Produce",product: 'Herbsconnect Organic Acai Berry Powder Freeze Dried',availability: 'In stock',price: '₦35,000.00'),
 
   ];
 
@@ -25,12 +31,9 @@ class _DiscoverGridPageState extends State<DiscoverGridPage> {
   TextEditingController maxPrice = TextEditingController();
   TextEditingController minPrice = TextEditingController();
 
-  bool changeFont = false;
-  bool showCheck = false;
-  bool like = false;
 
-  RangeValues values = RangeValues(1, 2000000);
-  RangeLabels labels = RangeLabels('1', '2000000');
+  bool showCheck = false;
+
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +67,7 @@ class _DiscoverGridPageState extends State<DiscoverGridPage> {
                             children: [
                               IconButton(
                                 onPressed: () {
-
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) => MyDrawer()),);
                                 },
                                 icon: Image.asset("assets/menu.png", width: 22,height: 22,),
                               ),
@@ -80,15 +83,24 @@ class _DiscoverGridPageState extends State<DiscoverGridPage> {
                               Spacer(),
                               //   width: 51.91,
                               // ),
-                              Image.asset('assets/images/search.png',width: 16,height: 16,color: Color(0xffbababa),),
+                              GestureDetector(
+                                onTap: (){
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) => DiscoverSearchPage()),);
+                                },
+                                  child: Image.asset('assets/images/search.png',width: 16,height: 16,color: Color(0xffbababa),)),
                              Spacer(),
-                              Container(
-                                width: 35,height: 35,
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: Color(0xff3A953C),
+                              GestureDetector(
+                                onTap:(){
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) => CartPage()),);
+                                },
+                                child: Container(
+                                  width: 35,height: 35,
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: Color(0xff3A953C),
+                                  ),
+                                  child: Image.asset('assets/images/shop.png',width: 16.13,height: 14.36,),
                                 ),
-                                child: Image.asset('assets/images/shop.png',width: 16.13,height: 14.36,),
                               ),
                             ],
                           ),
@@ -107,14 +119,13 @@ class _DiscoverGridPageState extends State<DiscoverGridPage> {
                         shrinkWrap: true,
                         scrollDirection: Axis.vertical,
                         children:[
-                          CaregoryCard(image:'assets/images/turkeybg.png', vendor: 'Emmanuel produce',),
-                          CaregoryCard(image:'assets/images/seafood.png', vendor: 'Emmanuel produce',),
-                          CaregoryCard(image:'assets/images/sushi.png', vendor: 'Emmanuel produce',),
-                          CaregoryCard(image:'assets/images/rice.png', vendor: 'Emmanuel produce',),
-                          CaregoryCard(image:'assets/images/tomatoes.png', vendor: 'Emmanuel produce',),
-                          CaregoryCard(image:'assets/images/paint.png', vendor: 'Emmanuel produce',),
-                          CaregoryCard(image:'assets/images/turkey.png', vendor: 'Emmanuel produce',),
-
+                          CaregoryCard(image:"assets/images/turkeybg.png",name: "Emmanuel Produce",product: 'Herbsconnect Organic Acai Berry Powder Freeze Dried',availability: 'In stock',price: '₦35,000.00'),
+                          CaregoryCard(image:"assets/images/seafood.png",name: "Emmanuel Produce",product: 'Herbsconnect Organic Acai Berry Powder Freeze Dried',availability: 'In stock',price: '₦35,000.00'),
+                          CaregoryCard(image:"assets/images/sushi.png",name: "Emmanuel Produce",product: 'Herbsconnect Organic Acai Berry Powder Freeze Dried',availability: 'In stock',price: '₦35,000.00'),
+                          CaregoryCard(image:"assets/images/rice.png",name: "Emmanuel Produce",product: 'Herbsconnect Organic Acai Berry Powder Freeze Dried',availability: 'In stock',price: '₦35,000.00'),
+                          CaregoryCard(image:"assets/images/tomatoes.png",name: "Emmanuel Produce",product: 'Herbsconnect Organic Acai Berry Powder Freeze Dried',availability: 'In stock',price: '₦35,000.00'),
+                          CaregoryCard(image:"assets/images/paint.png",name: "Emmanuel Produce",product: 'Herbsconnect Organic Acai Berry Powder Freeze Dried',availability: 'In stock',price: '₦35,000.00'),
+                          CaregoryCard(image:"assets/images/turkeybg.png",name: "Emmanuel Produce",product: 'Herbsconnect Organic Acai Berry Powder Freeze Dried',availability: 'In stock',price: '₦35,000.00'),
                         ],
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 2,
@@ -198,11 +209,17 @@ class _DiscoverGridPageState extends State<DiscoverGridPage> {
                       height: 21.2,
                       child: Row(
                         children: [
-                          GestureDetector(onTap:(){},child: Image.asset('assets/images/home.png',width: 16.29,height: 15.41,color: Color(0xff3A953C),)),
+                          GestureDetector(onTap:(){
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen()),);
+                          },child: Image.asset('assets/images/home.png',width: 16.29,height: 15.41,color: Color(0xffDEDEDE),)),
                           Spacer(),
-                          GestureDetector(onTap:(){},child: Image.asset('assets/images/search.png',width: 21.2,height: 21.2,color: Color(0xffDEDEDE),)),
+                          GestureDetector(onTap:(){
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => DiscoverSearchPage()),);
+                          },child: Image.asset('assets/images/search.png',width: 21.2,height: 21.2,color: Color(0xff3A953C),)),
                           Spacer(),
-                          GestureDetector(onTap:(){},child: Image.asset('assets/images/dialog.png',width: 21.2,height: 21.2,color: Color(0xffDEDEDE),)),
+                          GestureDetector(onTap:(){
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => MyDrawer()),);
+                          },child: Image.asset('assets/images/dialog.png',width: 21.2,height: 21.2,color: Color(0xffDEDEDE),)),
                         ],
                       ),
                     ),
@@ -214,62 +231,66 @@ class _DiscoverGridPageState extends State<DiscoverGridPage> {
 }
 
 class CaregoryCard extends StatelessWidget {
-  CaregoryCard({required this.image,required this.vendor,}) ;
+  CaregoryCard({required this.image,required this.name,required this.product,required this.availability,required this.price,});
 
-  final String image;
-  final String vendor;
+  final String image, name,price,product,availability;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         Expanded(
-          child: Container(
-            margin: EdgeInsets.only(right: 16),
-            height: 259,width: 156,
-            child: ListView(
-              children: [
-                Stack(
-                  children: [Container(
-                    decoration: BoxDecoration(
-                      image: DecorationImage(image: AssetImage(image), fit: BoxFit.cover),
-                      borderRadius: BorderRadius.all(Radius.circular(4.0)),
+          child: GestureDetector(
+            onTap: (){
+              showProdDetails(context, image, price, name, product);
+            },
+            child: Container(
+              margin: EdgeInsets.only(right: 16),
+              height: 259,width: 156,
+              child: ListView(
+                children: [
+                  Stack(
+                    children: [Container(
+                      decoration: BoxDecoration(
+                        image: DecorationImage(image: AssetImage(image), fit: BoxFit.cover),
+                        borderRadius: BorderRadius.all(Radius.circular(4.0)),
+                      ),
+                      height: 156,
+                      width: 156,
                     ),
-                    height: 156,
-                    width: 156,
-                  ),
 
-                    Positioned(top: 10.25, right: 10.5,
-                        child:Image.asset('assets/images/heart.png',color: Color(0xffffffff),width: 15.01,height: 13.24,)
-                    ),],
-                ),
-                SizedBox(
-                  height: 8,
-                ),
-                Text(
-                  vendor, style: TextStyle(fontWeight: FontWeight.w300, fontSize: 10,color: Color(0xff819272)),
-                ),
-                SizedBox(
-                  height: 4,
-                ),
-                Text("Herbsconnect Organic Acai Berry Powder Freeze Dried",style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16,color: Color(0xff000000)),),
-                SizedBox(
-                  height: 8,
-                ),
-                Container(
-                  width: 156,
-                  height: 20,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Text("₦35,000.00",style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13, color: Color(0xffF39E28),),),
-                      Text(".",style: TextStyle( fontSize: 14, color: Color(0xffD8D8D8)),),
-                      Text("In stock",style: TextStyle(fontSize: 13, color: Color(0xff3A953C)),),
-                    ],
+                      Positioned(top: 10.25, right: 10.5,
+                          child:Image.asset('assets/images/heart.png',color: Color(0xffffffff),width: 15.01,height: 13.24,)
+                      ),],
                   ),
-                ),
-              ],
+                  SizedBox(
+                    height: 8,
+                  ),
+                  Text(
+                    name, style: TextStyle(fontWeight: FontWeight.w300, fontSize: 10,color: Color(0xff819272)),
+                  ),
+                  SizedBox(
+                    height: 4,
+                  ),
+                  Text(product,style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16,color: Color(0xff000000)),),
+                  SizedBox(
+                    height: 8,
+                  ),
+                  Container(
+                    width: 156,
+                    height: 20,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(price,style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13, color: Color(0xffF39E28),),),
+                        Text(".",style: TextStyle( fontSize: 14, color: Color(0xffD8D8D8)),),
+                        Text(availability,style: TextStyle(fontSize: 13, color: Color(0xff3A953C)),),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
@@ -277,192 +298,192 @@ class CaregoryCard extends StatelessWidget {
     );
   }
 }
-
-showProdDetails(
-    context,
-    image,
-    price,
-    vendor,
-    product,
-    ) {
-  return showDialog(
-    context: context,
-    builder: (context) {
-      return Scaffold(
-        body: SingleChildScrollView(
-          child: Container(
-            width: 375,
-            height: 812,
-            color: Color(0xffffffff),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Stack(
-                  children: [
-                    Container(
-                      width: 375,
-                      height: 374,
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage(image),
-                          fit: BoxFit.contain,
-                        ),
-                      ),
-                    ),
-                    Positioned(
-                      child: GestureDetector(
-                        onTap: () {
-                          Navigator.pop(context);
-                        },
-                        child: Image.asset(
-                          'assets/images/back.png',
-                          color: Color(0xffffffff),
-                          width: 23,
-                          height: 14,
-                        ),
-                      ),
-                      top: 40,
-                      left: 24,
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 24,
-                ),
-                Center(
-                  child: Container(
-                    width: 326,
-                    height: 120,
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          width: 249,
-                          height: 120,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                product,
-                                style: TextStyle(
-                                  fontSize: 24,
-                                  fontWeight: FontWeight.bold,
-                                  color: Color(0xff000000),
-                                ),
-                              ),
-                              SizedBox(
-                                height: 8,
-                              ),
-                              Text(
-                                vendor,
-                                style: TextStyle(
-                                  fontSize: 17,
-                                  color: Color(0xff819272),
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                        Spacer(),
-                        Image.asset('assets/images/heart.png',
-                            width: 20.01, height: 17.65),
-                      ],
-                    ),
-                  ),
-                ),
-                // Positioned(child:Image.asset('assets/images/heart.png',width: 20.01,height:17.65),top: 401,right: 27,),
-                // child:Text(product,style: TextStyle(fontSize: 24,fontWeight: FontWeight.bold,color: Color(0xff000000),),),
-                SizedBox(
-                  height: 24,
-                ),
-                Center(
-                  child: Container(
-                    width: 327,
-                    child: Text(
-                      'Lal Qilla Diabetes and Obesity Basmati Rice 5kg. Using a unique technique during cultivation and processing, Lal Qilla has introduced a specially processed low G.I. parboiled rice. This remarkable rice helps rice lovers with diabetes to',
-                      style: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w300,
-                        color: Color(0xff10151a),
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 24,
-                ),
-                Container(
-                  margin: EdgeInsets.only(left: 24),
-                  width: 113,
-                  height: 16,
-                  child: Row(
-                    children: [
-                      Text(
-                        'MORE DETAILS',
-                        style: TextStyle(
-                          fontSize: 13,
-                          color: Color(0xff494846),
-                        ),
-                      ),
-                      Spacer(),
-                      Image.asset('assets/images/plus.png',
-                          width: 10, height: 10),
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  height: 45,
-                ),
-                Center(
-                  child: Container(
-                    height: 47,
-                    width: 327,
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Text(
-                          price,
-                          style: TextStyle(
-                            fontSize: 17,
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xff000000),
-                          ),
-                        ),
-                        Spacer(),
-                        GestureDetector(
-                          onTap: () {},
-                          child: Container(
-                            width: 164,
-                            height: 47,
-                            decoration: BoxDecoration(
-                              color: Color(0xff3A953C),
-                              borderRadius: BorderRadius.circular(5),
-                            ),
-                            child: Center(
-                              child: Text(
-                                'Add to Cart',
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                  color: Color(0xffffffff),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(height: 33),
-                      ],
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      );
-    },
-  );
-}
+//
+// showProdDetails(
+//     context,
+//     image,
+//     price,
+//     vendor,
+//     product,
+//     ) {
+//   return showDialog(
+//     context: context,
+//     builder: (context) {
+//       return Scaffold(
+//         body: SingleChildScrollView(
+//           child: Container(
+//             width: 375,
+//             height: 812,
+//             color: Color(0xffffffff),
+//             child: Column(
+//               crossAxisAlignment: CrossAxisAlignment.start,
+//               children: [
+//                 Stack(
+//                   children: [
+//                     Container(
+//                       width: 375,
+//                       height: 374,
+//                       decoration: BoxDecoration(
+//                         image: DecorationImage(
+//                           image: AssetImage(image),
+//                           fit: BoxFit.contain,
+//                         ),
+//                       ),
+//                     ),
+//                     Positioned(
+//                       child: GestureDetector(
+//                         onTap: () {
+//                           Navigator.pop(context);
+//                         },
+//                         child: Image.asset(
+//                           'assets/images/back.png',
+//                           color: Color(0xffffffff),
+//                           width: 23,
+//                           height: 14,
+//                         ),
+//                       ),
+//                       top: 40,
+//                       left: 24,
+//                     ),
+//                   ],
+//                 ),
+//                 SizedBox(
+//                   height: 24,
+//                 ),
+//                 Center(
+//                   child: Container(
+//                     width: 326,
+//                     height: 120,
+//                     child: Row(
+//                       crossAxisAlignment: CrossAxisAlignment.start,
+//                       children: [
+//                         Container(
+//                           width: 249,
+//                           height: 120,
+//                           child: Column(
+//                             crossAxisAlignment: CrossAxisAlignment.start,
+//                             children: [
+//                               Text(
+//                                 product,
+//                                 style: TextStyle(
+//                                   fontSize: 24,
+//                                   fontWeight: FontWeight.bold,
+//                                   color: Color(0xff000000),
+//                                 ),
+//                               ),
+//                               SizedBox(
+//                                 height: 8,
+//                               ),
+//                               Text(
+//                                 vendor,
+//                                 style: TextStyle(
+//                                   fontSize: 17,
+//                                   color: Color(0xff819272),
+//                                 ),
+//                               )
+//                             ],
+//                           ),
+//                         ),
+//                         Spacer(),
+//                         Image.asset('assets/images/heart.png',
+//                             width: 20.01, height: 17.65),
+//                       ],
+//                     ),
+//                   ),
+//                 ),
+//                 // Positioned(child:Image.asset('assets/images/heart.png',width: 20.01,height:17.65),top: 401,right: 27,),
+//                 // child:Text(product,style: TextStyle(fontSize: 24,fontWeight: FontWeight.bold,color: Color(0xff000000),),),
+//                 SizedBox(
+//                   height: 24,
+//                 ),
+//                 Center(
+//                   child: Container(
+//                     width: 327,
+//                     child: Text(
+//                       'Lal Qilla Diabetes and Obesity Basmati Rice 5kg. Using a unique technique during cultivation and processing, Lal Qilla has introduced a specially processed low G.I. parboiled rice. This remarkable rice helps rice lovers with diabetes to',
+//                       style: TextStyle(
+//                         fontSize: 15,
+//                         fontWeight: FontWeight.w300,
+//                         color: Color(0xff10151a),
+//                       ),
+//                     ),
+//                   ),
+//                 ),
+//                 SizedBox(
+//                   height: 24,
+//                 ),
+//                 Container(
+//                   margin: EdgeInsets.only(left: 24),
+//                   width: 113,
+//                   height: 16,
+//                   child: Row(
+//                     children: [
+//                       Text(
+//                         'MORE DETAILS',
+//                         style: TextStyle(
+//                           fontSize: 13,
+//                           color: Color(0xff494846),
+//                         ),
+//                       ),
+//                       Spacer(),
+//                       Image.asset('assets/images/plus.png',
+//                           width: 10, height: 10),
+//                     ],
+//                   ),
+//                 ),
+//                 SizedBox(
+//                   height: 45,
+//                 ),
+//                 Center(
+//                   child: Container(
+//                     height: 47,
+//                     width: 327,
+//                     child: Row(
+//                       crossAxisAlignment: CrossAxisAlignment.center,
+//                       children: [
+//                         Text(
+//                           price,
+//                           style: TextStyle(
+//                             fontSize: 17,
+//                             fontWeight: FontWeight.bold,
+//                             color: Color(0xff000000),
+//                           ),
+//                         ),
+//                         Spacer(),
+//                         GestureDetector(
+//                           onTap: () {},
+//                           child: Container(
+//                             width: 164,
+//                             height: 47,
+//                             decoration: BoxDecoration(
+//                               color: Color(0xff3A953C),
+//                               borderRadius: BorderRadius.circular(5),
+//                             ),
+//                             child: Center(
+//                               child: Text(
+//                                 'Add to Cart',
+//                                 style: TextStyle(
+//                                   fontSize: 16,
+//                                   fontWeight: FontWeight.bold,
+//                                   color: Color(0xffffffff),
+//                                 ),
+//                               ),
+//                             ),
+//                           ),
+//                         ),
+//                         SizedBox(height: 33),
+//                       ],
+//                     ),
+//                   ),
+//                 ),
+//               ],
+//             ),
+//           ),
+//         ),
+//       );
+//     },
+//   );
+// }
 
 class DiscoverList extends StatelessWidget {
   @override

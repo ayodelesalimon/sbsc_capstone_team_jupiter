@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:sbsc_capstone_team_jupiter/home.dart';
+import 'package:sbsc_capstone_team_jupiter/discover_search.dart';
+import 'package:sbsc_capstone_team_jupiter/menu_drawer.dart';
 
 
 class AccountPayment extends StatefulWidget {
@@ -17,6 +20,9 @@ class _AccountPaymentState extends State<AccountPayment> {
   final FocusNode passwordFocus = FocusNode();
   TextEditingController password = TextEditingController();
   TextEditingController confirmpassword = TextEditingController();
+  TextEditingController number = TextEditingController();
+  TextEditingController lastname = TextEditingController();
+  TextEditingController date = TextEditingController();
 
   @override
   void dispose() {
@@ -209,23 +215,42 @@ class _AccountPaymentState extends State<AccountPayment> {
                                                             ),
                                                           ),
                                                           SizedBox(height: 16),
-                                                          // Input(
-                                                          //   hintText: 'Input account name',
-                                                          //   isPassword: true,
-                                                          //   showObscureText: showObscureTextPassword,
-                                                          //   styleColor: Color(
-                                                          //       0xFFbababa),
-                                                          //   hintStyleColor: Color(
-                                                          //       0xFFbababa),
-                                                          //   validator: (String
-                                                          //   value) {
-                                                          //     if (value.length <
-                                                          //         3) {
-                                                          //       return 'enter your account name';
-                                                          //     }
-                                                          //     return null;
-                                                          //   },
-                                                          // ),
+                                                          Container(
+                                                            width: 327,
+                                                            height: 47,
+                                                            decoration: BoxDecoration(
+                                                              color: Color(0xfff7f7f7),
+                                                              borderRadius: BorderRadius.circular(5.0),
+                                                            ),
+                                                            child: TextFormField(
+                                                              textAlign: TextAlign.start,
+                                                              keyboardType: TextInputType.text,
+                                                              style: TextStyle(
+                                                                color: Colors.black,
+                                                                fontStyle: FontStyle.normal,
+                                                                fontWeight: FontWeight.normal,
+                                                                fontSize: 15,
+                                                              ),
+                                                              decoration: InputDecoration(
+                                                                border: OutlineInputBorder(),
+                                                                hintText: 'Search product',
+                                                                hintStyle: TextStyle(
+                                                                  fontStyle: FontStyle.normal,
+                                                                  fontWeight: FontWeight.normal,
+                                                                  fontSize: 15,
+                                                                  color: Color(0xffbababa),
+                                                                ),
+                                                              ),
+                                                              // validator:(value){
+                                                              //   if(value == ''){
+                                                              //     return 'FullName is required.';
+                                                              //   }
+                                                              // },
+                                                              onSaved: (value){
+                                                                lastname = value as TextEditingController;
+                                                              },
+                                                            ),
+                                                          ),
                                                           SizedBox(height: 16),
                                                           Text('Card Number',
                                                             style: TextStyle(
@@ -237,21 +262,37 @@ class _AccountPaymentState extends State<AccountPayment> {
                                                               fontWeight: FontWeight
                                                                   .bold,),),
                                                           SizedBox(height: 16),
-                                                          // Input(
-                                                          //   hintText: 'Confirm Card Number',
-                                                          //   styleColor: Color(
-                                                          //       0xFFbababa),
-                                                          //   hintStyleColor:
-                                                          //   Color(0xFFbababa),
-                                                          //   validator: (
-                                                          //       String value) {
-                                                          //     if (value.length <
-                                                          //         16) {
-                                                          //       return 'enter valid card number';
-                                                          //     }
-                                                          //     return null;
-                                                          //   },
-                                                          // ),
+                                                          Container(
+                                                            width: 327,
+                                                            height: 47,
+                                                            decoration: BoxDecoration(
+                                                              color: Color(0xfff7f7f7),
+                                                              borderRadius: BorderRadius.circular(5.0),
+                                                            ),
+                                                            child: TextFormField(
+                                                              textAlign: TextAlign.start,
+                                                              keyboardType: TextInputType.text,
+                                                              style: TextStyle(
+                                                                color: Colors.black,
+                                                                fontStyle: FontStyle.normal,
+                                                                fontWeight: FontWeight.normal,
+                                                                fontSize: 15,
+                                                              ),
+                                                              decoration: InputDecoration(
+                                                                border: OutlineInputBorder(),
+                                                                hintText: '********789',
+                                                                hintStyle: TextStyle(
+                                                                  fontStyle: FontStyle.normal,
+                                                                  fontWeight: FontWeight.normal,
+                                                                  fontSize: 15,
+                                                                  color: Color(0xffbababa),
+                                                                ),
+                                                              ),
+                                                              onSaved: (value){
+                                                                number = value as TextEditingController;
+                                                              },
+                                                            ),
+                                                          ),
                                                           SizedBox(height: 16),
                                                           Text('Expiry Date',
                                                             style: TextStyle(
@@ -263,13 +304,37 @@ class _AccountPaymentState extends State<AccountPayment> {
                                                               fontWeight: FontWeight
                                                                   .bold,),),
                                                           SizedBox(height: 16),
-                                                          // Input(
-                                                          //   hintText: 'month/year - 12/23',
-                                                          //   styleColor: Color(
-                                                          //       0xFFbababa),
-                                                          //   hintStyleColor:
-                                                          //   Color(0xFFbababa),
-                                                          // ),
+                                                          Container(
+                                                            width: 327,
+                                                            height: 47,
+                                                            decoration: BoxDecoration(
+                                                              color: Color(0xfff7f7f7),
+                                                              borderRadius: BorderRadius.circular(5.0),
+                                                            ),
+                                                            child: TextFormField(
+                                                              textAlign: TextAlign.start,
+                                                              keyboardType: TextInputType.text,
+                                                              style: TextStyle(
+                                                                color: Colors.black,
+                                                                fontStyle: FontStyle.normal,
+                                                                fontWeight: FontWeight.normal,
+                                                                fontSize: 15,
+                                                              ),
+                                                              decoration: InputDecoration(
+                                                                border: OutlineInputBorder(),
+                                                                hintText: '08/21-(MM/YY)',
+                                                                hintStyle: TextStyle(
+                                                                  fontStyle: FontStyle.normal,
+                                                                  fontWeight: FontWeight.normal,
+                                                                  fontSize: 15,
+                                                                  color: Color(0xffbababa),
+                                                                ),
+                                                              ),
+                                                              onSaved: (value){
+                                                                date = value as TextEditingController;
+                                                              },
+                                                            ),
+                                                          ),
                                                           Center(
                                                             child: GestureDetector(
                                                               child: Container(
@@ -341,38 +406,32 @@ class _AccountPaymentState extends State<AccountPayment> {
               Positioned(
                 bottom: 0,
                 child: Center(
-                  child: Container(
+                  child:Container(
                     decoration: BoxDecoration(
                       color: Color(0xffffffff),
                       boxShadow: [
-                        BoxShadow(color: Color.fromRGBO(0, -2, 20, 0.1),),
+                        BoxShadow(color:Color.fromRGBO(0, -2, 20, 0.1),),
                       ],
                     ),
                     width: 375,
-                    height: 88,
+                    height:88,
                     child: Center(
-                      child: Container(
+                      child:Container(
                         width: 181.1,
                         height: 21.2,
                         child: Row(
                           children: [
-                            GestureDetector(onTap: () {},
-                                child: Image.asset(
-                                  'assets/images/home.png', width: 16.29,
-                                  height: 15.41,
-                                  color: Color(0xffDEDEDE),)),
+                            GestureDetector(onTap:(){
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen()),);
+                            },child: Image.asset('assets/images/home.png',width: 16.29,height: 15.41,color: Color(0xffDEDEDE),)),
                             Spacer(),
-                            GestureDetector(onTap: () {},
-                                child: Image.asset(
-                                  'assets/images/search.png', width: 21.2,
-                                  height: 21.2,
-                                  color: Color(0xffDEDEDE),)),
+                            GestureDetector(onTap:(){
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => DiscoverSearchPage()),);
+                            },child: Image.asset('assets/images/search.png',width: 21.2,height: 21.2,color: Color(0xffDEDEDE),)),
                             Spacer(),
-                            GestureDetector(onTap: () {},
-                                child: Image.asset(
-                                  'assets/images/dialog.png', width: 21.2,
-                                  height: 21.2,
-                                  color: Color(0xff3A953C),)),
+                            GestureDetector(onTap:(){
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => MyDrawer()),);
+                            },child: Image.asset('assets/images/dialog.png',width: 21.2,height: 21.2,color:  Color(0xff3A953C),)),
                           ],
                         ),
                       ),

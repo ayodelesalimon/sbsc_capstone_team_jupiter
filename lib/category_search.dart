@@ -4,6 +4,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:sbsc_capstone_team_jupiter/home.dart';
+import 'package:sbsc_capstone_team_jupiter/discover.dart';
+import 'package:sbsc_capstone_team_jupiter/home.dart';
+import 'package:sbsc_capstone_team_jupiter/discover_search.dart';
+import 'package:sbsc_capstone_team_jupiter/menu_drawer.dart';
 
 
 class CategoryGridPage extends StatefulWidget {
@@ -13,6 +18,7 @@ class CategoryGridPage extends StatefulWidget {
 }
 
 class _CategoryGridPageState extends State<CategoryGridPage> {
+
   List <CaregoryCard> CategotyCardList = [
     CaregoryCard(image:'assets/images/turkeybg.png', vendor: 'Emmanuel produce',),
     CaregoryCard(image:'assets/images/seafood.png', vendor: 'Emmanuel produce',),
@@ -28,9 +34,9 @@ class _CategoryGridPageState extends State<CategoryGridPage> {
   TextEditingController maxPrice = TextEditingController();
   TextEditingController minPrice = TextEditingController();
 
-  bool changeFont = false;
+ 
   bool showCheck = false;
-  bool like = false;
+ 
 
   RangeValues values = RangeValues(1, 2000000);
   RangeLabels labels = RangeLabels('1', '2000000');
@@ -180,10 +186,7 @@ class _CategoryGridPageState extends State<CategoryGridPage> {
                                                               children: [
                                                                 GestureDetector(
                                                                   onTap: () {
-                                                                    // setState(() {
-                                                                    //   showCheck? Color(0xff3A953C): Colors.transparent;
-                                                                    //   changeFont? FontWeight.bold : FontWeight.normal;
-                                                                    // });
+                                                                    Navigator.push(context,MaterialPageRoute(builder: (context)=> DiscoverGridPage()),);
                                                                   },
                                                                   child: Text(
                                                                     'Popularity',
@@ -191,11 +194,8 @@ class _CategoryGridPageState extends State<CategoryGridPage> {
                                                                         color: Color(
                                                                             0xff10151a),
                                                                         fontSize: 17,
-                                                                        fontWeight: changeFont
-                                                                            ? FontWeight
-                                                                            .bold
-                                                                            : FontWeight
-                                                                            .normal),
+                                                                        fontWeight:showCheck? FontWeight.bold
+                                                                            : FontWeight.normal),
                                                                   ),
                                                                 ),
                                                                 Image.asset(
@@ -226,12 +226,9 @@ class _CategoryGridPageState extends State<CategoryGridPage> {
                                                               children: [
                                                                 GestureDetector(
                                                                   onTap: () {
-                                                                    // setState(() {
-                                                                    //   // ignore: unnecessary_statements
-                                                                    //   changeFont? FontWeight.bold : FontWeight.normal;
-                                                                    //   // ignore: unnecessary_statements
-                                                                    //   showCheck? Color(0xff3A953C): Colors.transparent;
-                                                                    // });
+                                                                    Navigator.push(context,MaterialPageRoute(builder: (context)=> HomeScreen()),);
+ 
+
                                                                   },
                                                                   child: Text(
                                                                     'Newest Arrival',
@@ -239,7 +236,7 @@ class _CategoryGridPageState extends State<CategoryGridPage> {
                                                                         color: Color(
                                                                             0xff10151a),
                                                                         fontSize: 17,
-                                                                        fontWeight: changeFont
+                                                                        fontWeight: showCheck
                                                                             ? FontWeight
                                                                             .bold
                                                                             : FontWeight
@@ -250,8 +247,7 @@ class _CategoryGridPageState extends State<CategoryGridPage> {
                                                                     'assets/images/mark.png',
                                                                     width: 12,
                                                                     height: 12,
-                                                                    color: showCheck
-                                                                        ? Color(
+                                                                    color: showCheck? Color(
                                                                         0xff3A953C)
                                                                         : Colors
                                                                         .transparent),
@@ -274,10 +270,7 @@ class _CategoryGridPageState extends State<CategoryGridPage> {
                                                               children: [
                                                                 GestureDetector(
                                                                   onTap: () {
-                                                                    // setState(() {
-                                                                    //   showCheck? Color(0xff3A953C): Colors.transparent;
-                                                                    //   changeFont? FontWeight.bold : FontWeight.normal;
-                                                                    // });
+                                                                    Navigator.push(context,MaterialPageRoute(builder: (context)=> HomeScreen()),);
                                                                   },
                                                                   child: Text(
                                                                     'Prices: Lowest to Highest',
@@ -285,7 +278,7 @@ class _CategoryGridPageState extends State<CategoryGridPage> {
                                                                         color: Color(
                                                                             0xff10151a),
                                                                         fontSize: 17,
-                                                                        fontWeight: changeFont
+                                                                        fontWeight: showCheck
                                                                             ? FontWeight
                                                                             .bold
                                                                             : FontWeight
@@ -321,10 +314,7 @@ class _CategoryGridPageState extends State<CategoryGridPage> {
                                                               children: [
                                                                 GestureDetector(
                                                                   onTap: () {
-                                                                    // setState(() {
-                                                                    //   changeFont = FontWeight.bold;
-                                                                    //   showCheck = Color(0xff3A953C);
-                                                                    // });
+                                                                    Navigator.push(context,MaterialPageRoute(builder: (context)=> HomeScreen()),);
                                                                   },
                                                                   child: Text(
                                                                     'Prices: Highest to Lowest',
@@ -332,7 +322,7 @@ class _CategoryGridPageState extends State<CategoryGridPage> {
                                                                         color: Color(
                                                                             0xff10151a),
                                                                         fontSize: 17,
-                                                                        fontWeight: changeFont
+                                                                        fontWeight: showCheck
                                                                             ? FontWeight
                                                                             .bold
                                                                             : FontWeight
@@ -362,7 +352,9 @@ class _CategoryGridPageState extends State<CategoryGridPage> {
                                                               height: 82,
                                                             ),
                                                             GestureDetector(
-                                                              onTap: () {},
+                                                              onTap: () {
+                                                                Navigator.push(context,MaterialPageRoute(builder: (context)=> HomeScreen()),);
+                                                              },
                                                               child: Container(
                                                                 width: 327,
                                                                 height: 47,
@@ -481,10 +473,15 @@ class _CategoryGridPageState extends State<CategoryGridPage> {
                                                                                 0xff3C673D),
                                                                           ),
                                                                         ),
-                                                                        Image.asset(
-                                                                          'assets/images/x.png',
-                                                                          width: 12,
-                                                                          height: 12,
+                                                                        GestureDetector(
+                                                                          onTap:(){
+                                                                            Navigator.pop(context);
+                                                                          },
+                                                                          child: Image.asset(
+                                                                            'assets/images/x.png',
+                                                                            width: 12,
+                                                                            height: 12,
+                                                                          ),
                                                                         ),
                                                                       ],
                                                                     ),
@@ -586,6 +583,7 @@ class _CategoryGridPageState extends State<CategoryGridPage> {
                                                                                           border: Border.all(
                                                                                             color: Color(0xff000000),
                                                                                           ),
+                                                                                          color: showCheck? Colors.deepOrange: Colors.transparent,
                                                                                         ),
                                                                                       ),
                                                                                       SizedBox(
@@ -619,6 +617,7 @@ class _CategoryGridPageState extends State<CategoryGridPage> {
                                                                                           border: Border.all(
                                                                                             color: Color(0xff000000),
                                                                                           ),
+                                                                                          color: showCheck? Colors.deepOrange: Colors.transparent,
                                                                                         ),
                                                                                       ),
                                                                                       SizedBox(
@@ -652,6 +651,7 @@ class _CategoryGridPageState extends State<CategoryGridPage> {
                                                                                           border: Border.all(
                                                                                             color: Color(0xff000000),
                                                                                           ),
+                                                                                          color: showCheck? Colors.deepOrange: Colors.transparent,
                                                                                         ),
                                                                                       ),
                                                                                       SizedBox(
@@ -685,6 +685,7 @@ class _CategoryGridPageState extends State<CategoryGridPage> {
                                                                                           border: Border.all(
                                                                                             color: Color(0xff000000),
                                                                                           ),
+                                                                                          color: showCheck? Colors.deepOrange: Colors.transparent,
                                                                                         ),
                                                                                       ),
                                                                                       SizedBox(
@@ -729,6 +730,7 @@ class _CategoryGridPageState extends State<CategoryGridPage> {
                                                                                           border: Border.all(
                                                                                             color: Color(0xff000000),
                                                                                           ),
+                                                                                          color: showCheck? Colors.deepOrange: Colors.transparent,
                                                                                         ),
                                                                                       ),
                                                                                       SizedBox(
@@ -762,6 +764,7 @@ class _CategoryGridPageState extends State<CategoryGridPage> {
                                                                                           border: Border.all(
                                                                                             color: Color(0xff000000),
                                                                                           ),
+                                                                                          color: showCheck? Colors.deepOrange: Colors.transparent,
                                                                                         ),
                                                                                       ),
                                                                                       SizedBox(
@@ -795,6 +798,7 @@ class _CategoryGridPageState extends State<CategoryGridPage> {
                                                                                           border: Border.all(
                                                                                             color: Color(0xff000000),
                                                                                           ),
+                                                                                          color: showCheck? Colors.deepOrange: Colors.transparent,
                                                                                         ),
                                                                                       ),
                                                                                       SizedBox(
@@ -828,6 +832,7 @@ class _CategoryGridPageState extends State<CategoryGridPage> {
                                                                                           border: Border.all(
                                                                                             color: Color(0xff000000),
                                                                                           ),
+                                                                                          color: showCheck? Colors.deepOrange: Colors.transparent,
                                                                                         ),
                                                                                       ),
                                                                                       SizedBox(
@@ -871,8 +876,7 @@ class _CategoryGridPageState extends State<CategoryGridPage> {
                                                                       onChanged:
                                                                           (value) {
                                                                         setState(() {
-                                                                          values =
-                                                                              value;
+                                                                          values = value;
                                                                           labels =
                                                                               RangeLabels(
                                                                                 value.start
@@ -1023,7 +1027,9 @@ class _CategoryGridPageState extends State<CategoryGridPage> {
                                                                     ),
                                                                   ),
                                                                   GestureDetector(
-                                                                    onTap: () {},
+                                                                    onTap: () {
+                                                                      Navigator.push(context,MaterialPageRoute(builder: (context)=> HomeScreen()),);
+                                                                    },
                                                                     child: Container(
                                                                       width: 327,
                                                                       height: 47,
@@ -1168,6 +1174,7 @@ class _CategoryGridPageState extends State<CategoryGridPage> {
                 ),
               ),
             ),
+
             Positioned(
               bottom: 0,
               child: Center(
@@ -1186,11 +1193,17 @@ class _CategoryGridPageState extends State<CategoryGridPage> {
                       height: 21.2,
                       child: Row(
                         children: [
-                          GestureDetector(onTap:(){},child: Image.asset('assets/images/home.png',width: 16.29,height: 15.41,color: Color(0xff3A953C),)),
+                          GestureDetector(onTap:(){
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen()),);
+                          },child: Image.asset('assets/images/home.png',width: 16.29,height: 15.41,color: Color(0xff3A953C),)),
                           Spacer(),
-                          GestureDetector(onTap:(){},child: Image.asset('assets/images/search.png',width: 21.2,height: 21.2,color: Color(0xffDEDEDE),)),
+                          GestureDetector(onTap:(){
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => DiscoverSearchPage()),);
+                          },child: Image.asset('assets/images/search.png',width: 21.2,height: 21.2,color: Color(0xffDEDEDE),)),
                           Spacer(),
-                          GestureDetector(onTap:(){},child: Image.asset('assets/images/dialog.png',width: 21.2,height: 21.2,color: Color(0xffDEDEDE),)),
+                          GestureDetector(onTap:(){
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => MyDrawer()),);
+                          },child: Image.asset('assets/images/dialog.png',width: 21.2,height: 21.2,color: Color(0xffDEDEDE),)),
                         ],
                       ),
                     ),
