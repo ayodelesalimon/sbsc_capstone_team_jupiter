@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:sizer/sizer.dart';
 import 'package:form_field_validator/form_field_validator.dart';
-import 'package:sbsc_capstone_team_jupiter/forgot.dart';
+import 'package:sbsc_capstone_team_jupiter/resetpassword.dart';
 import 'package:sbsc_capstone_team_jupiter/home.dart';
 import 'package:sbsc_capstone_team_jupiter/create_account.dart';
 

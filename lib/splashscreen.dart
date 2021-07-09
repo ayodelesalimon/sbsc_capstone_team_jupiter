@@ -22,7 +22,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
 
   startTime() async{
-    var duration =  Duration(milliseconds:2500);
+    var duration =  Duration(milliseconds:1500);
     return Timer(duration, route);
   }
 
@@ -43,15 +43,15 @@ class _SplashScreenState extends State<SplashScreen> {
                    Image.asset('assets/logo.png',width: 300.62,height: 130.43,),
                    Spacer(),
                    Container(
-                     height: 195,width: 375,
-                     child: Row(
-                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                       children: [
-                         Image.asset('assets/images/orange.png',width: 195,height: 195,),
-                         Image.asset('assets/images/berry.png',width: 195,height: 195,),
-                       ],
+                       height: 195,width: 375,
+                       child: Row(
+                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                         children: [
+                           Image.asset('assets/images/orange.png',width: 195,height: 195,),
+                           Image.asset('assets/images/berry.png',width: 195,height: 195,),
+                         ],
+                       ),
                      ),
-                   ),
                  ],
                ),
                // child:Center(child: Image.asset('assets/logo.png',width: 300.62,height: 130.43,)),

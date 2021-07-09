@@ -30,12 +30,6 @@ class _FirstScreenState extends State<FirstScreen> {
     });
   }
 
-  @override
-  void initState(){
-    super.initState();
-    startTime();
-  }
-
   startTime() async{
     var duration = Duration(seconds: 10);
     return Timer(duration, route);

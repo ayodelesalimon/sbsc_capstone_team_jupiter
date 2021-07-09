@@ -335,6 +335,7 @@ class _AccountPaymentState extends State<AccountPayment> {
                                                               },
                                                             ),
                                                           ),
+                                                          SizedBox(height: 16),
                                                           Center(
                                                             child: GestureDetector(
                                                               child: Container(

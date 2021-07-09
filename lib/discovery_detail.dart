@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sbsc_capstone_team_jupiter/cart.dart';
 
-bool selected =false;
+
 
 showProdDetails(
     context,
@@ -10,7 +10,7 @@ showProdDetails(
     vendor,
     product,
     ) {
-
+  bool selected = true;
   return showDialog(
     context:  context,
     builder: (context){

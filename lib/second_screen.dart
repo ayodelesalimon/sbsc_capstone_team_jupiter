@@ -12,12 +12,6 @@ class SecondScreen extends StatefulWidget {
 class _SecondScreenState extends State<SecondScreen> {
 
 
-  @override
-  void initState(){
-    super.initState();
-    startTime();
-  }
-
   startTime() async{
     var duration = Duration(seconds: 8);
     return Timer(duration, route);

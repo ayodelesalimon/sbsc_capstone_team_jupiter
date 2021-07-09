@@ -14,10 +14,6 @@ class ThirdScreen extends StatefulWidget {
 
 class _ThirdScreenState extends State<ThirdScreen> {
 
-  void initState(){
-    super.initState();
-    startTime();
-  }
 
   startTime() async{
     var duration = Duration(seconds: 8);

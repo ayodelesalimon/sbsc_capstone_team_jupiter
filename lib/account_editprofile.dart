@@ -85,18 +85,6 @@ class _EditProfileState extends State<EditProfile> {
                       SizedBox(
                         height: 72,
                       ),
-                      Text(
-                        'First Name',
-                        style: TextStyle(
-                          color: Color(0xff10151a),
-                          fontSize: 15,
-                          fontStyle: FontStyle.normal,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 16,
-                      ),
                       Container(
                         // width: 26.66.w,
                         height:20,

@@ -29,9 +29,9 @@ class _ShippingPageState extends State<ShippingPage> {
     '+2348074057767',
   ];
   var addressList = [
-    'Railway Quarters , tejuosho, Surulere ,Lagos, Surulere (Ojuelegba), Lagos',
-    'Railway Quarters , tejuosho, Surulere ,Lagos, Surulere (Ojuelegba), Lagos',
-    'Railway Quarters , tejuosho, Surulere ,Lagos, Surulere (Ojuelegba), Lagos',
+    'Railway Quarters, tejuosho, Surulere(Ojuelegba), Lagos',
+    'Railway Quarters, tejuosho, Surulere(Ojuelegba), Lagos',
+    'Railway Quarters, tejuosho, Surulere(Ojuelegba), Lagos',
   ];
   @override
   Widget build(BuildContext context) {
@@ -213,9 +213,7 @@ class _ShippingPageState extends State<ShippingPage> {
                                                           fontSize: 15,
                                                         ),
                                                         decoration: InputDecoration(
-                                                          prefixText:'+234',
-                                                          border: OutlineInputBorder(),
-                                                          hintText: '80*******2',
+                                                          hintText: '+23480*******2',
                                                           hintStyle: TextStyle(
                                                             fontStyle: FontStyle.normal,
                                                             fontWeight: FontWeight.normal,

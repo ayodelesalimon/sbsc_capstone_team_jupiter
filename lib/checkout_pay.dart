@@ -108,7 +108,8 @@ class _PaymentPageState extends State<PaymentPage> {
                                     fontWeight: FontWeight.bold),
                               ),
                               Text(
-                                ' For Contactless Delivery we recommend go cashless and stay with Aduabe Fresh Pay',
+                                'For Contactless Delivery we recommend go \n '
+                                    'cashless and stay with Aduabe Fresh Pay',
                                 style: TextStyle(
                                     fontSize: 13,
                                     color: Color(0xffbbbbbb),
@@ -141,7 +142,7 @@ class _PaymentPageState extends State<PaymentPage> {
                             ],
                           ),
                         ),
-                        Center(
+                        Expanded(
                           child:IconButton(
                             onPressed:(){},
                             icon:Icon(Icons.radio_button_checked),
@@ -174,13 +175,15 @@ class _PaymentPageState extends State<PaymentPage> {
                               color: Color(0xff10151a),
                               fontWeight: FontWeight.bold),
                           ),),
-                          Center(
+                          Expanded(
+                            child: Center(
                             child:IconButton(
                               onPressed:(){},
                               icon:Icon(Icons.radio_button_checked),
                               iconSize: 16,
                               color: selected? Colors.deepOrange: Colors.transparent,
                             ),
+                          ),
                           ),
                       ],
                     ),

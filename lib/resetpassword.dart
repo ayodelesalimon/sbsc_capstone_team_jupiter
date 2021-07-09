@@ -294,7 +294,7 @@ class _ForgotPageState extends State<ForgotPage> {
                     ]
                 ),
               ),
-              GestureDetector(
+              InkWell(
                 onTap: (){
                   showBottomSheet(
                     context: context,

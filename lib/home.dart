@@ -14,6 +14,47 @@ import 'package:sbsc_capstone_team_jupiter/cart.dart';
 import 'package:sbsc_capstone_team_jupiter/category.dart';
 import 'package:sbsc_capstone_team_jupiter/discover_search.dart';
 import 'package:sbsc_capstone_team_jupiter/discovery_detail.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+
+class HomeCategories{
+  String? categoryName;
+  String? categoryId;
+  HomeCategories({required this.categoryId, this.categoryName});
+  factory HomeCategories.fromJson(Map<String, dynamic> json) {
+    return HomeCategories(
+      categoryId: json['categoryId'],
+      categoryName: json['categoryName'],
+    );
+  }
+}
+
+class HomeCategoriesListApiHelper {
+  static String baseEndpoint = 'http://aduabaecommerceapi.azurewebsites.net';
+  static Future<List<HomeCategories>> getAllCategories() async {
+    List<HomeCategories> homeCategoriesModelList = [];
+    String url = '$baseEndpoint/Categories/get-all-categories';
+
+    http.Response _response = await http.get(Uri.parse(url));
+    print(_response.body);
+    List decodedResponse = jsonDecode(_response.body);
+    homeCategoriesModelList =
+        decodedResponse.map((json) => HomeCategories.fromJson(json)).toList();
+    return homeCategoriesModelList;
+  }
+  //
+  // static Future deleteCategory() async {
+  //   String url = '$baseEndpoint/Categories/remove-categories';
+  //   http.Response _response = await http.delete(
+  //     Uri.parse(url),
+  //     body: jsonEncode([
+  //       'spices'
+  //     ]),
+  //   );
+  //   print(_response.body);
+  // }
+}
+
 
 class HomeScreen extends StatefulWidget {
 
@@ -23,6 +64,23 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
+  bool _isLoading = true;
+  List<HomeCategories> homeCategoriesModelList = [];
+  Future<List<HomeCategories>> getAllCategories() async {
+    homeCategoriesModelList = await HomeCategoriesListApiHelper.getAllCategories();
+    setState(() {
+      _isLoading = false;
+    });
+
+    return homeCategoriesModelList;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getAllCategories();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -71,260 +129,266 @@ class _HomeScreenState extends State<HomeScreen> {
         body: SingleChildScrollView(
             child: Stack(
               children: [
-               Container(
+                 Container(
               width: 375,
-              height: 1267,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          height:35, width:327,
-                          margin: EdgeInsets.symmetric(horizontal: 24),
-                         child: Row(
-                           mainAxisAlignment: MainAxisAlignment.start,
-                           crossAxisAlignment: CrossAxisAlignment.center ,
-                           children: [
-                             GestureDetector(onTap:(){
-                               Navigator.push(context,MaterialPageRoute(builder: (context)=> MyDrawer()),);
-                             },
-                                 child: Image.asset('assets/menu.png',width: 22,height: 22,)),
-                             Text(
-                               "Aduaba Fresh",
-                               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Color(0xff000000),),
-                             ),
-                             GestureDetector(
-                               onTap:(){
-                                 Navigator.push(context,MaterialPageRoute(builder: (context)=> CartPage()),);
-                               },
-                               child: Container(
-                                 width: 35,height: 35,
-                                 decoration: BoxDecoration(
-                                   shape: BoxShape.circle,
-                                   color: Color(0xff3A953C),
-                                 ),
-                                 child: Image.asset('assets/images/shop.png',width: 16.13,height: 14.36,),
+              height: 1400,
+                      child: SafeArea(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding:  EdgeInsets.only(top:40),
+                              child: Container(
+                                height:35, width:327,
+                                margin: EdgeInsets.symmetric(horizontal: 24),
+                               child: Row(
+                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                 crossAxisAlignment: CrossAxisAlignment.center ,
+                                 children: [
+                                   GestureDetector(onTap:(){
+                                     Navigator.push(context,MaterialPageRoute(builder: (context)=> MyDrawer()),);
+                                   },
+                                       child: Image.asset('assets/menu.png',width: 22,height: 22,)),
+                                   Text(
+                                     "Aduaba Fresh",
+                                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Color(0xff000000),),
+                                   ),
+                                   GestureDetector(
+                                     onTap:(){
+                                       Navigator.push(context,MaterialPageRoute(builder: (context)=> CartPage()),);
+                                     },
+                                     child: Container(
+                                       width: 35,height: 35,
+                                       decoration: BoxDecoration(
+                                         shape: BoxShape.circle,
+                                         color: Color(0xff3A953C),
+                                       ),
+                                       child: Image.asset('assets/images/shop.png',width: 16.13,height: 14.36,),
+                                     ),
+                                   ),
+                                 ],
                                ),
-                             ),
-                           ],
-                         ),
-                        ),
-                        SizedBox(
-                          height: 32,
-                        ),
-                        Container(
-                          margin: EdgeInsets.symmetric(horizontal: 24),
-                          child: Text(
-                            "Hi, Andrea",
-                            style: TextStyle(fontWeight: FontWeight.normal, fontSize: 17,color: Color(0xff3A683B)),
-                          ),
-                        ),
-                        SizedBox(height: 9),
-                        Container(
-                          margin: EdgeInsets.symmetric(horizontal: 24),
-                          child: Text(
-                            "What are you looking for \n today?",
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Color(0xff819272),
-                                fontSize: 24),
-                          ),
-                        ),
-                        SizedBox(height: 24),
-                        GestureDetector(
-                          onLongPress:(){
-                            Navigator.push(context,MaterialPageRoute(builder: (context)=> DiscoverSearchPage()),);
-                          },
-                          child: Container(
-                            margin: EdgeInsets.symmetric(horizontal: 24),
-                            width: 327,
-                            height: 47,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(5),
-                              color: Color(0xfff7f7f7),
+                              ),
                             ),
-                            child: TextField(
-                              decoration: InputDecoration(
-                                fillColor: Color(0xfff7f7f7),
-                                hintText: "Search product",
-                                hintStyle: TextStyle(
-                                  fontSize: 15, color: Color(0xffbababa),
+                            SizedBox(
+                              height: 32,
+                            ),
+                            Container(
+                              margin: EdgeInsets.symmetric(horizontal: 24),
+                              child: Text(
+                                "Hi, Andrea",
+                                style: TextStyle(fontWeight: FontWeight.normal, fontSize: 17,color: Color(0xff3A683B)),
+                              ),
+                            ),
+                            SizedBox(height: 9),
+                            Container(
+                              margin: EdgeInsets.symmetric(horizontal: 24),
+                              child: Text(
+                                "What are you looking for \n today?",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Color(0xff819272),
+                                    fontSize: 24),
+                              ),
+                            ),
+                            SizedBox(height: 24),
+                            GestureDetector(
+                              onLongPress:(){
+                                Navigator.push(context,MaterialPageRoute(builder: (context)=> DiscoverSearchPage()),);
+                              },
+                              child: Container(
+                                margin: EdgeInsets.symmetric(horizontal: 24),
+                                width: 327,
+                                height: 47,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(5),
+                                  color: Color(0xfff7f7f7),
                                 ),
-                                prefixIcon:
-                                   Padding(
-                                    padding: const EdgeInsets.only(left: 16,right: 13),
-                                    child: Image.asset('assets/images/search.png', width: 16,height: 16,color: Color(0xffBABABA),),
+                                child: TextField(
+                                  decoration: InputDecoration(
+                                    border: InputBorder.none,
+                                    fillColor: Color(0xfff7f7f7),
+                                    hintText: "Search product",
+                                    hintStyle: TextStyle(
+                                      fontSize: 15, color: Color(0xffbababa),
+                                    ),
+                                    prefixIcon:
+                                       Padding(
+                                        padding: const EdgeInsets.only(left: 16,right: 13),
+                                        child: Image.asset('assets/images/search.png', width: 16,height: 16,color: Color(0xffBABABA),),
+                                    ),
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 32,
-                        ),
-                        Container(
-                          margin: EdgeInsets.symmetric(horizontal: 24),
-                          height: 20,width: 327,
-                          child: Center(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "Categories",
-                                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17, color: Color(0xff3C673D),),
-                                ),
-                                GestureDetector(
-                                  onTap: (){
-                                    Navigator.push(context, MaterialPageRoute(builder: (context) => CategoryPage()),);
-                                  },
-                                  child: Container(
-                                    width: 58,height: 16,
-                                    child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      crossAxisAlignment: CrossAxisAlignment.center,
-                                      children: [
-                                        Text("View all", style: TextStyle(fontWeight: FontWeight.normal, fontSize: 13, color: Color(0xff999999),),),
-                                        Image.asset('assets/images/arrow.png',width: 5.88,height: 10,),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ],
+                            SizedBox(
+                              height: 32,
                             ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 16,
-                        ),
-                        Container(
-                          height:50,width:492,
-                          margin: EdgeInsets.only(left: 24),
-                          child: Categories(),
-                        ),
-                        SizedBox(
-                          height: 32,
-                        ),
-                        Container(
-                          margin: EdgeInsets.symmetric(horizontal: 24),
-                          height: 20,width: 327,
-                          child: Center(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "Today’s Promo ",
-                                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17, color: Color(0xff3C673D),),
-                                ),
-                                GestureDetector(
-                                  onTap: (){
-                                    // Navigator.of(context).push(
-                                    //   MaterialPageRoute(
-                                    //     settings: RouteSettings(name: "/categoryPage"),
-                                    //     builder: (context) => CategoryGridPage(),
-                                    //   ),
-                                    // );
-                                  },
-                                  child: Container(
-                                    width: 58,height: 16,
-                                    child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      crossAxisAlignment: CrossAxisAlignment.center,
-                                      children: [
-                                        Text("View all", style: TextStyle(fontWeight: FontWeight.normal, fontSize: 13, color: Color(0xff999999),),),
-                                        Image.asset('assets/images/arrow.png',width: 5.88,height: 10,),
-                                      ],
+                            Container(
+                              margin: EdgeInsets.symmetric(horizontal: 24),
+                              height: 20,width: 327,
+                              child: Center(
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      "Categories",
+                                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17, color: Color(0xff3C673D),),
                                     ),
-                                  ),
+                                    GestureDetector(
+                                      onTap: (){
+                                        Navigator.push(context, MaterialPageRoute(builder: (context) => CategoryPage()),);
+                                      },
+                                      child: Container(
+                                        width: 58,height: 16,
+                                        child: Row(
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          crossAxisAlignment: CrossAxisAlignment.center,
+                                          children: [
+                                            Text("View all", style: TextStyle(fontWeight: FontWeight.normal, fontSize: 13, color: Color(0xff999999),),),
+                                            Image.asset('assets/images/arrow.png',width: 5.88,height: 10,),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                              ],
+                              ),
                             ),
-                          ),
-                        ),
-                        SizedBox(height: 16,),
+                            SizedBox(
+                              height: 16,
+                            ),
+                            Container(
+                              height:50,width:492,
+                              margin: EdgeInsets.only(left: 24),
+                              child: Categories(),
+                            ),
+                            SizedBox(
+                              height: 32,
+                            ),
+                            Container(
+                              margin: EdgeInsets.symmetric(horizontal: 24),
+                              height: 20,width: 327,
+                              child: Center(
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      "Today’s Promo ",
+                                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17, color: Color(0xff3C673D),),
+                                    ),
+                                    GestureDetector(
+                                      onTap: (){
+                                        // Navigator.of(context).push(
+                                        //   MaterialPageRoute(
+                                        //     settings: RouteSettings(name: "/categoryPage"),
+                                        //     builder: (context) => CategoryGridPage(),
+                                        //   ),
+                                        // );
+                                      },
+                                      child: Container(
+                                        width: 58,height: 16,
+                                        child: Row(
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          crossAxisAlignment: CrossAxisAlignment.center,
+                                          children: [
+                                            Text("View all", style: TextStyle(fontWeight: FontWeight.normal, fontSize: 13, color: Color(0xff999999),),),
+                                            Image.asset('assets/images/arrow.png',width: 5.88,height: 10,),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            SizedBox(height: 16,),
 
-                        Container(
-                           width:500, height:181,
-                            margin: EdgeInsets.only(left: 24),
-                            child: PromoSection(),
-                        ),
-                        SizedBox(height: 32,),
-                        Container(
-                          margin: EdgeInsets.symmetric(horizontal: 24),
-                          height: 20,width: 327,
-                          child: Center(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "Best Selling",
-                                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17, color: Color(0xff3C673D),),
-                                ),
-                                Container(
-                                  width: 58,height: 16,
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    crossAxisAlignment: CrossAxisAlignment.center,
-                                    children: [
-                                      Text("View all", style: TextStyle(fontWeight: FontWeight.normal, fontSize: 13, color: Color(0xff999999),),),
-                                      Image.asset('assets/images/arrow.png',width: 5.88,height: 10,color: Color(0xff999999),),
-                                    ],
-                                  ),
-                                ),
-                              ],
+                            Container(
+                               width:500, height:181,
+                                margin: EdgeInsets.only(left: 24),
+                                child: PromoSection(),
                             ),
-                          ),
-                        ),
-                        SizedBox(height: 10,),
-                        Container(
-                          height:259, width:500,
-                            margin: EdgeInsets.only(left: 24),
-                            child: BestSellSection(),
-                        ),
-                        SizedBox(height: 36,),
-                        Container(
-                          margin: EdgeInsets.symmetric(horizontal: 24),
-                          height: 20,width: 327,
-                          child: Center(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "Featured Products",
-                                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17, color: Color(0xff3C673D),),
-                                ),
-                                GestureDetector(
-                                  onTap: (){
-                                    // Navigator.of(context).push(
-                                    //   MaterialPageRoute(
-                                    //     settings: RouteSettings(name: "/categoryPage"),
-                                    //     builder: (context) => CategoryGridPage(),
-                                    //   ),
-                                    // );
-                                  },
-                                  child: Container(
-                                    width: 58,height: 16,
-                                    child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      crossAxisAlignment: CrossAxisAlignment.center,
-                                      children: [
-                                        Text("View all", style: TextStyle(fontWeight: FontWeight.normal, fontSize: 13, color: Color(0xff000000),),),
-                                        Image.asset('assets/images/arrow.png',width: 5.88,height: 10,color: Color(0xff000000),),
-                                      ],
+                            SizedBox(height: 32,),
+                            Container(
+                              margin: EdgeInsets.symmetric(horizontal: 24),
+                              height: 20,width: 327,
+                              child: Center(
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      "Best Selling",
+                                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17, color: Color(0xff3C673D),),
                                     ),
-                                  ),
+                                    Container(
+                                      width: 58,height: 16,
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        children: [
+                                          Text("View all", style: TextStyle(fontWeight: FontWeight.normal, fontSize: 13, color: Color(0xff999999),),),
+                                          Image.asset('assets/images/arrow.png',width: 5.88,height: 10,color: Color(0xff999999),),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                              ],
+                              ),
                             ),
-                          ),
+                            SizedBox(height: 10,),
+                            Container(
+                              height:259, width:500,
+                                margin: EdgeInsets.only(left: 24),
+                                child: BestSellSection(),
+                            ),
+                            SizedBox(height: 36,),
+                            Container(
+                              margin: EdgeInsets.symmetric(horizontal: 24),
+                              height: 20,width: 327,
+                              child: Center(
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      "Featured Products",
+                                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17, color: Color(0xff3C673D),),
+                                    ),
+                                    GestureDetector(
+                                      onTap: (){
+                                        // Navigator.of(context).push(
+                                        //   MaterialPageRoute(
+                                        //     settings: RouteSettings(name: "/categoryPage"),
+                                        //     builder: (context) => CategoryGridPage(),
+                                        //   ),
+                                        // );
+                                      },
+                                      child: Container(
+                                        width: 58,height: 16,
+                                        child: Row(
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          crossAxisAlignment: CrossAxisAlignment.center,
+                                          children: [
+                                            Text("View all", style: TextStyle(fontWeight: FontWeight.normal, fontSize: 13, color: Color(0xff000000),),),
+                                            Image.asset('assets/images/arrow.png',width: 5.88,height: 10,color: Color(0xff000000),),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            SizedBox(height:16),
+                            Container(
+                              height:259, width:500,
+                                margin: EdgeInsets.only(left: 24),
+                                child: FeaturedProductsSection(),
+                            ),
+                          ],
                         ),
-                        SizedBox(height:16),
-                        Container(
-                          height:259, width:500,
-                            margin: EdgeInsets.only(left: 24),
-                            child: FeaturedProductsSection(),
-                        ),
-                      ],
+                      ),
                     ),
-                  ),
                 Positioned(
                   bottom: 0,
                   child: Center(
@@ -367,8 +431,14 @@ class _HomeScreenState extends State<HomeScreen> {
 }
 
 
-class FeaturedProductsSection extends StatelessWidget {
+class FeaturedProductsSection extends StatefulWidget {
   FeaturedProductsSection();
+
+  @override
+  _FeaturedProductsSectionState createState() => _FeaturedProductsSectionState();
+}
+
+class _FeaturedProductsSectionState extends State<FeaturedProductsSection> {
   @override
   Widget build(BuildContext context) {
     return Container( height: 259,width: 156,
@@ -377,7 +447,7 @@ class FeaturedProductsSection extends StatelessWidget {
         children: [
           FeaturedProductsCard(image:"assets/food.png",name: "Emmanuel Produce",product: 'Herbsconnect Organic Acai Berry Powder Freeze Dried',availability: 'In stock',price: '₦35,000.00'),
           FeaturedProductsCard(image:"assets/drugs.png",name: "Emmanuel Produce",product: 'Herbsconnect Organic Acai Berry Powder Freeze Dried',availability: 'In stock',price: '₦35,000.00'),
-          FeaturedProductsCard(image:"assets/drugs.png",name: "Emmanuel Produce",product: 'Herbsconnect Organic Acai Berry Powder Freeze Dried',availability: 'In stock',price: '₦35,000.00'),
+          FeaturedProductsCard(image:"assets/images/tomatoes.png",name: "Emmanuel Produce",product: 'Herbsconnect Organic Acai Berry Powder Freeze Dried',availability: 'In stock',price: '₦35,000.00'),
         ],
       ),
     );
@@ -386,21 +456,26 @@ class FeaturedProductsSection extends StatelessWidget {
 
 
 
-class FeaturedProductsCard extends StatelessWidget {
+class FeaturedProductsCard extends StatefulWidget {
   const FeaturedProductsCard({required this.image,required this.name,required this.product,required this.availability,required this.price,});
 
   final String image, name,price,product,availability;
 
+  @override
+  _FeaturedProductsCardState createState() => _FeaturedProductsCardState();
+}
+
+class _FeaturedProductsCardState extends State<FeaturedProductsCard> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap:(){
         showProdDetails(
           context,
-          image,
-          price,
-          name,
-          product,
+          widget.image,
+          widget.price,
+          widget.name,
+          widget.product,
         );
       },
       child: Container(
@@ -415,7 +490,7 @@ class FeaturedProductsCard extends StatelessWidget {
               children: [
               Container(
                 decoration: BoxDecoration(
-                  image: DecorationImage(image: AssetImage(image), fit: BoxFit.cover),
+                  image: DecorationImage(image: AssetImage(widget.image), fit: BoxFit.cover),
                   borderRadius: BorderRadius.all(Radius.circular(4.0)),
                 ),
                 height: 156,
@@ -435,12 +510,12 @@ class FeaturedProductsCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Text(
-                  name, style: TextStyle(fontWeight: FontWeight.w300, fontSize: 10,color: Color(0xff819272)),
+                  widget.name, style: TextStyle(fontWeight: FontWeight.w300, fontSize: 10,color: Color(0xff819272)),
                 ),
                 SizedBox(
                   height: 4,
                 ),
-                Text(product,style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16,color: Color(0xff000000)),),
+                Text(widget.product,style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16,color: Color(0xff000000)),),
                 SizedBox(
                   height: 8,
                 ),
@@ -451,9 +526,9 @@ class FeaturedProductsCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Text(price,style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13, color: Color(0xffF39E28),),),
+                      Text(widget.price,style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13, color: Color(0xffF39E28),),),
                       Text(".",style: TextStyle( fontSize: 14, color: Color(0xffD8D8D8)),),
-                      Text(availability,style: TextStyle(fontSize: 13, color: Color(0xff3A953C)),),
+                      Text(widget.availability,style: TextStyle(fontSize: 13, color: Color(0xff3A953C)),),
                     ],
                   ),
                 ),
@@ -466,8 +541,14 @@ class FeaturedProductsCard extends StatelessWidget {
   }
 }
 
-class BestSellSection extends StatelessWidget {
+class BestSellSection extends StatefulWidget {
   BestSellSection();
+
+  @override
+  _BestSellSectionState createState() => _BestSellSectionState();
+}
+
+class _BestSellSectionState extends State<BestSellSection> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -475,8 +556,8 @@ class BestSellSection extends StatelessWidget {
       child: ListView(
         scrollDirection: Axis.horizontal,
         children: [
-          BestSellCard(image:"assets/food.png",name: "Emmanuel Produce",product: 'Herbsconnect Organic Acai Berry Powder Freeze Dried',availability: 'In stock',price: '₦35,000.00'),
-          BestSellCard(image:"assets/drugs.png",name: "Emmanuel Produce",product: 'Herbsconnect Organic Acai Berry Powder Freeze Dried',availability: 'In stock',price: '₦35,000.00'),
+          BestSellCard(image:"assets/images/coffee.png",name: "Emmanuel Produce",product: 'Herbsconnect Organic Acai Berry Powder Freeze Dried',availability: 'In stock',price: '₦35,000.00'),
+          BestSellCard(image:"assets/images/rice.png",name: "Emmanuel Produce",product: 'Herbsconnect Organic Acai Berry Powder Freeze Dried',availability: 'In stock',price: '₦35,000.00'),
           BestSellCard(image:"assets/drugs.png",name: "Emmanuel Produce",product: 'Herbsconnect Organic Acai Berry Powder Freeze Dried',availability: 'In stock',price: '₦35,000.00'),
         ],
       ),
@@ -484,21 +565,26 @@ class BestSellSection extends StatelessWidget {
   }
 }
 
-class BestSellCard extends StatelessWidget {
+class BestSellCard extends StatefulWidget {
   BestSellCard({required this.image,required this.name,required this.product,required this.availability,required this.price,});
 
   final String image, name,price,product,availability;
 
+  @override
+  _BestSellCardState createState() => _BestSellCardState();
+}
+
+class _BestSellCardState extends State<BestSellCard> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: (){
         showProdDetails(
             context,
-            image,
-            price,
-            name,
-            product,
+            widget.image,
+            widget.price,
+            widget.name,
+            widget.product,
         );
       },
       child: Container(
@@ -513,7 +599,7 @@ class BestSellCard extends StatelessWidget {
               children: [
                 Container(
                 decoration: BoxDecoration(
-                  image: DecorationImage(image: AssetImage(image), fit: BoxFit.cover),
+                  image: DecorationImage(image: AssetImage(widget.image), fit: BoxFit.cover),
                   borderRadius: BorderRadius.all(Radius.circular(4.0)),
                 ),
                 height: 156,
@@ -533,7 +619,7 @@ class BestSellCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Text(
-                  name, style: TextStyle(fontWeight: FontWeight.w300, fontSize: 10,color: Color(0xff819272)),
+                  widget.name, style: TextStyle(fontWeight: FontWeight.w300, fontSize: 10,color: Color(0xff819272)),
                 ),
                 SizedBox(
                   height: 4,
@@ -565,50 +651,63 @@ class BestSellCard extends StatelessWidget {
 }
 
 
-class Categories extends StatelessWidget {
+class Categories extends StatefulWidget {
+  @override
+  _CategoriesState createState() => _CategoriesState();
+}
+
+class _CategoriesState extends State<Categories> {
+  bool _isLoading = true;
+  List<HomeCategories> homeCategoriesModelList = [];
+
+  Future<List<HomeCategories>> getAllCategories() async {
+    homeCategoriesModelList =
+    await HomeCategoriesListApiHelper.getAllCategories();
+    setState(() {
+      _isLoading = false;
+    });
+
+    return homeCategoriesModelList;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getAllCategories();
+  }
+
   @override
   Widget build(BuildContext context) {
-    List<Map<String, dynamic>> categories = [
-      {"text": "Raw Food", "textColor": Color(0xff3A953C), "cardColor": Color(0xff3A953C).withOpacity(0.1)},
-      {"text": "Spices", "textColor":  Color(0xffffBB2F48), "cardColor": Color(0xffBB2F48).withOpacity(0.1)},
-      {"text": "Bakery", "textColor":  Color(0xff3A953C), "cardColor": Color(0xff3A953C).withOpacity(0.1)},
-      {"text": "Cosmetic", "textColor":  Color(0xffffBB2F48), "cardColor": Color(0xffBB2F48).withOpacity(0.1)},
-      {"text": "More", "textColor":  Color(0xff3A953C), "cardColor": Color(0xff3A953C).withOpacity(0.1)},
-    ];
-    return ListView(scrollDirection: Axis.horizontal, children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: List.generate(
-              categories.length,
-                  (index) => Padding(
-                padding: EdgeInsets.only(right: 8),
-                child: CategoryCard(
-                  textColor: categories[index]["textColor"],
-                  cardColor: categories[index]["cardColor"],
-                  text: categories[index]["text"],
-                  press: () {},
-                ),
-              ),
-            ),),
-        ],
-      );
+    return ListView.separated(
+      scrollDirection: Axis.horizontal,
+      itemCount: homeCategoriesModelList.length,
+      itemBuilder: (context, index) {
+        return Padding(padding: EdgeInsets.only(right: 8),
+          child: CategoryCard(
+              text: homeCategoriesModelList[index].categoryName!, textColor: Color(0xff3A953C),cardColor: Color(0xff3A953C).withOpacity(0.1),),
+        );
+      },
+      separatorBuilder:(context, index) {
+        return Padding(padding: EdgeInsets.only(right: 8),
+          child: CategoryCard(
+              text: homeCategoriesModelList[index].categoryName!,textColor: Color(0xffffBB2F48), cardColor: Color(0xffBB2F48).withOpacity(0.1)),
+        );
+      },
+    );
   }
 }
 
 class CategoryCard extends StatelessWidget {
-  const CategoryCard({required this.text,
-    required this.press, required this.textColor,required this.cardColor,
-  }) ;
+ CategoryCard({required this.text, required this.textColor,required this.cardColor,
+}) ;
 
-  final String text;
-  final Color textColor;
-  final Color cardColor;
-  final GestureTapCallback press;
-
+final String text;
+final Color textColor;
+final Color cardColor;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: press,
+      onTap:(){},
       child: Row(
         children: [
           Container(
