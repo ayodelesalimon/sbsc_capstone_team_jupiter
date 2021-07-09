@@ -5,22 +5,42 @@ import 'package:sbsc_capstone_team_jupiter/discover.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-// Future<CartItem> fetchCartList() async {
-//   final response = await http.get(
-//     Uri.parse('https://aduabaecommerceapi.azurewebsites.net/index.html/Cart​/get-cart-items'),
-//   );
-//
-//   if (response.statusCode == 200) {
-//     // If the server did return a 200 OK response, then parse the JSON.
-//     return CartItem.fromJson(jsonDecode(response.body));
-//   } else {
-//     // If the server did not return a 200 OK response, then throw an exception.
-//     throw Exception('Failed to load cart list.');
-//
-//   }
-// }
+Future<CartTotal> fetchCartTotal() async {
+  final response =
+  await http.get(Uri.parse('https://jsonplaceholder.typicode.com/albums/1'));
+
+  if (response.statusCode == 200) {
+    // If the server did return a 200 OK response,
+    // then parse the JSON.
+    return CartTotal.fromJson(jsonDecode(response.body));
+  } else {
+    // If the server did not return a 200 OK response,
+    // then throw an exception.
+    throw Exception('Failed to load album');
+  }
+}
+
+
+class CartTotal {
+
+  final String message;
+
+  CartTotal({
+    required this.message,
+  });
+
+  factory CartTotal.fromJson(Map<String, dynamic> json) {
+    return CartTotal(
+      message: json['message'],
+    );
+  }
+}
+
+
+
 
 class ApiHelper {
+
   static String baseEndpoint = 'http://aduabaecommerceapi.azurewebsites.net';
 
   static Future<List<CartItemList>> getAllCart() async {
@@ -35,6 +55,8 @@ class ApiHelper {
         decodedResponse.map((json) => CartItemList.fromJson(json)).toList();
     return cartItemList;
   }
+
+
 
 }
 
@@ -156,10 +178,14 @@ class _CartPageState extends State<CartPage> {
     return cartItemList;
   }
 
+  late Future<CartTotal> futureCartTotal;
+
+
   @override
   void initState() {
     super.initState();
     getAllCart();
+    futureCartTotal = fetchCartTotal();
   }
 
 
@@ -356,7 +382,7 @@ class _CartPageState extends State<CartPage> {
                                                   height: 32,
                                                   color: Color(0xfff5f5f5),
                                                   child: Center(
-                                                    child: Text(cartItemList[index].quantity.toString(), style: TextStyle(
+                                                    child: Text(cartItemList[index].quantity!.toString(), style: TextStyle(
                                                       fontSize: 8, color: Color(0xffbbbbbb),
                                                     ),
                                                     ),
@@ -509,12 +535,22 @@ class _CartPageState extends State<CartPage> {
                   child: Container(
                     width: 327,
                     height:22,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text('Total 2 Items',style: TextStyle(color: Color(0xff000000),fontSize: 13),),
-                        Text('₦35,000.00 ',style: TextStyle(color: Color(0xff000000),fontSize: 17, fontWeight: FontWeight.bold),),
-                      ],
+                    child: FutureBuilder<CartTotal>(
+                        future: futureCartTotal,
+                        builder: (context, snapshot) {
+                          if (snapshot.hasData) {
+                            return Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text('Total 2 Items',style: TextStyle(color: Color(0xff000000),fontSize: 13),),
+                                  Text( snapshot.data!.message,style: TextStyle(color: Color(0xff000000),fontSize: 17, fontWeight: FontWeight.bold),),
+                                ],
+                              );
+                          } else if (snapshot.hasError) {
+                            return Text("${snapshot.error}");
+                          }
+                          return CircularProgressIndicator();
+                        },
                     ),
                   ),
                 ),

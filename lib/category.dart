@@ -5,6 +5,57 @@ import 'package:sbsc_capstone_team_jupiter/category_search.dart';
 import 'package:sbsc_capstone_team_jupiter/home.dart';
 import 'package:sbsc_capstone_team_jupiter/discover_search.dart';
 import 'package:sbsc_capstone_team_jupiter/menu_drawer.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+
+
+class ApiHelper {
+  static String baseEndpoint = 'http://aduabaecommerceapi.azurewebsites.net';
+
+  static Future<List<CategoryItemList>> getAllCategory() async {
+    List<CategoryItemList> categoryItemList = [];
+    String url = '$baseEndpoint/Products/get-all-products';
+
+    http.Response _response = await http.get(Uri.parse(url));
+    print(_response.body);
+
+    List decodedResponse = jsonDecode(_response.body);
+    categoryItemList =
+        decodedResponse.map((json) => CategoryItemList.fromJson(json)).toList();
+    return categoryItemList;
+  }
+
+}
+
+
+class CategoryItemList {
+
+  String? productId;
+  int? quantity;
+  String? productName;
+  String? description;
+  int? price;
+  String? imageUrl;
+  String? status;
+  String? supplierName;
+  String? subCategoryId;
+
+  CategoryItemList({ this.productId,this.quantity, this.description,this.imageUrl, this.productName, this.price, this.status, this.supplierName, this.subCategoryId});
+
+  factory CategoryItemList.fromJson(Map<String, dynamic> json) {
+    return CategoryItemList(
+      productId: json['productId'],
+      quantity: json['quantity'],
+      productName: json['productName'],
+      description:json['description'],
+      price: json['price'],
+      imageUrl: json['imageUrl'],
+      status: json['status'],
+      supplierName:json['supplierName'],
+        subCategoryId: json['subCategoryId'],
+    );
+  }
+}
 
 
 class CategoryPage extends StatefulWidget {
@@ -42,6 +93,24 @@ class _CategoryPageState extends State<CategoryPage> {
     '234 Items',
     '234 Items',
   ];
+
+  bool _isLoading = true;
+  List<CategoryItemList> categoryItemList = [];
+  Future<List<CategoryItemList>> getAllCategory() async {
+    categoryItemList = await ApiHelper.getAllCategory();
+    setState(() {
+      _isLoading = false;
+    });
+
+    return categoryItemList;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getAllCategory();
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -139,7 +208,7 @@ class _CategoryPageState extends State<CategoryPage> {
                         height: 536,
                         margin: EdgeInsets.symmetric(horizontal: 24),
                         child: ListView.separated(
-                          itemCount: imageList.length,
+                          itemCount: categoryItemList.length,
                           itemBuilder: (context, index) {
                             return GestureDetector(
                               onTap: (){
@@ -152,7 +221,7 @@ class _CategoryPageState extends State<CategoryPage> {
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
-                                      Image.asset(imageList[index],width: 60,height: 60,),
+                                      Image.asset(categoryItemList[index].imageUrl!,width: 60,height: 60,),
                                       SizedBox(width: 16,),
                                       Center(
                                         child: Container(
@@ -164,12 +233,12 @@ class _CategoryPageState extends State<CategoryPage> {
                                             children: [
                                               Container(
                                                 width: 224,
-                                                child: Text(categoryList[index],
+                                                child: Text(categoryItemList[index].productName!,
                                                   style: TextStyle(fontSize: 15,color: Color(0xff000000),fontWeight: FontWeight.bold),
                                                 ),
                                               ),
 
-                                              Container(width:58 ,child: Text(quantityList[index],style: TextStyle(fontSize: 13,color: Color(0xffbbbbbb),fontWeight: FontWeight.normal),)),
+                                              Container(width:58 ,child: Text(categoryItemList[index].quantity!.toString(),style: TextStyle(fontSize: 13,color: Color(0xffbbbbbb),fontWeight: FontWeight.normal),)),
                                             ],
                                           ),
                                         ),
