@@ -7,7 +7,9 @@ import 'package:sizer/sizer.dart';
 // import 'package:pagescroll_app/onboarding_create.dart';
 // import 'package:pagescroll_app/onboarding_forgot.dart';
 // import 'package:pagescroll_shpp/discover_search.dart';
-import 'package:sbsc_capstone_team_jupiter/splashscreen.dart';
+import 'package:sbsc_capstone_team_jupiter/discover.dart';
+
+import 'cart.dart';
 
 
 
@@ -28,7 +30,7 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           title: 'Capstone',
           home: Scaffold(
-            body: SplashScreen(),
+            body:  DiscoverGridPage(),
 
           ),
         );

@@ -94,12 +94,12 @@ class _CategoryPageState extends State<CategoryPage> {
     '234 Items',
   ];
 
-  bool _isLoading = true;
+  bool? isLoading = true;
   List<CategoryItemList> categoryItemList = [];
   Future<List<CategoryItemList>> getAllCategory() async {
     categoryItemList = await ApiHelper.getAllCategory();
     setState(() {
-      _isLoading = false;
+      isLoading = false;
     });
 
     return categoryItemList;
@@ -115,9 +115,8 @@ class _CategoryPageState extends State<CategoryPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        // child: SingleChildScrollView(
-        child: SafeArea(
+      body: SafeArea(
+        child: SingleChildScrollView(
           child: Stack(
             children: [
               Expanded(
@@ -205,7 +204,7 @@ class _CategoryPageState extends State<CategoryPage> {
                     Center(
                       child: Container(
                         width: 327,
-                        height: 536,
+                        height: 600,
                         margin: EdgeInsets.symmetric(horizontal: 24),
                         child: ListView.separated(
                           itemCount: categoryItemList.length,

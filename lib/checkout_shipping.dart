@@ -1,6 +1,26 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'checkout_pay.dart';
+
+
+
+Color inactive = Colors.black54;
+
+
+
+update(int status) {
+  if (status == 1) {
+    if (inactive == Colors.black54) {
+      inactive = Colors.deepOrange;
+    }
+    else {
+      inactive = Colors.black54;
+    }
+  }
+
+}
+
 class ShippingPage extends StatefulWidget {
   @override
   _ShippingPageState createState() => _ShippingPageState();
@@ -26,9 +46,9 @@ class _ShippingPageState extends State<ShippingPage> {
     '+2348074057767',
   ];
   var addressList = [
-    'Railway Quarters , tejuosho, Surulere ,Lagos, Surulere (Ojuelegba), Lagos',
-    'Railway Quarters , tejuosho, Surulere ,Lagos, Surulere (Ojuelegba), Lagos',
-    'Railway Quarters , tejuosho, Surulere ,Lagos, Surulere (Ojuelegba), Lagos',
+    'Railway Quarters , tejuosho,  Surulere (Ojuelegba), Lagos',
+    'Railway Quarters , tejuosho,  Surulere (Ojuelegba), Lagos',
+    'Railway Quarters , tejuosho,  Surulere (Ojuelegba), Lagos',
   ];
   @override
   Widget build(BuildContext context) {
@@ -60,6 +80,7 @@ class _ShippingPageState extends State<ShippingPage> {
                     children: [
                       GestureDetector(
                         onTap:(){
+
                           Navigator.pop(context);
                         },
                         child: Image.asset(
@@ -345,50 +366,51 @@ class _ShippingPageState extends State<ShippingPage> {
                   ),
                 ),
                 SizedBox(height: 24,),
-                Expanded(
-                  child: Center(
-                    child: Container(
-                      width: 327,
-                      height:295,
-                      margin: EdgeInsets.symmetric(horizontal: 24),
-                      child: ListView.separated(
-                        itemCount: addressList.length,
-                        itemBuilder: (context, index) {
-                          return Container(
-                            width: 327,
-                            height: 115,
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Container(
-                                  width: 282,
+                Center(
+                  child: Container(
+                    width: 327,
+                    height:295,
+                    margin: EdgeInsets.symmetric(horizontal: 24),
+                    child: ListView.separated(
+                      itemCount: addressList.length,
+                      itemBuilder: (context, index) {
+                        return Container(
+                          width: 327,
+                          height: 115,
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Expanded(
+                                child: Container(
+                                  width: 327,
                                   height: 115,
                                   child: Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       Container(
-                                        width: 282,
+                                        width: 200,
                                         child: Text(clientList[index],
                                           style: TextStyle(fontSize: 16,color: Color(0xff10151A),fontWeight: FontWeight.bold),
                                         ),
                                       ),
                                       Container(
-                                        width: 282,
+                                        width: 200,
                                         child: Text(addressList[index],style: TextStyle(fontSize: 13,color: Color(0xffbbbbbb),fontWeight: FontWeight.normal),),
                                       ),
                                       Container(
-                                        width: 282,
+                                        width: 200,
                                         child: Text(contactList[index],style: TextStyle(fontSize: 13,color: Color(0xffbbbbbb),fontWeight: FontWeight.normal),),
                                       ),
                                       Spacer(),
                                       Container(
-                                        width: 282,
+                                        width: 327,
                                         child: Row(
-                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                           crossAxisAlignment: CrossAxisAlignment.center,
                                           children: [
                                             Text('Change',style: TextStyle(fontSize: 16,color: Color(0xff000000),fontWeight: FontWeight.bold),),
+                                            Spacer(),
                                             Image.asset('assets/images/bin.png',width: 11.67,height: 11.67,),
                                           ],
                                         ),
@@ -396,24 +418,37 @@ class _ShippingPageState extends State<ShippingPage> {
                                     ],
                                   ),
                                 ),
-                                Spacer(),
-                                Center(child: Image.asset('assets/images/inactive_elipse.png',width: 20,height: 20,)),
-                              ],
-                            ),
-                          );
-                        },
-                        separatorBuilder: (context, index) {
-                          return Padding(
-                            padding: EdgeInsets.symmetric(vertical: 32),
-                            child: Divider(
-                              thickness: 1,
-                              color: Color(0xfff5f5f5),
-                            ),
-                          );
-                        },
-                      ),
+                              ),
 
+
+                              RadioButton(),
+                              // Center(
+                              //   child:IconButton(
+                              //     onPressed:(){
+                              //       setState(() {
+                              //         update(1);
+                              //       });
+                              //     },
+                              //     icon:Icon(Icons.radio_button_checked),
+                              //     iconSize: 16,
+                              //     color: inactive,
+                              //   ),
+                              // ),
+                            ],
+                          ),
+                        );
+                      },
+                      separatorBuilder: (context, index) {
+                        return Padding(
+                          padding: EdgeInsets.symmetric(vertical: 32),
+                          child: Divider(
+                            thickness: 1,
+                            color: Color(0xfff5f5f5),
+                          ),
+                        );
+                      },
                     ),
+
                   ),
                 ),
                 SizedBox(height: 98,),
@@ -444,6 +479,31 @@ class _ShippingPageState extends State<ShippingPage> {
               ],
             ),
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class RadioButton extends StatefulWidget {
+  @override
+  _RadioButtonState createState() => _RadioButtonState();
+}
+
+class _RadioButtonState extends State<RadioButton> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child:  Center(
+        child:IconButton(
+          onPressed:(){
+            setState(() {
+              update(1);
+            });
+          },
+          icon:Icon(Icons.radio_button_checked),
+          iconSize: 16,
+          color: inactive,
         ),
       ),
     );

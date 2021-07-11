@@ -1,6 +1,38 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+
+
+Color inactive = Colors.black54;
+Color active = Colors.black54;
+
+
+
+update(int status) {
+  if (status == 1) {
+    if (inactive == Colors.black54) {
+      inactive = Colors.deepOrange;
+      active = Colors.black54;
+    }
+    else {
+      inactive = Colors.black54;
+    }
+  }
+
+  if (status == 2) {
+    if (active == Colors.black54) {
+      active = Colors.deepOrange;
+      inactive = Colors.black54;
+    }
+    else {
+      active = Colors.black54;
+    }
+  }
+
+
+
+  }
+
 class PaymentPage extends StatefulWidget {
   @override
   _PaymentPageState createState() => _PaymentPageState();
@@ -8,7 +40,6 @@ class PaymentPage extends StatefulWidget {
 
 class _PaymentPageState extends State<PaymentPage> {
 
-  bool selected =false;
 
   @override
   Widget build(BuildContext context) {
@@ -144,10 +175,14 @@ class _PaymentPageState extends State<PaymentPage> {
                         ),
                         Expanded(
                           child:IconButton(
-                            onPressed:(){},
+                            onPressed:(){
+                              setState(() {
+                                update(1);
+                              });
+                            },
                             icon:Icon(Icons.radio_button_checked),
                             iconSize: 16,
-                            color: selected? Colors.deepOrange: Colors.transparent,
+                            color: inactive,
                           ),
                           ),
                       ],
@@ -176,14 +211,16 @@ class _PaymentPageState extends State<PaymentPage> {
                               fontWeight: FontWeight.bold),
                           ),),
                           Expanded(
-                            child: Center(
                             child:IconButton(
-                              onPressed:(){},
-                              icon:Icon(Icons.radio_button_checked),
-                              iconSize: 16,
-                              color: selected? Colors.deepOrange: Colors.transparent,
-                            ),
-                          ),
+                              onPressed:(){
+                  setState(() {
+                  update(2);
+                  });
+                  },
+                    icon:Icon(Icons.radio_button_checked),
+                    iconSize: 16,
+                    color: active,
+                  ),
                           ),
                       ],
                     ),
@@ -218,6 +255,33 @@ class _PaymentPageState extends State<PaymentPage> {
               ],
             ),
           ),
+        ),
+      ),
+    );
+  }
+}
+
+
+
+class RadioButton extends StatefulWidget {
+  @override
+  _RadioButtonState createState() => _RadioButtonState();
+}
+
+class _RadioButtonState extends State<RadioButton> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child:  Center(
+        child:IconButton(
+          onPressed:(){
+            setState(() {
+              update(1);
+            });
+          },
+          icon:Icon(Icons.radio_button_checked),
+          iconSize: 16,
+          color: inactive,
         ),
       ),
     );

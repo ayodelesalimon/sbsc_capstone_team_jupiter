@@ -16,6 +16,23 @@ import 'package:sbsc_capstone_team_jupiter/discover_search.dart';
 import 'package:sbsc_capstone_team_jupiter/discovery_detail.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:sbsc_capstone_team_jupiter/product_detail.dart';
+
+
+
+Color active = Colors.red;
+Color inactive = Colors.white;
+
+ update(int status) {
+  if (status == 1) {
+   if (inactive == Colors.white) {
+    inactive = Colors.red;
+  }
+   else {
+    inactive = Colors.white;
+}
+  }
+}
 
 class HomeCategories{
   String? categoryName;
@@ -56,6 +73,7 @@ class HomeCategoriesListApiHelper {
 }
 
 
+
 class HomeScreen extends StatefulWidget {
 
   @override
@@ -64,13 +82,13 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  bool isLoading = true;
 
-  bool _isLoading = true;
   List<HomeCategories> homeCategoriesModelList = [];
   Future<List<HomeCategories>> getAllCategories() async {
     homeCategoriesModelList = await HomeCategoriesListApiHelper.getAllCategories();
     setState(() {
-      _isLoading = false;
+      isLoading = false;
     });
 
     return homeCategoriesModelList;
@@ -498,7 +516,12 @@ class _FeaturedProductsCardState extends State<FeaturedProductsCard> {
               ),
                 Positioned(
                  top: 10.25, right: 10.5,
-                  child:Image.asset('assets/images/heart.png',color: Color(0xffffffff),width: 15.01,height: 13.24,),
+                  child:GestureDetector(onTap:(){
+                    setState(() {
+                      update(1);
+                    });
+                  },
+                      child: Image.asset('assets/images/heart.png',color: inactive,width: 15.01,height: 13.24,)),
                 ),
               ],
             ),
@@ -579,13 +602,7 @@ class _BestSellCardState extends State<BestSellCard> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: (){
-        showProdDetails(
-            context,
-            widget.image,
-            widget.price,
-            widget.name,
-            widget.product,
-        );
+        Navigator.push(context,MaterialPageRoute(builder: (context)=> ProductDetails(image: widget.image, name:widget.name, product: widget.product, price:widget.price)),);
       },
       child: Container(
         height: 259,width: 156,
@@ -606,8 +623,13 @@ class _BestSellCardState extends State<BestSellCard> {
                 width: 156,
               ),
                 Positioned(
-                top: 10.25, right: 10.5,
-                  child:Image.asset('assets/images/heart.png',color: Color(0xffffffff),width: 15.01,height: 13.24,),
+                  top: 10.25, right: 10.5,
+                  child:GestureDetector(onTap:(){
+                    setState(() {
+                      update(1);
+                    });
+                  },
+                      child: Image.asset('assets/images/heart.png',color: inactive,width: 15.01,height: 13.24,)),
                 ),
               ],
             ),
@@ -657,14 +679,14 @@ class Categories extends StatefulWidget {
 }
 
 class _CategoriesState extends State<Categories> {
-  bool _isLoading = true;
+  bool isLoading = true;
   List<HomeCategories> homeCategoriesModelList = [];
 
   Future<List<HomeCategories>> getAllCategories() async {
     homeCategoriesModelList =
     await HomeCategoriesListApiHelper.getAllCategories();
     setState(() {
-      _isLoading = false;
+      isLoading = false;
     });
 
     return homeCategoriesModelList;

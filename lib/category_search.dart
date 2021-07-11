@@ -9,6 +9,23 @@ import 'package:sbsc_capstone_team_jupiter/discover.dart';
 import 'package:sbsc_capstone_team_jupiter/home.dart';
 import 'package:sbsc_capstone_team_jupiter/discover_search.dart';
 import 'package:sbsc_capstone_team_jupiter/menu_drawer.dart';
+import 'package:sbsc_capstone_team_jupiter/product_detail.dart';
+
+
+Color active = Colors.red;
+Color inactive = Colors.white;
+
+update(int status) {
+  if (status == 1) {
+    if (inactive == Colors.white) {
+      inactive = Colors.red;
+    }
+    else {
+      inactive = Colors.white;
+    }
+  }
+}
+
 
 
 class CategoryGridPage extends StatefulWidget {
@@ -20,12 +37,12 @@ class CategoryGridPage extends StatefulWidget {
 class _CategoryGridPageState extends State<CategoryGridPage> {
 
   List <CaregoryCard> CategotyCardList = [
-    CaregoryCard(image:'assets/images/turkeybg.png', vendor: 'Emmanuel produce',),
-    CaregoryCard(image:'assets/images/seafood.png', vendor: 'Emmanuel produce',),
-    CaregoryCard(image:'assets/images/sushi.png', vendor: 'Emmanuel produce',),
-    CaregoryCard(image:'assets/images/rice.png', vendor: 'Emmanuel produce',),
-    CaregoryCard(image:'assets/images/tomatoes.png', vendor: 'Emmanuel produce',),
-    CaregoryCard(image:'assets/images/paint.png', vendor: 'Emmanuel produce',),
+    CaregoryCard(image:"assets/images/rice.png",name: "Emmanuel Produce",product: 'Herbsconnect Organic Acai Berry Powder Freeze Dried',availability: 'In stock',price: '₦35,000.00'),
+    CaregoryCard(image:"assets/images/coffee.png",name: "Emmanuel Produce",product: 'Herbsconnect Organic Acai Berry Powder Freeze Dried',availability: 'In stock',price: '₦35,000.00'),
+    CaregoryCard(image:"assets/images/sushi.png",name: "Emmanuel Produce",product: 'Herbsconnect Organic Acai Berry Powder Freeze Dried',availability: 'In stock',price: '₦35,000.00'),
+    CaregoryCard(image:"assets/images/seafood.png",name: "Emmanuel Produce",product: 'Herbsconnect Organic Acai Berry Powder Freeze Dried',availability: 'In stock',price: '₦35,000.00'),
+    CaregoryCard(image:"assets/images/tomatoes.png",name: "Emmanuel Produce",product: 'Herbsconnect Organic Acai Berry Powder Freeze Dried',availability: 'In stock',price: '₦35,000.00'),
+    CaregoryCard(image:"assets/images/.png",name: "Emmanuel Produce",product: 'Herbsconnect Organic Acai Berry Powder Freeze Dried',availability: 'In stock',price: '₦35,000.00'),
 
   ];
 
@@ -1101,13 +1118,13 @@ class _CategoryGridPageState extends State<CategoryGridPage> {
                           shrinkWrap: true,
                           scrollDirection: Axis.vertical,
                           children:[
-                            CaregoryCard(image:'assets/images/turkeybg.png', vendor: 'Emmanuel produce',),
-                            CaregoryCard(image:'assets/images/seafood.png', vendor: 'Emmanuel produce',),
-                            CaregoryCard(image:'assets/images/sushi.png', vendor: 'Emmanuel produce',),
-                            CaregoryCard(image:'assets/images/rice.png', vendor: 'Emmanuel produce',),
-                            CaregoryCard(image:'assets/images/tomatoes.png', vendor: 'Emmanuel produce',),
-                            CaregoryCard(image:'assets/images/paint.png', vendor: 'Emmanuel produce',),
-                            CaregoryCard(image:'assets/images/turkey.png', vendor: 'Emmanuel produce',),
+                            CaregoryCard(image:"assets/images/rice.png",name: "Emmanuel Produce",product: 'Herbsconnect Organic Acai Berry Powder Freeze Dried',availability: 'In stock',price: '₦35,000.00'),
+                            CaregoryCard(image:"assets/images/sushi.png",name: "Emmanuel Produce",product: 'Herbsconnect Organic Acai Berry Powder Freeze Dried',availability: 'In stock',price: '₦35,000.00'),
+                            CaregoryCard(image:"assets/images/tomatoes.png",name: "Emmanuel Produce",product: 'Herbsconnect Organic Acai Berry Powder Freeze Dried',availability: 'In stock',price: '₦35,000.00'),
+                            CaregoryCard(image:"assets/images/seafood.png",name: "Emmanuel Produce",product: 'Herbsconnect Organic Acai Berry Powder Freeze Dried',availability: 'In stock',price: '₦35,000.00'),
+                            CaregoryCard(image:"assets/images/coffee.png",name: "Emmanuel Produce",product: 'Herbsconnect Organic Acai Berry Powder Freeze Dried',availability: 'In stock',price: '₦35,000.00'),
+                            CaregoryCard(image:"assets/images/turkey.png",name: "Emmanuel Produce",product: 'Herbsconnect Organic Acai Berry Powder Freeze Dried',availability: 'In stock',price: '₦35,000.00'),
+                            CaregoryCard(image:"assets/images/rice.png",name: "Emmanuel Produce",product: 'Herbsconnect Organic Acai Berry Powder Freeze Dried',availability: 'In stock',price: '₦35,000.00'),
 
                           ],
                           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -1215,12 +1232,16 @@ class _CategoryGridPageState extends State<CategoryGridPage> {
   }
 }
 
-class CaregoryCard extends StatelessWidget {
-  CaregoryCard({required this.image,required this.vendor,}) ;
+class CaregoryCard extends StatefulWidget {
+  CaregoryCard({required this.image,required this.name,required this.product,required this.availability,required this.price,});
 
-  final String image;
-  final String vendor;
+  final String image, name,price,product,availability;
 
+  @override
+  _CaregoryCardState createState() => _CaregoryCardState();
+}
+
+class _CaregoryCardState extends State<CaregoryCard> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -1232,29 +1253,42 @@ class CaregoryCard extends StatelessWidget {
             child: ListView(
               children: [
                 Stack(
-                  children: [Container(
-                    decoration: BoxDecoration(
-                      image: DecorationImage(image: AssetImage(image), fit: BoxFit.cover),
-                      borderRadius: BorderRadius.all(Radius.circular(4.0)),
-                    ),
-                    height: 156,
-                    width: 156,
-                  ),
+                  children: [
+                    GestureDetector(
+                    onTap: (){
+                      Navigator.push(context,MaterialPageRoute(builder: (context)=> ProductDetails(image: widget.image, name:widget.name, product: widget.product, price:widget.price)),);
+                    },
 
-                    Positioned(top: 10.25, right: 10.5,
-                        child:Image.asset('assets/images/heart.png',color: Color(0xffffffff),width: 15.01,height: 13.24,)
+                      child: Container(
+                      decoration: BoxDecoration(
+                        image: DecorationImage(image: AssetImage(widget.image), fit: BoxFit.cover),
+                        borderRadius: BorderRadius.all(Radius.circular(4.0)),
+                      ),
+                      height: 156,
+                      width: 156,
+                  ),
+                    ),
+
+                    Positioned(
+                      top: 10.25, right: 10.5,
+                      child:GestureDetector(onTap:(){
+                        setState(() {
+                          update(1);
+                        });
+                      },
+                          child: Image.asset('assets/images/heart.png',color: inactive,width: 15.01,height: 13.24,)),
                     ),],
                 ),
                 SizedBox(
                   height: 8,
                 ),
                 Text(
-                  vendor, style: TextStyle(fontWeight: FontWeight.w300, fontSize: 10,color: Color(0xff819272)),
+                  widget.name, style: TextStyle(fontWeight: FontWeight.w300, fontSize: 10,color: Color(0xff819272)),
                 ),
                 SizedBox(
                   height: 4,
                 ),
-                Text("Herbsconnect Organic Acai Berry Powder Freeze Dried",style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16,color: Color(0xff000000)),),
+                Text(widget.product,style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16,color: Color(0xff000000)),),
                 SizedBox(
                   height: 8,
                 ),
@@ -1265,9 +1299,9 @@ class CaregoryCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Text("₦35,000.00",style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13, color: Color(0xffF39E28),),),
+                      Text(widget.price,style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13, color: Color(0xffF39E28),),),
                       Text(".",style: TextStyle( fontSize: 14, color: Color(0xffD8D8D8)),),
-                      Text("In stock",style: TextStyle(fontSize: 13, color: Color(0xff3A953C)),),
+                      Text(widget.availability,style: TextStyle(fontSize: 13, color: Color(0xff3A953C)),),
                     ],
                   ),
                 ),

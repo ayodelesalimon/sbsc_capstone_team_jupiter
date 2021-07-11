@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:otp_text_field/style.dart';
 import 'package:sizer/sizer.dart';
@@ -6,50 +7,13 @@ import 'package:form_field_validator/form_field_validator.dart';
 import 'package:sbsc_capstone_team_jupiter/login.dart';
 
 
+
 class ForgotPage extends StatefulWidget {
   @override
   _ForgotPageState createState() => _ForgotPageState();
 }
 
 class _ForgotPageState extends State<ForgotPage> {
-  var _formKey = GlobalKey<FormState>();
-
-  TextEditingController password =TextEditingController();
-  TextEditingController confirmpassword =TextEditingController();
-
-  // Color inactiveColorSms = Colors.transparent;
-  // Color inactiveColorMail = Colors.transparent;
-  //
-  // FontWeight inactiveFontSms = FontWeight.normal;
-  // FontWeight inactiveFontMail = FontWeight.normal;
-  //
-  // void updateButton(Button selectedbutton){
-  //   if (selectedbutton == Button.smsButton){
-  //     if (inactiveColorSms == Colors.transparent){
-  //       inactiveColorSms = Colors.green;
-  //       inactiveFontSms = FontWeight.bold;
-  //       inactiveFontMail = FontWeight.normal;
-  //       inactiveColorMail = Colors.transparent;
-  //     }
-  //     else{
-  //       inactiveColorSms = Colors.transparent;
-  //       inactiveFontSms = FontWeight.normal;
-  //     }
-  //   }
-  //
-  //   if (selectedbutton == Button.mailButton){
-  //     if (inactiveColorMail == Colors.transparent){
-  //       inactiveColorMail = Colors.green;
-  //       inactiveFontMail = FontWeight.bold;
-  //       inactiveFontSms = FontWeight.normal;
-  //       inactiveColorSms = Colors.transparent;
-  //     }
-  //     else{
-  //       inactiveColorMail = Colors.transparent;
-  //       inactiveFontMail = FontWeight.normal;
-  //     }
-  //   }
-  // }
 
   Color active = Colors.green;
   Color inactive = Colors.transparent;
@@ -82,6 +46,11 @@ class _ForgotPageState extends State<ForgotPage> {
 
     }
   }
+
+  var _formKey = GlobalKey<FormState>();
+
+  TextEditingController password =TextEditingController();
+  TextEditingController confirmpassword =TextEditingController();
 
 
   @override
@@ -199,7 +168,7 @@ class _ForgotPageState extends State<ForgotPage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text('via sms', style: TextStyle(color:Color(0xff10151A),fontSize: 16.sp,fontWeight: FontWeight.bold ),),
-                            Text('*** **** 7767',style: TextStyle(color:Color(0xff999999),fontSize: 14.sp,fontWeight: inactivefont),),
+                            Text('*** **** 7767',style: TextStyle(color:Color(0xff999999),fontSize: 14.sp,fontWeight: FontWeight.normal),),
                           ],
                         ),
                         margin: EdgeInsets.only(right: 12.2.w),
@@ -207,17 +176,16 @@ class _ForgotPageState extends State<ForgotPage> {
                       GestureDetector(
                         onTap:(){
                           setState(() {
-                            update(1);
+                            update(2);
                           });
-                        } ,
+                        },
                         child: Container(
 
                           width: 4.26.w,
                           height:1.97.h,
                           decoration: BoxDecoration(
                             border: Border.all(color: Colors.black),
-                            shape: BoxShape.circle,
-                            color: inactive,
+                            shape: BoxShape.circle,  color: active,
                           ),
                         ),
                       ),
@@ -263,8 +231,8 @@ class _ForgotPageState extends State<ForgotPage> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text('via email:', style: TextStyle(color:Color(0xff10151A),fontSize: 16.sp,fontWeight:FontWeight.bold),),
-                            Text('*******vid@gmail.com',style: TextStyle(color:Color(0xff999999),fontSize: 14.sp,fontWeight:inactivefont),),
+                            Text('via email:', style: TextStyle(color:Color(0xff10151A),fontSize: 16.sp,fontWeight: FontWeight.bold ),),
+                            Text('*******vid@gmail.com',style: TextStyle(color:Color(0xff999999),fontSize: 14.sp,fontWeight: FontWeight.normal),),
                           ],
                         ),
                         margin: EdgeInsets.only(right: 12.2.w),
@@ -272,23 +240,24 @@ class _ForgotPageState extends State<ForgotPage> {
                       GestureDetector(
                         onTap:(){
                           setState(() {
-                            update(2);
+                            update(1);
                           });
-                        },
+                        } ,
                         child: Container(
 
                           width: 4.26.w,
                           height:1.97.h,
                           decoration: BoxDecoration(
                             border: Border.all(color: Colors.black),
-                            shape: BoxShape.circle,  color: active,
+                            shape: BoxShape.circle,
+                            color: inactive,
                           ),
                         ),
                       ),
                     ]
                 ),
               ),
-              InkWell(
+              GestureDetector(
                 onTap: (){
                   showBottomSheet(
                     context: context,
@@ -567,7 +536,6 @@ class _ForgotPageState extends State<ForgotPage> {
                                                                   Center(
                                                                     child: GestureDetector(
                                                                       onTap:(){
-
                                                                         Navigator.push(context,MaterialPageRoute(builder: (context)=> SigninPage()),);
                                                                       },
                                                                       child: Container(

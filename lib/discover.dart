@@ -5,6 +5,9 @@ import 'package:sbsc_capstone_team_jupiter/discover_search.dart';
 import 'package:sbsc_capstone_team_jupiter/cart.dart';
 import 'package:sbsc_capstone_team_jupiter/discovery_detail.dart';
 import 'package:sbsc_capstone_team_jupiter/home.dart';
+import 'package:sbsc_capstone_team_jupiter/product_detail.dart';
+
+import 'checkout_shipping.dart';
 
 
 
@@ -91,6 +94,7 @@ class _DiscoverGridPageState extends State<DiscoverGridPage> {
                              Spacer(),
                               GestureDetector(
                                 onTap:(){
+
                                   Navigator.push(context, MaterialPageRoute(builder: (context) => CartPage()),);
                                 },
                                 child: Container(
@@ -136,58 +140,7 @@ class _DiscoverGridPageState extends State<DiscoverGridPage> {
                       ),
                     ),
                   ),
-                  // Expanded(
-                  //   child: Center(
-                  //     child: Container(
-                  //       decoration: BoxDecoration(
-                  //         color: Color(0xffffffff),
-                  //         boxShadow: [
-                  //           BoxShadow(
-                  //             color: Color.fromRGBO(0, -2, 20, 0.1),
-                  //           ),
-                  //         ],
-                  //       ),
-                  //       width: 375,
-                  //       height: 88,
-                  //       child: Center(
-                  //         child: Container(
-                  //           width: 181.1,
-                  //           height: 21.2,
-                  //           child: Row(
-                  //             children: [
-                  //               GestureDetector(
-                  //                   onTap: () {},
-                  //                   child: Image.asset(
-                  //                     'assets/images/home.png',
-                  //                     width: 16.29,
-                  //                     height: 15.41,
-                  //                     color: Color(0xff3A953C),
-                  //                   )),
-                  //               Spacer(),
-                  //               GestureDetector(
-                  //                   onTap: () {},
-                  //                   child: Image.asset(
-                  //                     'assets/images/search.png',
-                  //                     width: 21.2,
-                  //                     height: 21.2,
-                  //                     color: Color(0xffDEDEDE),
-                  //                   )),
-                  //               Spacer(),
-                  //               GestureDetector(
-                  //                   onTap: () {},
-                  //                   child: Image.asset(
-                  //                     'assets/images/dialog.png',
-                  //                     width: 21.2,
-                  //                     height: 21.2,
-                  //                     color: Color(0xffDEDEDE),
-                  //                   )),
-                  //             ],
-                  //           ),
-                  //         ),
-                  //       ),
-                  //     ),
-                  //   ),
-                  // ),
+
                 ],
               ),
             ),
@@ -230,11 +183,32 @@ class _DiscoverGridPageState extends State<DiscoverGridPage> {
   }
 }
 
-class CaregoryCard extends StatelessWidget {
+
+Color active = Colors.red;
+Color check = Colors.deepOrange;
+
+update(int status) {
+  if (status == 1) {
+    if (active == Colors.red) {
+      active = Colors.grey;
+    }
+    else {
+      active = Colors.red;
+    }
+  }
+}
+
+
+class CaregoryCard extends StatefulWidget {
   CaregoryCard({required this.image,required this.name,required this.product,required this.availability,required this.price,});
 
   final String image, name,price,product,availability;
 
+  @override
+  _CaregoryCardState createState() => _CaregoryCardState();
+}
+
+class _CaregoryCardState extends State<CaregoryCard> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -242,7 +216,7 @@ class CaregoryCard extends StatelessWidget {
         Expanded(
           child: GestureDetector(
             onTap: (){
-              showProdDetails(context, image, price, name, product);
+              Navigator.push(context,MaterialPageRoute(builder: (context)=> ProductDetails(image: widget.image, name:widget.name, product:widget.product, price:widget.price)),);
             },
             child: Container(
               margin: EdgeInsets.only(right: 16),
@@ -252,7 +226,7 @@ class CaregoryCard extends StatelessWidget {
                   Stack(
                     children: [Container(
                       decoration: BoxDecoration(
-                        image: DecorationImage(image: AssetImage(image), fit: BoxFit.cover),
+                        image: DecorationImage(image: AssetImage(widget.image), fit: BoxFit.cover),
                         borderRadius: BorderRadius.all(Radius.circular(4.0)),
                       ),
                       height: 156,
@@ -260,19 +234,29 @@ class CaregoryCard extends StatelessWidget {
                     ),
 
                       Positioned(top: 10.25, right: 10.5,
-                          child:Image.asset('assets/images/heart.png',color: Color(0xffffffff),width: 15.01,height: 13.24,)
+                          child: GestureDetector(
+                            onTap: (){
+                              setState(() {
+                                update(1);
+                              });
+                            },
+                            child: Image.asset('assets/images/heart.png',
+                              width: 20.01, height: 17.65,
+                              color: active,
+                            ),
+                          ),
                       ),],
                   ),
                   SizedBox(
                     height: 8,
                   ),
                   Text(
-                    name, style: TextStyle(fontWeight: FontWeight.w300, fontSize: 10,color: Color(0xff819272)),
+                    widget.name, style: TextStyle(fontWeight: FontWeight.w300, fontSize: 10,color: Color(0xff819272)),
                   ),
                   SizedBox(
                     height: 4,
                   ),
-                  Text(product,style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16,color: Color(0xff000000)),),
+                  Text(widget.product,style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16,color: Color(0xff000000)),),
                   SizedBox(
                     height: 8,
                   ),
@@ -283,9 +267,9 @@ class CaregoryCard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Text(price,style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13, color: Color(0xffF39E28),),),
+                        Text(widget.price,style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13, color: Color(0xffF39E28),),),
                         Text(".",style: TextStyle( fontSize: 14, color: Color(0xffD8D8D8)),),
-                        Text(availability,style: TextStyle(fontSize: 13, color: Color(0xff3A953C)),),
+                        Text(widget.availability,style: TextStyle(fontSize: 13, color: Color(0xff3A953C)),),
                       ],
                     ),
                   ),
