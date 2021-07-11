@@ -167,240 +167,104 @@ class _CategoryGridPageState extends State<CategoryGridPage> {
                                                     top: 359,
                                                   ),
                                                   content: Center(
-                                                    child: SingleChildScrollView(
-                                                      child: Container(
-                                                        width: 327,
-                                                        height: 628,
-                                                        child: ListView(
-                                                          children: [
-                                                            Row(
-                                                              mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .spaceBetween,
-                                                              children: [
-                                                                Text(
-                                                                  'Sort by',
-                                                                  style: TextStyle(
-                                                                      color: Color(
-                                                                          0xff3C673D),
-                                                                      fontSize: 24,
-                                                                      fontWeight:
-                                                                      FontWeight
-                                                                          .bold),
-                                                                ),
-                                                                Image.asset(
-                                                                    'assets/images/x.png',
-                                                                    width: 12,
-                                                                    height: 12),
-                                                              ],
-                                                            ),
-                                                            SizedBox(
-                                                              height: 34,
-                                                            ),
-                                                            Row(
-                                                              mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .spaceBetween,
-                                                              children: [
-                                                                GestureDetector(
-                                                                  onTap: () {
-                                                                    Navigator.push(context,MaterialPageRoute(builder: (context)=> DiscoverGridPage()),);
-                                                                  },
-                                                                  child: Text(
-                                                                    'Popularity',
-                                                                    style: TextStyle(
-                                                                        color: Color(
-                                                                            0xff10151a),
-                                                                        fontSize: 17,
-                                                                        fontWeight:showCheck? FontWeight.bold
-                                                                            : FontWeight.normal),
-                                                                  ),
-                                                                ),
-                                                                Image.asset(
-                                                                    'assets/images/mark.png',
-                                                                    width: 12,
-                                                                    height: 12,
-                                                                    color: showCheck
-                                                                        ? Color(
-                                                                        0xff3A953C)
-                                                                        : Colors
-                                                                        .transparent),
-                                                              ],
-                                                            ),
-                                                            SizedBox(
-                                                              height: 18,
-                                                            ),
-                                                            Divider(
+                                                    child: Container(
+                                                      width: 327,
+                                                      height: 628,
+                                                      child: Column(
+                                                        children: [
+                                                          Row(
+                                                            mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceBetween,
+                                                            children: [
+                                                              Text(
+                                                                'Sort by',
+                                                                style: TextStyle(
+                                                                    color: Color(
+                                                                        0xff3C673D),
+                                                                    fontSize: 24,
+                                                                    fontWeight:
+                                                                    FontWeight
+                                                                        .bold),
+                                                              ),
+                                                              Image.asset(
+                                                                  'assets/images/x.png',
+                                                                  width: 12,
+                                                                  height: 12),
+                                                            ],
+                                                          ),
+                                                          SizedBox(
+                                                            height: 34,
+                                                          ),
+                                                          SortTab(title: 'Popularity'),
+                                                          Padding(
+                                                            padding: const EdgeInsets.symmetric(vertical: 16),
+                                                            child: Divider(
                                                               thickness: 1,
                                                               color: Color(0xfff5f5f5),
                                                             ),
-                                                            SizedBox(
-                                                              height: 16,
-                                                            ),
-                                                            Row(
-                                                              mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .spaceBetween,
-                                                              children: [
-                                                                GestureDetector(
-                                                                  onTap: () {
-                                                                    Navigator.push(context,MaterialPageRoute(builder: (context)=> HomeScreen()),);
- 
+                                                          ),
 
-                                                                  },
-                                                                  child: Text(
-                                                                    'Newest Arrival',
-                                                                    style: TextStyle(
-                                                                        color: Color(
-                                                                            0xff10151a),
-                                                                        fontSize: 17,
-                                                                        fontWeight: showCheck
-                                                                            ? FontWeight
-                                                                            .bold
-                                                                            : FontWeight
-                                                                            .normal),
-                                                                  ),
-                                                                ),
-                                                                Image.asset(
-                                                                    'assets/images/mark.png',
-                                                                    width: 12,
-                                                                    height: 12,
-                                                                    color: showCheck? Color(
-                                                                        0xff3A953C)
-                                                                        : Colors
-                                                                        .transparent),
-                                                              ],
-                                                            ),
-                                                            SizedBox(
-                                                              height: 16,
-                                                            ),
-                                                            Divider(
+                                                          SortTab(title: 'New Arrivals'),
+
+                                                          Padding(
+                                                            padding: const EdgeInsets.symmetric(vertical: 16),
+                                                            child: Divider(
                                                               thickness: 1,
                                                               color: Color(0xfff5f5f5),
                                                             ),
-                                                            SizedBox(
-                                                              height: 16,
-                                                            ),
-                                                            Row(
-                                                              mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .spaceBetween,
-                                                              children: [
-                                                                GestureDetector(
-                                                                  onTap: () {
-                                                                    Navigator.push(context,MaterialPageRoute(builder: (context)=> HomeScreen()),);
-                                                                  },
-                                                                  child: Text(
-                                                                    'Prices: Lowest to Highest',
-                                                                    style: TextStyle(
-                                                                        color: Color(
-                                                                            0xff10151a),
-                                                                        fontSize: 17,
-                                                                        fontWeight: showCheck
-                                                                            ? FontWeight
-                                                                            .bold
-                                                                            : FontWeight
-                                                                            .normal),
-                                                                  ),
-                                                                ),
-                                                                Image.asset(
-                                                                  'assets/images/mark.png',
-                                                                  width: 12,
-                                                                  height: 12,
-                                                                  color: showCheck
-                                                                      ? Color(
-                                                                      0xff3A953C)
-                                                                      : Colors
-                                                                      .transparent,
-                                                                ),
-                                                              ],
-                                                            ),
-                                                            SizedBox(
-                                                              height: 16,
-                                                            ),
-                                                            Divider(
+                                                          ),
+
+                                                         SortTab(title: 'Lowest to Highest'),
+                                                          Padding(
+                                                            padding: const EdgeInsets.symmetric(vertical: 16),
+                                                            child: Divider(
                                                               thickness: 1,
                                                               color: Color(0xfff5f5f5),
                                                             ),
-                                                            SizedBox(
-                                                              height: 16,
-                                                            ),
-                                                            Row(
-                                                              mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .spaceBetween,
-                                                              children: [
-                                                                GestureDetector(
-                                                                  onTap: () {
-                                                                    Navigator.push(context,MaterialPageRoute(builder: (context)=> HomeScreen()),);
-                                                                  },
-                                                                  child: Text(
-                                                                    'Prices: Highest to Lowest',
-                                                                    style: TextStyle(
-                                                                        color: Color(
-                                                                            0xff10151a),
-                                                                        fontSize: 17,
-                                                                        fontWeight: showCheck
-                                                                            ? FontWeight
-                                                                            .bold
-                                                                            : FontWeight
-                                                                            .normal),
-                                                                  ),
-                                                                ),
-                                                                Image.asset(
-                                                                  'assets/images/mark.png',
-                                                                  width: 12,
-                                                                  height: 12,
-                                                                  color: showCheck
-                                                                      ? Color(
-                                                                      0xff3A953C)
-                                                                      : Colors
-                                                                      .transparent,
-                                                                ),
-                                                              ],
-                                                            ),
-                                                            SizedBox(
-                                                              height: 16,
-                                                            ),
-                                                            Divider(
-                                                              thickness: 1,
-                                                              color: Color(0xfff5f5f5),
-                                                            ),
-                                                            SizedBox(
-                                                              height: 82,
-                                                            ),
-                                                            GestureDetector(
-                                                              onTap: () {
-                                                                Navigator.push(context,MaterialPageRoute(builder: (context)=> HomeScreen()),);
-                                                              },
-                                                              child: Container(
-                                                                width: 327,
-                                                                height: 47,
-                                                                decoration:
-                                                                BoxDecoration(
-                                                                  color:
-                                                                  Color(0xff3A953C),
-                                                                  borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(5),
-                                                                ),
-                                                                child: Center(
-                                                                  child: Text(
-                                                                    'Apply Filter',
-                                                                    style: TextStyle(
-                                                                      fontSize: 16,
-                                                                      fontWeight:
-                                                                      FontWeight
-                                                                          .bold,
-                                                                      color: Color(
-                                                                          0xffffffff),
-                                                                    ),
+                                                          ),
+                                                          SortTab(title: 'Highest to Lowest'),
+                                                          SizedBox(
+                                                            height: 16,
+                                                          ),
+                                                          Divider(
+                                                            thickness: 1,
+                                                            color: Color(0xfff5f5f5),
+                                                          ),
+                                                          SizedBox(
+                                                            height: 82,
+                                                          ),
+                                                          GestureDetector(
+                                                            onTap: () {
+                                                              Navigator.push(context,MaterialPageRoute(builder: (context)=> HomeScreen()),);
+                                                            },
+                                                            child: Container(
+                                                              width: 327,
+                                                              height: 47,
+                                                              decoration:
+                                                              BoxDecoration(
+                                                                color:
+                                                                Color(0xff3A953C),
+                                                                borderRadius:
+                                                                BorderRadius
+                                                                    .circular(5),
+                                                              ),
+                                                              child: Center(
+                                                                child: Text(
+                                                                  'Apply Filter',
+                                                                  style: TextStyle(
+                                                                    fontSize: 16,
+                                                                    fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
+                                                                    color: Color(
+                                                                        0xffffffff),
                                                                   ),
                                                                 ),
                                                               ),
                                                             ),
-                                                          ],
-                                                        ),
+                                                          ),
+                                                        ],
                                                       ),
                                                     ),
                                                   ),
@@ -458,13 +322,13 @@ class _CategoryGridPageState extends State<CategoryGridPage> {
                                                   builder: (BuildContext context) =>
                                                       AlertDialog(
                                                         insetPadding: EdgeInsets.only(
-                                                          top: 285,
+                                                          top: 200,
                                                         ),
                                                         content: Center(
                                                           child: SingleChildScrollView(
                                                             child: Container(
                                                               width: 327,
-                                                              height: 453,
+                                                              height: 500,
                                                               child: ListView(
                                                                 children: [
                                                                   Container(
@@ -592,30 +456,31 @@ class _CategoryGridPageState extends State<CategoryGridPage> {
                                                                                 child:
                                                                                 Center(
                                                                                   child:
-                                                                                  Row(
-                                                                                    children: [
-                                                                                      Container(
-                                                                                        width: 18,
-                                                                                        height: 18,
-                                                                                        decoration: BoxDecoration(
-                                                                                          border: Border.all(
-                                                                                            color: Color(0xff000000),
-                                                                                          ),
-                                                                                          color: showCheck? Colors.deepOrange: Colors.transparent,
-                                                                                        ),
-                                                                                      ),
-                                                                                      SizedBox(
-                                                                                        width: 10,
-                                                                                      ),
-                                                                                      Text(
-                                                                                        'Granular Fruits',
-                                                                                        style: TextStyle(
-                                                                                          color: Color(0xff10151a),
-                                                                                          fontSize: 17,
-                                                                                        ),
-                                                                                      ),
-                                                                                    ],
-                                                                                  ),
+                                                                                    FilterTab(title: 'Granular Fruits')
+                                                                                  // Row(
+                                                                                  //   children: [
+                                                                                  //     Container(
+                                                                                  //       width: 18,
+                                                                                  //       height: 18,
+                                                                                  //       decoration: BoxDecoration(
+                                                                                  //         border: Border.all(
+                                                                                  //           color: Color(0xff000000),
+                                                                                  //         ),
+                                                                                  //         color: Colors.transparent,
+                                                                                  //       ),
+                                                                                  //     ),
+                                                                                  //     SizedBox(
+                                                                                  //       width: 10,
+                                                                                  //     ),
+                                                                                  //     Text(
+                                                                                  //       'Granular Fruits',
+                                                                                  //       style: TextStyle(
+                                                                                  //         color: Color(0xff10151a),
+                                                                                  //         fontSize: 17,
+                                                                                  //       ),
+                                                                                  //     ),
+                                                                                  //   ],
+                                                                                  // ),
                                                                                 ),
                                                                               ),
                                                                               Container(
@@ -626,30 +491,7 @@ class _CategoryGridPageState extends State<CategoryGridPage> {
                                                                                 child:
                                                                                 Center(
                                                                                   child:
-                                                                                  Row(
-                                                                                    children: [
-                                                                                      Container(
-                                                                                        width: 18,
-                                                                                        height: 18,
-                                                                                        decoration: BoxDecoration(
-                                                                                          border: Border.all(
-                                                                                            color: Color(0xff000000),
-                                                                                          ),
-                                                                                          color: showCheck? Colors.deepOrange: Colors.transparent,
-                                                                                        ),
-                                                                                      ),
-                                                                                      SizedBox(
-                                                                                        width: 10,
-                                                                                      ),
-                                                                                      Text(
-                                                                                        'Meats & Fish',
-                                                                                        style: TextStyle(
-                                                                                          color: Color(0xff10151a),
-                                                                                          fontSize: 17,
-                                                                                        ),
-                                                                                      ),
-                                                                                    ],
-                                                                                  ),
+                                                                                  FilterTab(title: 'Meat & Fish'),
                                                                                 ),
                                                                               ),
                                                                               Container(
@@ -660,30 +502,7 @@ class _CategoryGridPageState extends State<CategoryGridPage> {
                                                                                 child:
                                                                                 Center(
                                                                                   child:
-                                                                                  Row(
-                                                                                    children: [
-                                                                                      Container(
-                                                                                        width: 18,
-                                                                                        height: 18,
-                                                                                        decoration: BoxDecoration(
-                                                                                          border: Border.all(
-                                                                                            color: Color(0xff000000),
-                                                                                          ),
-                                                                                          color: showCheck? Colors.deepOrange: Colors.transparent,
-                                                                                        ),
-                                                                                      ),
-                                                                                      SizedBox(
-                                                                                        width: 10,
-                                                                                      ),
-                                                                                      Text(
-                                                                                        'Organic Food',
-                                                                                        style: TextStyle(
-                                                                                          color: Color(0xff10151a),
-                                                                                          fontSize: 17,
-                                                                                        ),
-                                                                                      ),
-                                                                                    ],
-                                                                                  ),
+                                                                                 FilterTab(title: 'Organic Food'),
                                                                                 ),
                                                                               ),
                                                                               Container(
@@ -694,30 +513,7 @@ class _CategoryGridPageState extends State<CategoryGridPage> {
                                                                                 child:
                                                                                 Center(
                                                                                   child:
-                                                                                  Row(
-                                                                                    children: [
-                                                                                      Container(
-                                                                                        width: 18,
-                                                                                        height: 18,
-                                                                                        decoration: BoxDecoration(
-                                                                                          border: Border.all(
-                                                                                            color: Color(0xff000000),
-                                                                                          ),
-                                                                                          color: showCheck? Colors.deepOrange: Colors.transparent,
-                                                                                        ),
-                                                                                      ),
-                                                                                      SizedBox(
-                                                                                        width: 10,
-                                                                                      ),
-                                                                                      Text(
-                                                                                        'Low Cabs',
-                                                                                        style: TextStyle(
-                                                                                          color: Color(0xff10151a),
-                                                                                          fontSize: 17,
-                                                                                        ),
-                                                                                      ),
-                                                                                    ],
-                                                                                  ),
+                                                                                 FilterTab(title: 'Low Cabs'),
                                                                                 ),
                                                                               ),
                                                                             ],
@@ -739,30 +535,7 @@ class _CategoryGridPageState extends State<CategoryGridPage> {
                                                                                 child:
                                                                                 Center(
                                                                                   child:
-                                                                                  Row(
-                                                                                    children: [
-                                                                                      Container(
-                                                                                        width: 18,
-                                                                                        height: 18,
-                                                                                        decoration: BoxDecoration(
-                                                                                          border: Border.all(
-                                                                                            color: Color(0xff000000),
-                                                                                          ),
-                                                                                          color: showCheck? Colors.deepOrange: Colors.transparent,
-                                                                                        ),
-                                                                                      ),
-                                                                                      SizedBox(
-                                                                                        width: 10,
-                                                                                      ),
-                                                                                      Text(
-                                                                                        'Granular Fruits',
-                                                                                        style: TextStyle(
-                                                                                          color: Color(0xff10151a),
-                                                                                          fontSize: 17,
-                                                                                        ),
-                                                                                      ),
-                                                                                    ],
-                                                                                  ),
+                                                                                  FilterTab(title: 'Granular Fruits'),
                                                                                 ),
                                                                               ),
                                                                               Container(
@@ -773,30 +546,7 @@ class _CategoryGridPageState extends State<CategoryGridPage> {
                                                                                 child:
                                                                                 Center(
                                                                                   child:
-                                                                                  Row(
-                                                                                    children: [
-                                                                                      Container(
-                                                                                        width: 18,
-                                                                                        height: 18,
-                                                                                        decoration: BoxDecoration(
-                                                                                          border: Border.all(
-                                                                                            color: Color(0xff000000),
-                                                                                          ),
-                                                                                          color: showCheck? Colors.deepOrange: Colors.transparent,
-                                                                                        ),
-                                                                                      ),
-                                                                                      SizedBox(
-                                                                                        width: 10,
-                                                                                      ),
-                                                                                      Text(
-                                                                                        'Meats & Fish',
-                                                                                        style: TextStyle(
-                                                                                          color: Color(0xff10151a),
-                                                                                          fontSize: 17,
-                                                                                        ),
-                                                                                      ),
-                                                                                    ],
-                                                                                  ),
+                                                                                 FilterTab(title: 'Meat & Fish'),
                                                                                 ),
                                                                               ),
                                                                               Container(
@@ -807,30 +557,7 @@ class _CategoryGridPageState extends State<CategoryGridPage> {
                                                                                 child:
                                                                                 Center(
                                                                                   child:
-                                                                                  Row(
-                                                                                    children: [
-                                                                                      Container(
-                                                                                        width: 18,
-                                                                                        height: 18,
-                                                                                        decoration: BoxDecoration(
-                                                                                          border: Border.all(
-                                                                                            color: Color(0xff000000),
-                                                                                          ),
-                                                                                          color: showCheck? Colors.deepOrange: Colors.transparent,
-                                                                                        ),
-                                                                                      ),
-                                                                                      SizedBox(
-                                                                                        width: 10,
-                                                                                      ),
-                                                                                      Text(
-                                                                                        'Organic Food',
-                                                                                        style: TextStyle(
-                                                                                          color: Color(0xff10151a),
-                                                                                          fontSize: 17,
-                                                                                        ),
-                                                                                      ),
-                                                                                    ],
-                                                                                  ),
+                                                                                 FilterTab(title: 'Organic Food'),
                                                                                 ),
                                                                               ),
                                                                               Container(
@@ -841,30 +568,7 @@ class _CategoryGridPageState extends State<CategoryGridPage> {
                                                                                 child:
                                                                                 Center(
                                                                                   child:
-                                                                                  Row(
-                                                                                    children: [
-                                                                                      Container(
-                                                                                        width: 18,
-                                                                                        height: 18,
-                                                                                        decoration: BoxDecoration(
-                                                                                          border: Border.all(
-                                                                                            color: Color(0xff000000),
-                                                                                          ),
-                                                                                          color: showCheck? Colors.deepOrange: Colors.transparent,
-                                                                                        ),
-                                                                                      ),
-                                                                                      SizedBox(
-                                                                                        width: 10,
-                                                                                      ),
-                                                                                      Text(
-                                                                                        'Low Cabs',
-                                                                                        style: TextStyle(
-                                                                                          color: Color(0xff10151a),
-                                                                                          fontSize: 17,
-                                                                                        ),
-                                                                                      ),
-                                                                                    ],
-                                                                                  ),
+                                                                                  FilterTab(title: 'Low Cabs'),
                                                                                 ),
                                                                               ),
                                                                             ],
@@ -1044,6 +748,7 @@ class _CategoryGridPageState extends State<CategoryGridPage> {
                                                                       ),
                                                                     ),
                                                                   ),
+                                                                  SizedBox(height:16),
                                                                   GestureDetector(
                                                                     onTap: () {
                                                                       Navigator.push(context,MaterialPageRoute(builder: (context)=> HomeScreen()),);
@@ -1501,3 +1206,131 @@ showProdDetails(
 }
 
 
+Color toggleColor = Colors.transparent;
+FontWeight toggleFont = FontWeight.normal ;
+
+toggle(int status) {
+  if (status == 1) {
+    if (toggleColor == Colors.transparent) {
+      toggleColor = Colors.green;
+      toggleFont = FontWeight.bold;
+    }
+    else {
+      toggleColor = Colors.transparent;
+      toggleFont = FontWeight.normal ;
+    }
+  }
+}
+
+
+class SortTab extends StatefulWidget {
+  final String title;
+
+  SortTab({required this.title});
+  @override
+  _SortTabState createState() => _SortTabState();
+}
+
+class _SortTabState extends State<SortTab> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+     child: Row(
+        mainAxisAlignment:
+        MainAxisAlignment
+            .spaceBetween,
+        children: [
+          GestureDetector(
+            onLongPress: () {
+
+              // Navigator.push(context,MaterialPageRoute(builder: (context)=> DiscoverGridPage()),);
+            },
+            child: GestureDetector(
+              onTap: (){
+                setState(() {
+                  toggle(1);
+                });
+              },
+              child: Text(
+                widget.title,
+                style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 17,
+                    fontWeight:toggleFont,),
+              ),
+            ),
+          ),
+          Image.asset(
+              'assets/images/mark.png',
+              width: 12,
+              height: 12,
+              color: toggleColor,),
+        ],
+      ),
+    );
+  }
+}
+
+
+
+Color selectColor = Colors.transparent;
+FontWeight selectFont = FontWeight.normal ;
+
+select(int status) {
+  if (status == 1) {
+    if (selectColor == Colors.transparent) {
+      selectColor = Colors.green;
+      selectFont = FontWeight.bold;
+    }
+    else {
+      selectColor = Colors.transparent;
+      selectFont = FontWeight.normal ;
+    }
+  }
+}
+
+
+class FilterTab extends StatefulWidget {
+  final String title;
+  FilterTab({required this.title});
+  @override
+  _FilterTabState createState() => _FilterTabState();
+}
+
+class _FilterTabState extends State<FilterTab> {
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+        children: [
+          GestureDetector(
+            onTap:(){
+              setState(() {
+                select(1);
+              });
+            },
+            child: Container(
+              width: 18,
+              height: 18,
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: Colors.black,
+                ),
+                color: selectColor,
+              ),
+            ),
+          ),
+          SizedBox(
+            width: 10,
+          ),
+          Text(
+            widget.title,
+            style: TextStyle(
+              color: Color(0xff10151a),
+              fontSize: 17,
+              fontWeight: selectFont,
+            ),
+          ),
+        ],
+    );
+  }
+}

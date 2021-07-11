@@ -12,7 +12,7 @@ Color check = Colors.deepOrange;
 update(int status) {
   if (status == 1) {
     if (active == Colors.red) {
-      active = Colors.grey;
+      active = Colors.white60;
     }
     else {
       active = Colors.red;

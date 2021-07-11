@@ -60,26 +60,26 @@ class _ForgotPageState extends State<ForgotPage> {
         child: Container(
           // padding: EdgeInsets.only(top:10.34.h, right: 6.4.w, left: 6.4.w,),
           padding: EdgeInsets.only(
-            top: 10.34.h,
-            right: 6.4.w,
-            left: 6.4.w,
+            top: 84,
+            right: 24,
+            left: 24,
           ),
-          width: 100.w,
-          height: 100.h,
+          width: 375,
+          height: 812,
           color: Color.fromRGBO(255, 255, 255, 0.63),
           child: Column(
             // mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                width: 87.2.w,
-                height: 8.37.h,
+                width: 327,
+                height: 68,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Container(
                       // margin: EdgeInsets.only(right:9.86.w),
-                      width: 64.w,
+                      width: 240,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -88,8 +88,7 @@ class _ForgotPageState extends State<ForgotPage> {
                             style: TextStyle(
                               fontWeight: FontWeight.w700,
                               fontStyle: FontStyle.normal,
-                              fontSize: 24.sp,
-                              letterSpacing: 0.053.w,
+                              fontSize: 24,
                               color: Color(0xff10151a),
                             ),
                           ),
@@ -98,8 +97,7 @@ class _ForgotPageState extends State<ForgotPage> {
                             style: TextStyle(
                               fontWeight: FontWeight.w700,
                               fontStyle: FontStyle.normal,
-                              fontSize: 24.sp,
-                              letterSpacing: 0.053.w,
+                              fontSize: 24,
                               color: Color(0xff10151a),
                             ),
                           ),
@@ -107,71 +105,72 @@ class _ForgotPageState extends State<ForgotPage> {
                       ),
                     ),
                     Container(
-                      width: 13.3.w,
-                      height: 6.15.h,
-                      child: CircleAvatar(
-                        backgroundColor: Color.fromRGBO(58, 149, 60, 0.1),
-                        child: Image.asset(
-                          'assets/images/reset.png',
-                          width: 4.26.w,
-                          height: 1.97.h,
-                        ),
+                      width: 50,
+                      height: 50,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color:  Color.fromRGBO(58, 149, 60, 0.1),
+                      ),
+                      child: Image.asset(
+                        'assets/images/reset.png',
+                        width: 14,
+                        height: 16,
                       ),
                     ),
                   ],
                 ),
-                margin: EdgeInsets.only(bottom:1.97.h),
+                margin: EdgeInsets.only(bottom:16),
               ),
               Container(
-                width: 69.86.w,
+                width: 262,
                 // height: 5.41.h,
                 child: Text('Select what contact details we use to reset your password',
                   style:TextStyle(
                     fontWeight: FontWeight.normal,
                     fontStyle: FontStyle.normal,
-                    fontSize: 17.sp,
+                    fontSize: 17,
                     color: Color(0xff999999),
                   ),
                 ),
-                margin: EdgeInsets.only(bottom:4.80.h),
+                margin: EdgeInsets.only(bottom:39),
               ),
               Container(
-                margin: EdgeInsets.only(bottom: 3.57.h),
+                margin: EdgeInsets.only(bottom: 29),
                 child: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children:[
                       Container(
-                        width: 11.73.w,
-                        height: 5.41.h,
+                        width: 44,
+                        height: 44,
                         child: Stack(
                           children: [
                             Image.asset(
                               'assets/images/Rectangle.png',
-                              width: 11.73.w,
-                              height: 5.41.h,
+                              width: 44,
+                              height: 44,
                             ),
                             Center(
                               child: Image.asset(
                                 'assets/images/phone.png',
-                                width: 4.0.w,
-                                height: 2.95.h,
+                                width: 15,
+                                height: 24,
                               ),
                             ),
                           ],
                         ),
-                        margin: EdgeInsets.only(right: 6.4.w),
+                        margin: EdgeInsets.only(right: 24),
                       ),
                       Container(
-                        width: 52.w,
-                        height: 5.41.h,
+                        width: 195,
+                        // height: 5.41.h,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text('via sms', style: TextStyle(color:Color(0xff10151A),fontSize: 16.sp,fontWeight: FontWeight.bold ),),
-                            Text('*** **** 7767',style: TextStyle(color:Color(0xff999999),fontSize: 14.sp,fontWeight: FontWeight.normal),),
+                            Text('via sms', style: TextStyle(color:Color(0xff10151A),fontSize: 16,fontWeight: FontWeight.bold ),),
+                            Text('*** **** 7767',style: TextStyle(color:Color(0xff999999),fontSize: 14,fontWeight: FontWeight.normal),),
                           ],
                         ),
-                        margin: EdgeInsets.only(right: 12.2.w),
+                        margin: EdgeInsets.only(right: 46),
                       ),
                       GestureDetector(
                         onTap:(){
@@ -181,8 +180,8 @@ class _ForgotPageState extends State<ForgotPage> {
                         },
                         child: Container(
 
-                          width: 4.26.w,
-                          height:1.97.h,
+                          width: 16,
+                          height:16,
                           decoration: BoxDecoration(
                             border: Border.all(color: Colors.black),
                             shape: BoxShape.circle,  color: active,
@@ -197,45 +196,45 @@ class _ForgotPageState extends State<ForgotPage> {
                     thickness: 1,
                     color: Color(0xfff5f5f5)
                 ),
-                margin: EdgeInsets.only(bottom:3.57.h),
+                margin: EdgeInsets.only(bottom:29),
               ),
               Container(
-                margin: EdgeInsets.only(bottom:39.65.h),
+                margin: EdgeInsets.only(bottom:322),
                 child: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children:[
                       Container(
-                        width: 11.73.w,
-                        height: 5.41.h,
+                        width: 44,
+                        height: 44,
                         child: Stack(
                           children: [
                             Image.asset(
                               'assets/images/Rectangle.png',
-                              width: 11.73.w,
-                              height: 5.41.h,
+                              width: 44,
+                              height: 44,
                             ),
                             Center(
                               child: Image.asset(
                                 'assets/images/mail.png',
-                                width: 5.3.w,
-                                height: 1.97.h,
+                                width: 20,
+                                height: 16,
                               ),
                             ),
                           ],
                         ),
-                        margin: EdgeInsets.only(right: 6.4.w),
+                        margin: EdgeInsets.only(right: 24),
                       ),
                       Container(
-                        width: 52.w,
-                        height: 5.41.h,
+                        width: 195,
+                        height: 42,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text('via email:', style: TextStyle(color:Color(0xff10151A),fontSize: 16.sp,fontWeight: FontWeight.bold ),),
-                            Text('*******vid@gmail.com',style: TextStyle(color:Color(0xff999999),fontSize: 14.sp,fontWeight: FontWeight.normal),),
+                            Text('via email:', style: TextStyle(color:Color(0xff10151A),fontSize: 16,fontWeight: FontWeight.bold ),),
+                            Text('*******vid@gmail.com',style: TextStyle(color:Color(0xff999999),fontSize: 14,fontWeight: FontWeight.normal),),
                           ],
                         ),
-                        margin: EdgeInsets.only(right: 12.2.w),
+                        margin: EdgeInsets.only(right: 44),
                       ),
                       GestureDetector(
                         onTap:(){
@@ -245,8 +244,8 @@ class _ForgotPageState extends State<ForgotPage> {
                         } ,
                         child: Container(
 
-                          width: 4.26.w,
-                          height:1.97.h,
+                          width: 16,
+                          height:16,
                           decoration: BoxDecoration(
                             border: Border.all(color: Colors.black),
                             shape: BoxShape.circle,
@@ -263,22 +262,22 @@ class _ForgotPageState extends State<ForgotPage> {
                     context: context,
                     builder: (context) =>
                         Container(
-                          height: 55.7.h,
+                          height: 453,
                           color: Color(0xffffffff),
-                          padding: EdgeInsets.only(top: 3.94.h,left: 6.4.w,),
+                          padding: EdgeInsets.only(top: 32,left: 24,),
                           child: SingleChildScrollView(
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Container(
-                                  margin: EdgeInsets.only(bottom: 1.97.h),
-                                  width: 87.2.w,
-                                  height: 3.57.h,
+                                  margin: EdgeInsets.only(bottom: 16),
+                                  width: 327,
+                                  height: 29,
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
                                       Text('Enter 4 Digits Code', style: TextStyle(
-                                        fontSize: 24.sp,
+                                        fontSize: 24,
                                         color: Color(0xff3C673D),
                                         fontWeight: FontWeight.bold,
                                         fontStyle: FontStyle.normal,
@@ -289,20 +288,20 @@ class _ForgotPageState extends State<ForgotPage> {
                                         },
                                         child: Container(
                                           child: Image.asset('assets/images/x.png', color: Color(0xff000000),),
-                                          width: 3.2.w,
-                                          height: 1.47.h,
+                                          width: 24,
+                                          height: 24,
                                         ),
                                       ),
                                     ],
                                   ),
                                 ),
                                 Container(
-                                  margin: EdgeInsets.only(bottom: 4.93.h),
-                                  width: 69.86.w,
-                                  height: 5.42.h,
+                                  margin: EdgeInsets.only(bottom: 40),
+                                  width: 262,
+                                  height: 44,
                                   child: Text('Enter the four digits code set to your email address',
                                     style: TextStyle(
-                                      fontSize: 17.sp,
+                                      fontSize: 17,
                                       color: Color(0xff999999),
                                       fontWeight: FontWeight.normal,
                                       fontStyle: FontStyle.normal,
@@ -311,8 +310,8 @@ class _ForgotPageState extends State<ForgotPage> {
                                 ),
                                 Center(
                                   child: Container(
-                                    height: 5.79.h,
-                                    margin: EdgeInsets.only(bottom: 20.073.h),
+                                    height: 47,
+                                    margin: EdgeInsets.only(bottom: 163),
                                     child: OTPTextField(
                                       otpFieldStyle: OtpFieldStyle(
                                         backgroundColor: Color(0xfff7f7f7),
@@ -326,7 +325,7 @@ class _ForgotPageState extends State<ForgotPage> {
                                       // fieldWidth: 20.2.w,
                                       textFieldAlignment: MainAxisAlignment.center,
                                       style: TextStyle(
-                                        fontSize: 15.sp,
+                                        fontSize: 15,
                                         color: Color(0xff10151A),
                                       ),
                                       onChanged: (pin){
@@ -345,20 +344,20 @@ class _ForgotPageState extends State<ForgotPage> {
                                       context: context,
                                       builder: (context) =>
                                           Container(
-                                            height: 55.78.h,
-                                            padding: EdgeInsets.only(top: 3.94.h,left: 6.4.w),
+                                            height: 453,
+                                            padding: EdgeInsets.only(top: 32,left: 24),
                                             child: SingleChildScrollView(
                                               child: Form(
-                                                autovalidateMode:
-                                                AutovalidateMode.always, //check for validation while typing
+                                                // autovalidateMode:
+                                                // AutovalidateMode.always, //check for validation while typing
                                                 key: _formKey,
                                                 child: Column(
                                                   crossAxisAlignment: CrossAxisAlignment.start,
                                                   children: [
                                                     Container(
-                                                      width: 87.2.w,
-                                                      height: 3.571.h,
-                                                      margin: EdgeInsets.only(bottom: 1.97.h),
+                                                      width: 327,
+                                                      height: 29,
+                                                      margin: EdgeInsets.only(bottom: 16),
                                                       child: Row(
                                                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                         children: [
@@ -368,7 +367,7 @@ class _ForgotPageState extends State<ForgotPage> {
                                                               color: Color(0xff3C673D),
                                                               fontStyle: FontStyle.normal,
                                                               fontWeight: FontWeight.bold,
-                                                              fontSize: 24.sp,
+                                                              fontSize: 24,
                                                             ),
                                                           ),
                                                           GestureDetector(
@@ -377,42 +376,42 @@ class _ForgotPageState extends State<ForgotPage> {
                                                             } ,
                                                             child: Container(
                                                               child: Image.asset('assets/images/x.png', color: Color(0xff000000),),
-                                                              width: 3.2.w,
-                                                              height: 1.47.h,
+                                                              width: 24,
+                                                              height: 24,
                                                             ),
                                                           ),
                                                         ],
                                                       ),
                                                     ),
                                                     Container(
-                                                      width: 80.8.w,
+                                                      width: 303,
                                                       child: Text(
                                                         'Set the new password for your account so you can login and access the features',
                                                         style: TextStyle(
-                                                          fontSize:17.sp,
+                                                          fontSize:17,
                                                           fontWeight: FontWeight.normal,
                                                           color: Color(0xff999999),
                                                         ),
                                                       ),
-                                                      margin: EdgeInsets.only(bottom: 3.94.h),
+                                                      margin: EdgeInsets.only(bottom: 32),
                                                     ),
                                                     Container(
                                                       // width: 26.66.w,
-                                                      height: 2.46.h,
+                                                      height: 20,
                                                       child: Text(
                                                         'Password',
                                                         style: TextStyle(
                                                           color: Color(0xff10151a),
-                                                          fontSize: 15.sp,
+                                                          fontSize: 15,
                                                           fontStyle: FontStyle.normal,
                                                           fontWeight: FontWeight.w700,
                                                         ),
                                                       ),
-                                                      margin: EdgeInsets.only(bottom: 1.97.h),
+                                                      margin: EdgeInsets.only(bottom: 16),
                                                     ),
                                                     Container(
-                                                      width: 87.2.w,
-                                                      height: 5.788.h,
+                                                      width: 327,
+                                                      height: 47,
                                                       decoration: BoxDecoration(
                                                         color: Color(0xfff7f7f7),
                                                         borderRadius: BorderRadius.circular(5.0),
@@ -426,18 +425,18 @@ class _ForgotPageState extends State<ForgotPage> {
                                                             color: Colors.black,
                                                             fontStyle: FontStyle.normal,
                                                             fontWeight: FontWeight.normal,
-                                                            fontSize: 15.sp,
+                                                            fontSize: 15,
                                                           ),
                                                           decoration: InputDecoration(
                                                             suffixIcon: Image.asset('assets/images/redeye.png',color: Color(0xff999999),
-                                                              width: 5.45.w, height: 1.88.h,
+                                                              width: 20.44, height:15.28,
                                                             ),
                                                             border: OutlineInputBorder(),
                                                             hintText: 'Enter Password',
                                                             hintStyle: TextStyle(
                                                               fontStyle: FontStyle.normal,
                                                               fontWeight: FontWeight.normal,
-                                                              fontSize: 15.sp,
+                                                              fontSize: 15,
                                                               color: Color(0xffbababa),
                                                             ),
                                                           ),
@@ -446,25 +445,25 @@ class _ForgotPageState extends State<ForgotPage> {
                                                             MinLengthValidator(8, errorText: 'password must be at least 8 digits long'),
                                                             PatternValidator(r'(?=.*?[#?!@$%^&*-])', errorText: 'passwords must have at least one special character')
                                                           ])),
-                                                      margin: EdgeInsets.only(bottom: 1.97.h),
+                                                      margin: EdgeInsets.only(bottom:16),
                                                     ),
                                                     Container(
                                                       // width: 26.66.w,
-                                                      height: 2.46.h,
+                                                      height: 20,
                                                       child: Text(
                                                         'Confirm Password',
                                                         style: TextStyle(
                                                           color: Color(0xff10151a),
-                                                          fontSize: 15.sp,
+                                                          fontSize: 15,
                                                           fontStyle: FontStyle.normal,
                                                           fontWeight: FontWeight.w700,
                                                         ),
                                                       ),
-                                                      margin: EdgeInsets.only(bottom: 1.97.h),
+                                                      margin: EdgeInsets.only(bottom: 16),
                                                     ),
                                                     Container(
-                                                      width: 87.2.w,
-                                                      height: 5.788.h,
+                                                      width: 327,
+                                                      height: 47,
                                                       decoration: BoxDecoration(
                                                         color: Color(0xfff7f7f7),
                                                         borderRadius: BorderRadius.circular(5.0),
@@ -478,18 +477,18 @@ class _ForgotPageState extends State<ForgotPage> {
                                                           color: Colors.black,
                                                           fontStyle: FontStyle.normal,
                                                           fontWeight: FontWeight.normal,
-                                                          fontSize: 15.sp,
+                                                          fontSize: 15,
                                                         ),
                                                         decoration: InputDecoration(
                                                           suffixIcon: Image.asset('assets/images/redeye.png',color: Color(0xff999999),
-                                                            width: 5.45.w, height: 1.88.h,
+                                                            width: 20.44, height: 15.28,
                                                           ),
                                                           border: OutlineInputBorder(),
                                                           hintText: 'Enter Password',
                                                           hintStyle: TextStyle(
                                                             fontStyle: FontStyle.normal,
                                                             fontWeight: FontWeight.normal,
-                                                            fontSize: 15.sp,
+                                                            fontSize: 15,
                                                             color: Color(0xffbababa),
                                                           ),
                                                         ),
@@ -505,7 +504,7 @@ class _ForgotPageState extends State<ForgotPage> {
                                                         onSaved: (value){
                                                           confirmpassword = value as TextEditingController;
                                                         },),
-                                                      margin: EdgeInsets.only(bottom: 4.43.h),
+                                                      margin: EdgeInsets.only(bottom: 36),
                                                     ),
                                                     GestureDetector(
                                                       onTap: () {
@@ -514,12 +513,12 @@ class _ForgotPageState extends State<ForgotPage> {
                                                           builder: (
                                                               BuildContext context) =>
                                                               AlertDialog(
-                                                                insetPadding: EdgeInsets.only(left: 6.4.w, right: 6.4.w,top: 32.1.h, bottom: 43.1.h),
+                                                                insetPadding: EdgeInsets.only(left: 24, right: 24,top: 261, bottom: 350),
                                                                 // contentPadding: EdgeInsets.symmetric(horizontal: 6.4.w,vertical:3.94.h),
 
                                                                 content:Center(
                                                                   child:Container(
-                                                                    width:74.4.w,
+                                                                    width:279,
                                                                     // margin: EdgeInsets.only(bottom: 3.94.h),
                                                                     child: Text(
                                                                       'Your password has been reset',
@@ -539,8 +538,8 @@ class _ForgotPageState extends State<ForgotPage> {
                                                                         Navigator.push(context,MaterialPageRoute(builder: (context)=> SigninPage()),);
                                                                       },
                                                                       child: Container(
-                                                                        width: 74.4.w,
-                                                                        height: 5.78.h,
+                                                                        width: 279,
+                                                                        height: 47,
                                                                         decoration: BoxDecoration(
                                                                           color: Color(0xff3a953c),
                                                                           borderRadius: BorderRadius.circular(5.0),
@@ -550,7 +549,7 @@ class _ForgotPageState extends State<ForgotPage> {
                                                                             color: Color(0xffffffff),
                                                                             fontStyle: FontStyle.normal,
                                                                             fontWeight: FontWeight.w700,
-                                                                            fontSize: 16.sp,
+                                                                            fontSize: 16,
                                                                           ),),
                                                                         ),),
                                                                     ),
@@ -559,8 +558,8 @@ class _ForgotPageState extends State<ForgotPage> {
                                                               ),
                                                         );},
                                                       child: Container(
-                                                        width: 87.2.w,
-                                                        height: 5.78.h,
+                                                        width: 327,
+                                                        height: 47,
                                                         decoration: BoxDecoration(
                                                           color: Color(0xff3a953c),
                                                           borderRadius: BorderRadius.circular(5.0),
@@ -570,7 +569,7 @@ class _ForgotPageState extends State<ForgotPage> {
                                                             color: Color(0xffffffff),
                                                             fontStyle: FontStyle.normal,
                                                             fontWeight: FontWeight.w700,
-                                                            fontSize: 16.sp,
+                                                            fontSize: 16,
                                                           ),),
                                                         ),
                                                       ),
@@ -583,8 +582,8 @@ class _ForgotPageState extends State<ForgotPage> {
                                     );
                                   },
                                   child: Container(
-                                    width: 87.2.w,
-                                    height: 5.78.h,
+                                    width: 327,
+                                    height: 47,
                                     decoration: BoxDecoration(
                                       color: Color(0xff3a953c),
                                       borderRadius: BorderRadius.circular(5.0),
@@ -594,10 +593,10 @@ class _ForgotPageState extends State<ForgotPage> {
                                         color: Color(0xffffffff),
                                         fontStyle: FontStyle.normal,
                                         fontWeight: FontWeight.w700,
-                                        fontSize: 16.sp,
+                                        fontSize: 16,
                                       ),),
                                     ),
-                                    margin: EdgeInsets.only(bottom: 2.95.h),
+                                    margin: EdgeInsets.only(bottom: 35),
                                   ),
                                 ),
                               ],
@@ -607,8 +606,8 @@ class _ForgotPageState extends State<ForgotPage> {
                   );
                 },
                 child: Container(
-                  width: 87.2.w,
-                  height: 5.78.h,
+                  width: 327,
+                  height:47,
                   decoration: BoxDecoration(
                     color: Color(0xff3a953c),
                     borderRadius: BorderRadius.circular(5.0),
@@ -618,7 +617,7 @@ class _ForgotPageState extends State<ForgotPage> {
                       color: Color(0xffffffff),
                       fontStyle: FontStyle.normal,
                       fontWeight: FontWeight.w700,
-                      fontSize: 16.sp,
+                      fontSize: 16,
                     ),),
                   ),
                   margin: EdgeInsets.only(bottom: 2.95.h),
