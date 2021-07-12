@@ -5,41 +5,36 @@ class Categories extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<Map<String, dynamic>> categories = [
-      {"text": "Raw Food", "textColor": primaryColor, "cardColor": liteGreen},
-      {"text": "Spices", "textColor": darkRed, "cardColor": lightRed},
-      {"text": "Bakery", "textColor": primaryColor, "cardColor": liteGreen},
-      {"text": "Cosmetic", "textColor": yellow, "cardColor": orange},
-      {"text": "More", "textColor": darkLiver, "cardColor": cadetBlue},
+      {"text": "Raw Food", "textColor": Color(0xff3A953C), "cardColor": Color(0xff3A953C).withOpacity(0.1)},
+      {"text": "Spices", "textColor":  Color(0xffffBB2F48), "cardColor": Color(0xffBB2F48).withOpacity(0.1)},
+      {"text": "Bakery", "textColor":  Color(0xff3A953C), "cardColor": Color(0xff3A953C).withOpacity(0.1)},
+      {"text": "Cosmetic", "textColor":  Color(0xffffBB2F48), "cardColor": Color(0xffBB2F48).withOpacity(0.1)},
+      {"text": "More", "textColor":  Color(0xff3A953C), "cardColor": Color(0xff3A953C).withOpacity(0.1)},
     ];
     return 
     
     Container(
       //margin: const EdgeInsets.only(left: 10),
-      height: 100,
+      height: 92,
      // margin: EdgeInsets.symmetric(vertical: 10.0),
       child: 
       
-      Padding(
-    padding: const EdgeInsets.only(left: 8.0, right: 24),
-        child: ListView(scrollDirection: Axis.horizontal, children: [
-          Padding(
-            padding: EdgeInsets.all(20),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: List.generate(
-                categories.length,
-                (index) => CategoryCard(
-                  textColor: categories[index]["textColor"],
-                  cardColor: categories[index]["cardColor"],
-                  text: categories[index]["text"],
-                  press: () {},
-                ),
+      ListView(scrollDirection: Axis.horizontal, children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: List.generate(
+            categories.length,
+            (index) => Padding(
+              padding: EdgeInsets.only(right: 8),
+              child: CategoryCard(
+                textColor: categories[index]["textColor"],
+                cardColor: categories[index]["cardColor"],
+                text: categories[index]["text"],
+                press: () {},
               ),
             ),
-          ),
-        ]),
-      ),
+          ),),
+      ],),
     );
   }
 }
@@ -60,23 +55,18 @@ class CategoryCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: press,
-      child: SizedBox(
-        width: 120,
-        child: Column(
-          children: [
-            Container(
-                padding: EdgeInsets.all(15),
-                height: 50,
-                width: 100,
-                decoration: BoxDecoration(
-                  color: cardColor,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Text(text, textAlign: TextAlign.center, style: TextStyle(color: textColor, fontWeight: FontWeight.w700),)),
-            SizedBox(width: 5),
-          
-          ],
-        ),
+      child: Row(
+        children: [
+          Container(
+              height: 50,
+              width: 92,
+              decoration: BoxDecoration(
+                color: cardColor,
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Text(text, textAlign: TextAlign.center, style: TextStyle(color: textColor, fontWeight: FontWeight.bold,fontSize: 13),),),
+          SizedBox(width:8),
+        ],
       ),
     );
   }

@@ -173,11 +173,11 @@ class _ShippingPageState extends State<ShippingPage> {
                                                           color: Color(0xffbababa),
                                                         ),
                                                       ),
-                                                      validator:(value){
-                                                        if(value == ''){
-                                                          return 'FullName is required.';
-                                                        }
-                                                      },
+                                                      // validator:(value){
+                                                      //   if(value == ''){
+                                                      //     return 'FullName is required.';
+                                                      //   }
+                                                      // },
                                                       onSaved: (value){
                                                         fullname = value as TextEditingController;
                                                       },
@@ -225,11 +225,11 @@ class _ShippingPageState extends State<ShippingPage> {
                                                           color: Color(0xffbababa),
                                                         ),
                                                       ),
-                                                      validator:(value){
-                                                        if(value == ''){
-                                                          return 'Phone Number is required';
-                                                        }
-                                                      },
+                                                      // validator:(value){
+                                                      //   if(value == ''){
+                                                      //     return 'Phone Number is required';
+                                                      //   }
+                                                      // },
                                                       onSaved: (value){
                                                         phone = value as TextEditingController;
                                                       },
@@ -278,11 +278,11 @@ class _ShippingPageState extends State<ShippingPage> {
                                                           color: Color(0xffbababa),
                                                         ),
                                                       ),
-                                                      validator:(value){
-                                                        if(value == ''){
-                                                          return 'Delivery Address is required.';
-                                                        }
-                                                      },
+                                                      // validator:(value){
+                                                      //   if(value == ''){
+                                                      //     return 'Delivery Address is required.';
+                                                      //   }
+                                                      // },
                                                       onSaved: (value){
                                                         address = value as TextEditingController;
                                                       },
