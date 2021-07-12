@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:sbsc_capstone_team_jupiter/screens/account/profile.dart';
+import 'package:sbsc_capstone_team_jupiter/screen/account_profile.dart';
+import 'package:sbsc_capstone_team_jupiter/screen/discover.dart';
+import 'package:sbsc_capstone_team_jupiter/screen/home.dart';
+//import 'package:sbsc_capstone_team_jupiter/screens/account/profile.dart';
 import 'package:sbsc_capstone_team_jupiter/screens/home/home.dart';
 import 'package:sbsc_capstone_team_jupiter/widgets/colors.dart';
 
@@ -16,9 +19,9 @@ class TabView extends StatefulWidget {
 
 class _TabViewState extends State<TabView> {
   int _selectedIndex = 0;
-  static const List<Widget> _widgetOptions = <Widget>[
-    HomesCreen(),
-    DiscoverPage(),
+  static List<Widget> _widgetOptions = <Widget>[
+     HomeScreen(),
+   DiscoverGridPage(),
     Profile(),
   ];
 
@@ -54,8 +57,8 @@ class _TabViewState extends State<TabView> {
           currentIndex: _selectedIndex,
           showSelectedLabels: false,
           showUnselectedLabels: false,
-          unselectedItemColor: Colors.black,
-          selectedItemColor: Colors.black,
+          unselectedItemColor: Colors.grey,
+          selectedItemColor: primaryColor,
           iconSize: 25,
           onTap: _onItemTapped,
           elevation: 5),

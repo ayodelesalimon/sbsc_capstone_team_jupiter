@@ -32,8 +32,8 @@ class _ForgotPageState extends State<ForgotPage> {
             right: 6.4.w,
             left: 6.4.w,
           ),
-          width: 100.w,
-          height: 100.h,
+          // width: 100.w,
+          // height: 100.h,
           color: Color.fromRGBO(255, 255, 255, 0.63),
           child: Column(
             // mainAxisAlignment: MainAxisAlignment.center,

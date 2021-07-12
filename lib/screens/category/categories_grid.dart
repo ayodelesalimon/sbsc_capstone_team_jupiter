@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:sbsc_capstone_team_jupiter/constants.dart';
+import 'package:sbsc_capstone_team_jupiter/util/constants.dart';
 import 'package:sbsc_capstone_team_jupiter/widgets/colors.dart';
 
 class CategoryGridPage extends StatefulWidget {

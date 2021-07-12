@@ -2,7 +2,7 @@ import 'dart:convert';
 
 
 import 'package:flutter/material.dart';
-import 'package:sbsc_capstone_team_jupiter/constants.dart';
+import 'package:sbsc_capstone_team_jupiter/util/constants.dart';
 import 'package:sbsc_capstone_team_jupiter/model/error_model.dart';
 import 'package:sbsc_capstone_team_jupiter/model/auth/login.dart';
 import 'package:sbsc_capstone_team_jupiter/model/auth/register.dart';
@@ -173,7 +173,7 @@ void internetConnectionDialog(BuildContext context) async {
                     child: Text(
                       'Oops!',
                       style: TextStyle(
-                        fontFamily: 'NovaSquare',
+                     //   fontFamily: 'NovaSquare',
                         fontSize: 20.0,
                       ),
                     ),

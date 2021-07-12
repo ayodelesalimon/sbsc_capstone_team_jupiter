@@ -6,7 +6,7 @@ import 'package:sbsc_capstone_team_jupiter/widgets/colors.dart';
 import 'package:sbsc_capstone_team_jupiter/screens/home/home.dart';
 import 'package:sbsc_capstone_team_jupiter/screens/account/profile.dart';
 
-import '../../constants.dart';
+import '../../util/constants.dart';
 
 class DiscoverPage extends StatefulWidget {
   const DiscoverPage({Key key}) : super(key: key);

@@ -81,12 +81,15 @@ class _WishListPageState extends State<WishListPage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Image.asset(
-                        'assets/images/back.png',
-                        width: 23,
-                        height: 14,
-                        color: Color(0xff424347),
-                      ),
+                     GestureDetector(
+                          onTap: () {
+                            Navigator.pop(context);
+                          },
+                          child: Image.asset(
+                            'assets/images/back.png',
+                            width: 23,
+                            height: 14,
+                          )),
                       SizedBox(
                         height: 16,
                       ),

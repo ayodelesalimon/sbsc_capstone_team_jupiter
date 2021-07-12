@@ -4,18 +4,17 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 class SocialLogin extends StatelessWidget {
   const SocialLogin({
     Key key,
-    this.title,
+    this.name,
     this.textColor,
     this.icon,
     this.cardColor,
     this.onTap,
-    this.borderWidth,
-    this.image,this.imgheight,this.imgwidth,this.marginright,
+    this.fontColor, this.width,
   }) : super(key: key);
-  final String title,image;
-  final Color textColor,cardColor;
+  final String name;
+  final Color textColor, fontColor, cardColor;
   final IconData icon;
-  final double borderWidth,imgwidth,imgheight,marginright;
+  final double width;
 
   final Function onTap;
   @override
@@ -24,7 +23,7 @@ class SocialLogin extends StatelessWidget {
       child: GestureDetector(
         onTap: onTap,
         child: SizedBox(
-            width: 327,
+            width: 360,
             height: 52,
             child: Container(
               child: Center(
@@ -32,16 +31,20 @@ class SocialLogin extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                   Image.asset(image,width: imgwidth,height: imgheight,),
+                    FaIcon(
+                      icon,
+                      size: 16,
+                      color: fontColor,
+                    ),
                     SizedBox(
-                      width: marginright,
+                      width: 8,
                     ),
                     Text(
-                      title,
+                      name,
                       style: TextStyle(
                         color: textColor,
                         // fontStyle: FontStyle.,
-                        fontWeight: FontWeight.w500,
+                        fontWeight: FontWeight.w800,
                         fontSize: 16,
                       ),
                       textAlign: TextAlign.center,
@@ -51,8 +54,8 @@ class SocialLogin extends StatelessWidget {
               ),
               decoration: BoxDecoration(
                   border: Border.all(
-                      color: Color(0xff10151a),
-                      width: borderWidth,
+                      //color: Color(0xff10151a),
+                      width: width,
                       style: BorderStyle.solid),
                   color: cardColor,
                   borderRadius: BorderRadius.circular(5)),

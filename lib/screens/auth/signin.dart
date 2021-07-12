@@ -1,7 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:sbsc_capstone_team_jupiter/model/auth/login.dart';
 import 'package:sbsc_capstone_team_jupiter/screens/tab_controller.dart';
+import 'package:sbsc_capstone_team_jupiter/services/auth.dart';
+import 'package:sbsc_capstone_team_jupiter/widgets/alert.dart';
+import 'package:sbsc_capstone_team_jupiter/widgets/loader.dart';
 import 'package:sizer/sizer.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 
@@ -16,7 +20,7 @@ class SigninPage extends StatefulWidget {
 
 class _SigninPageState extends State<SigninPage> {
   var _formKey = GlobalKey<FormState>();
-
+ Login login = Login();
   TextEditingController email =TextEditingController();
 
   @override
@@ -142,6 +146,9 @@ class _SigninPageState extends State<SigninPage> {
                         color: Color(0xffbababa),
                       ),
                     ),
+                    onSaved: (String value) {
+                        login.email = value;
+                      },
                     // validator: (String value){
                     //   if(value.isEmpty){
                     //     return 'Email is required';
@@ -205,6 +212,9 @@ class _SigninPageState extends State<SigninPage> {
                           color: Color(0xffbababa),
                         ),
                       ),
+                       onSaved: (String value) {
+                        login.password = value;
+                      },
                       validator: MultiValidator([
                         RequiredValidator(errorText: 'password is required'),
                         MinLengthValidator(8, errorText: 'password must be at least 8 digits long'),
@@ -232,20 +242,45 @@ class _SigninPageState extends State<SigninPage> {
                   ),
                 ),
                 GestureDetector(
-                  onTap: (){
-                    setState(() {
-                      if(_formKey.currentState.validate()){
-                        print('perfect');
-                      }
-                      else{
-                        return null;
-                      }
-                    });
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => TabView()),);
+                  onTap: () async {
+
+                     FocusScope.of(context).unfocus();
+                            if (_formKey.currentState.validate()) {
+                              _formKey.currentState.save();
+                              showLoader(context);
+                              try {
+                             //   await Auth.userLogin(login);
+                                Loader.hide();
+  Navigator.push(context, MaterialPageRoute(builder: (context)=> ForgotPage()));
+                              
+                                Alert(
+                                  context: context,
+                                  content:
+                                      'A reset link has been sent to your email, kindly check your email.',
+                                  title: 'Successful',
+                                );
+                              } catch (e) {
+                                hideLoader();
+                                Alert(
+                                  context: context,
+                                  content: e,
+                                  title: 'Error',
+                                );
+                              }
+                            }
+                    // setState(() {
+                    //   if(_formKey.currentState.validate()){
+                    //     print('perfect');
+                    //   }
+                    //   else{
+                    //     return null;
+                    //   }
+                    // });
+                    // Navigator.push(context, MaterialPageRoute(builder: (context) => TabView()),);
                   },
                   child: Container(
-                    width: 87.2.w,
-                    height: 5.78.h,
+                    width: 87.2,
+                    height: 50.78,
                     decoration: BoxDecoration(
                       color: Color(0xff3a953c),
                       borderRadius: BorderRadius.circular(5.0),

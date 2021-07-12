@@ -1,0 +1,241 @@
+import 'package:flutter/material.dart';
+
+
+class AccountCheckout extends StatefulWidget {
+  @override
+  _AccountCheckoutState createState() => _AccountCheckoutState();
+}
+
+class _AccountCheckoutState extends State<AccountCheckout> {
+
+  var _formKey = GlobalKey<FormState>();
+
+  bool showObscureText = true;
+  bool showObscureTextPassword = true;
+  bool showObscureTextPassword2 = true;
+  final FocusNode emailFocus = FocusNode();
+  final FocusNode passwordFocus = FocusNode();
+  TextEditingController password = TextEditingController();
+  TextEditingController confirmpassword = TextEditingController();
+  TextEditingController number = TextEditingController();
+  TextEditingController lastname = TextEditingController();
+  TextEditingController date = TextEditingController();
+  @override
+  void dispose() {
+    password.dispose();
+    confirmpassword.dispose();
+    emailFocus.dispose();
+    passwordFocus.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: SingleChildScrollView(
+        child: SafeArea(
+          child: Container(
+            width: 375,height: 812,
+            child: Column(
+              children: [
+                Container(
+                  padding: EdgeInsets.only(top: 40,right: 24,left: 24,bottom: 17),
+                  width: 375,
+                  height: 116,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.white.withOpacity(0.1),
+                        spreadRadius: 2,
+                      ),
+                    ],
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Image.asset('assets/images/back.png', width: 23,height: 14,),
+                      Text(
+                        "New Card",
+                        style:
+                        TextStyle(fontSize: 24, fontWeight: FontWeight.bold,color: Color(0xff819272)),
+                      ),
+                    ],
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.symmetric(horizontal: 24),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(height: 32,),
+                      Center(child: Image.asset('assets/images/card.png',width: 290,height: 179,)),
+                      Padding(
+                        padding:EdgeInsets.symmetric(vertical: 24),
+                        child: Divider(
+                          color: Color(0xfff5f5f5),
+                          thickness: 1,
+                        ),
+                      ),
+                      Form(
+                        key: _formKey,
+                        child: Container(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Name on card',
+                                style:
+                                TextStyle(
+                                  color:
+                                  Color(0xff10151a),
+                                  fontSize:15,
+                                  fontStyle:FontStyle.normal,
+                                  fontWeight:FontWeight.bold,
+                                ),
+                              ),
+                              SizedBox(height:16),
+                              Container(
+                                width: 327,
+                                height: 47,
+                                decoration: BoxDecoration(
+                                  color: Color(0xfff7f7f7),
+                                  borderRadius: BorderRadius.circular(5.0),
+                                ),
+                                child: TextFormField(
+                                  textAlign: TextAlign.start,
+                                  keyboardType: TextInputType.text,
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontStyle: FontStyle.normal,
+                                    fontWeight: FontWeight.normal,
+                                    fontSize: 15,
+                                  ),
+                                  decoration: InputDecoration(
+                                    border: OutlineInputBorder(),
+                                    hintText: 'Andrea',
+                                    hintStyle: TextStyle(
+                                      fontStyle: FontStyle.normal,
+                                      fontWeight: FontWeight.normal,
+                                      fontSize: 15,
+                                      color: Color(0xffbababa),
+                                    ),
+                                  ),
+                                  onSaved: (value){
+                                    lastname = value as TextEditingController;
+                                  },
+                                ),
+                              ),
+                              SizedBox(height:16),
+                              Text('Card Number',
+                                style:TextStyle(color:Color(0xff10151a),fontSize:15,fontStyle:FontStyle.normal,fontWeight:FontWeight.bold,),),
+                              SizedBox(height:16),
+                              Container(
+                                width: 327,
+                                height: 47,
+                                decoration: BoxDecoration(
+                                  color: Color(0xfff7f7f7),
+                                  borderRadius: BorderRadius.circular(5.0),
+                                ),
+                                child: TextFormField(
+                                  textAlign: TextAlign.start,
+                                  keyboardType: TextInputType.text,
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontStyle: FontStyle.normal,
+                                    fontWeight: FontWeight.normal,
+                                    fontSize: 15,
+                                  ),
+                                  decoration: InputDecoration(
+                                    border: OutlineInputBorder(),
+                                    hintText: '*** ***** 2458',
+                                    hintStyle: TextStyle(
+                                      fontStyle: FontStyle.normal,
+                                      fontWeight: FontWeight.normal,
+                                      fontSize: 15,
+                                      color: Color(0xffbababa),
+                                    ),
+                                  ),
+                                  onSaved: (value){
+                                    number = value as TextEditingController;
+                                  },
+                                ),
+                              ),
+                              SizedBox(height:16),
+                              Text('Expiry Date',
+                                style:TextStyle(color:Color(0xff10151a),fontSize:15,fontStyle:FontStyle.normal,fontWeight:FontWeight.bold,),),
+                              SizedBox(height:16),
+                              Container(
+                                width: 327,
+                                height: 47,
+                                decoration: BoxDecoration(
+                                  color: Color(0xfff7f7f7),
+                                  borderRadius: BorderRadius.circular(5.0),
+                                ),
+                                child: TextFormField(
+                                  textAlign: TextAlign.start,
+                                  keyboardType: TextInputType.text,
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontStyle: FontStyle.normal,
+                                    fontWeight: FontWeight.normal,
+                                    fontSize: 15,
+                                  ),
+                                  decoration: InputDecoration(
+                                    border: OutlineInputBorder(),
+                                    hintText: '08/21-(MM/YY)',
+                                    hintStyle: TextStyle(
+                                      fontStyle: FontStyle.normal,
+                                      fontWeight: FontWeight.normal,
+                                      fontSize: 15,
+                                      color: Color(0xffbababa),
+                                    ),
+                                  ),
+                                  onSaved: (value){
+                                    date = value as TextEditingController;
+                                  },
+                                ),
+                              ),
+                              SizedBox(height:16),
+                              Text('CVV',
+                                style:TextStyle(color:Color(0xff10151a),fontSize:15,fontStyle:FontStyle.normal,fontWeight:FontWeight.bold,),),
+                             SizedBox(height: 20),
+                              Center(
+                                child: GestureDetector(
+                                  child: Container(
+                                    width: 327,
+                                    height: 47,
+                                    decoration: BoxDecoration(
+                                      color: Color(0xff3a953c),
+                                      borderRadius: BorderRadius.circular(5.0),
+                                    ),
+                                    child: Center(
+                                      child: Text(
+                                        'Save',
+                                        style: TextStyle(
+                                          color: Color(0xffffffff),
+                                          fontStyle: FontStyle.normal,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 16,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  onTap: (){
+                                  },
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),),),
+      ),
+    );
+  }
+}

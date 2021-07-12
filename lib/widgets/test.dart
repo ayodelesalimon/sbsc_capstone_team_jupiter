@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:form_field_validator/form_field_validator.dart';
-import 'package:sbsc_capstone_team_jupiter/constants.dart';
+import 'package:sbsc_capstone_team_jupiter/util/constants.dart';
 import 'package:sbsc_capstone_team_jupiter/model/auth/login.dart';
 import 'package:sbsc_capstone_team_jupiter/model/category/add_category.dart';
 import 'package:sbsc_capstone_team_jupiter/screens/auth/login.dart';
@@ -16,7 +16,7 @@ import 'package:sbsc_capstone_team_jupiter/widgets/input.dart';
 import 'package:sbsc_capstone_team_jupiter/widgets/loader.dart';
 import 'package:validators/validators.dart' as validator;
 
-import 'model/user_request/email_request_password.dart';
+//import 'model/user_request/email_request_password.dart';
 
 class TestPage extends StatefulWidget {
   final String name = 'test';
@@ -27,7 +27,7 @@ class TestPage extends StatefulWidget {
 }
 
 class _TestPageState extends State<TestPage> {
-  EmailPasswordRequest emailPasswordRequest = EmailPasswordRequest();
+ // EmailPasswordRequest emailPasswordRequest = EmailPasswordRequest();
   AddCategory addCategory = AddCategory();
   final _formKey = GlobalKey<FormState>();
 
@@ -127,9 +127,9 @@ class _TestPageState extends State<TestPage> {
                     }
                   },
                   onSaved: (String value) {
-                   // addCategory.categoryName = value;
+                    // addCategory.categoryName = value;
 
-                    emailPasswordRequest.email = value;
+                  //  emailPasswordRequest.email = value;
                   },
                 ),
                 SizedBox(
@@ -140,38 +140,6 @@ class _TestPageState extends State<TestPage> {
                 Center(
                   child: GestureDetector(
                     onTap: () async {
-                      //FocusScope.of(context).unfocus();
-                      if (_formKey.currentState.validate()) {
-                        _formKey.currentState.save();
-                        showLoader(context);
-                        try {
-                       //  await Category.addCategory(addCategory);
-                         await OtpRequest.emailRequest(emailPasswordRequest);
-                          Loader.hide();
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              settings: RouteSettings(name: "/loginPage"),
-                              builder: (context) => LoginPage(),
-                            ),
-                          );
-                          Loader.hide();
-                          Alert(
-                            context: context,
-                            content:
-                                'A reset link has been sent to your email, kindly check your email.',
-                            title: 'Successful',
-                          );
-                        } catch (e) {
-                          hideLoader();
-                          // Alert(
-                          //   context: context,
-                          //   content: e,
-                          //   title: ' Error',
-                          // );
-                        }
-                      }
-
-                      //  });
                     },
                     child: Container(
                       width: 360,

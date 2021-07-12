@@ -1,5 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:sbsc_capstone_team_jupiter/size_config.dart';
+import 'package:sbsc_capstone_team_jupiter/util/size_config.dart';
+
+const kSECRET_KEY = "sk_test_414a941f5dd0feeca0465bf86813cf5d830e562f";
+
+const String baseEndpoint = 'https://aduabaecommerceapi.azurewebsites.net';
+
+List<Color> categoryColors = [
+  // Color(0xFF3A953C1A),
+  Color(0xFF3A953C),
+  Color(0xFFBB2F48),
+  Color(0xFF3C673D),
+  Color(0xFFE75A21),
+];
 
 const kPrimaryColor = Color(0xFFFF7643);
 const kPrimaryLightColor = Color(0xFFFFECDF);
@@ -71,6 +83,13 @@ OutlineInputBorder outlineInputBorder() {
     borderSide: BorderSide(color: kTextColor),
   );
 }
+
 printData(identifier, data) {
   return debugPrint('===> $identifier <=== $data');
+}
+
+class BaseUrl {
+  static const String mainUrl = "https://aduabaecommerceapi.azurewebsites.net/";
+  static const String login = mainUrl + "login";
+  static const String register = mainUrl + "register-user";
 }

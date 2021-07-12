@@ -1,7 +1,7 @@
 
 
 import 'package:flutter/material.dart';
-import 'package:sbsc_capstone_team_jupiter/constants.dart';
+import 'package:sbsc_capstone_team_jupiter/util/constants.dart';
 import 'package:sbsc_capstone_team_jupiter/widgets/colors.dart';
 
 class BestSellSection extends StatelessWidget {

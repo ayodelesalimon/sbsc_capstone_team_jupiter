@@ -1,46 +1,21 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-enum Button{
-  active, dormant,
-}
+import 'package:sbsc_capstone_team_jupiter/util/constants.dart';
+
+
 class CartPage extends StatefulWidget {
+  final String name = 'cartPage';
   @override
   _CartPageState createState() => _CartPageState();
 }
 
 class _CartPageState extends State<CartPage> {
-  int quantity = 1;
 
-  Color activeColor = Color(0xffE75A21);
-  void updateButton(Button selectedbutton){
-    if (selectedbutton == Button.active){
-      if (activeColor ==  Color(0xffE75A21)){
-        activeColor = Colors.grey;
-
-      }
-      else{
-        activeColor =  Color(0xffE75A21);
-      }
-    }
-  }
-
- var quantityList =[
-    1,
-   1,
-   1,
-  ];
-
- // var checkColour =[
- //  Color(0xffE75A21),
- //  Color(0xffE75A21),
- //  Color(0xffE75A21),
-
- // ];
+   bool valuefirst = false;  
   var productList = [
     'Herbsconnect Organic Acai Berry Powder Freeze Dried',
     'Herbsconnect Organic Acai Berry Powder Freeze Dried',
     'Herbsconnect Organic Acai Berry Powder Freeze Dried',
-
   ];
   var vendorList = [
     'Emmanuel produce',
@@ -48,9 +23,9 @@ class _CartPageState extends State<CartPage> {
     'Emmanuel produce',
   ];
   var imageList = [
-    'assets/images/tomatoes.png',
-    'assets/images/paint.png',
-    'assets/images/turkey.png',
+    'assets/fruit.png',
+    'assets/fruit.png',
+    'assets/drugs.png',
   ];
   var priceList = [
     '₦35,000.00',
@@ -62,126 +37,119 @@ class _CartPageState extends State<CartPage> {
     'In stock',
     'In stock',
   ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
           child: Container(
-            width:375,
-            height:812,
+            width: 375,
+            height: 812,
             color: Color(0xffffffff),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
-                  padding:
-                  EdgeInsets.only(bottom: 17, right: 24, left: 24, top: 40),
-                  width: 375,
-                  height: 142,
-                  decoration: BoxDecoration(
-                    color: Color(0xffffffff),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Color(0xffffffff).withOpacity(0.1),
-                      ),
-                    ],
-                  ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 24.0, right: 14.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       GestureDetector(
-                        onTap:(){
+                        onTap: () {
                           Navigator.pop(context);
                         },
-                        child: Image.asset(
-                          'assets/images/back.png',
-                          width: 23,
-                          height: 14,
-                        ),
+                        child: IconButton(icon: Icon(Icons.arrow_back), onPressed: (){
+                          Navigator.pop(context);
+                        })
+                      ),
+                     
+                      Text(
+                        'Cart',
+                        style: TextStyle(
+                            fontSize: 24,
+                            color: Color(0xff819272),
+                            fontWeight: FontWeight.bold),
                       ),
                       SizedBox(
-                        height: 16,
+                        height: 5,
                       ),
-                      Container(
-                          width: 140,
-                          height: 29,
-                          child: Text(
-                            'Cart',
-                            style: TextStyle(
-                                fontSize: 24,
-                                color: Color(0xff819272),
-                                fontWeight: FontWeight.bold),
-                          )),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Container(
-                        width: 327,
-                        height: 16,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Container(
-                              width: 81,
-                              child: Text(
-                                '18 items listed',
-                                style: TextStyle(
-                                  fontSize: 13,
-                                  color: Color(0xff999999),
+
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                              '18 items listed',
+                              style: TextStyle(
+                                fontSize: 13,
+                                color: Color(0xff999999),
+                              ),
+                            ),
+
+                              Row(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  IconButton(icon: Icon(Icons.done), onPressed: (){}),
+                                  //SizedBox(width: -10),
+                                   Text(
+                                  'Select All',
+                                  style: TextStyle(
+                                    fontSize: 13,
+                                    color: Color(0xff999999),
+                                  ),
                                 ),
-                              ),
-                            ),
-                            SizedBox(
-                              width: 51.8,
-                            ),
-                            Container(
-                              width: 69.2,
-                              child: Row(
-                                children: [
-                                  Image.asset(
-                                    'assets/images/pick.png',
-                                    width: 11.2,
-                                    height: 11.2,
-                                    color: Color(0xff999999),
-                                  ),
-                                  SizedBox(width:4),
-                                  Text(
-                                    'Select All',
-                                    style: TextStyle(
-                                      fontSize: 13,
-                                      color: Color(0xff999999),
-                                    ),
-                                  ),
                                 ],
                               ),
-                            ),
-                            Spacer(),
-                            Container(
-                              width: 108,
-                              child: Row(
-                                children: [
-                                  Image.asset(
-                                    'assets/images/bin.png',
-                                    width: 11,
-                                    height: 12,
-                                    color: Color(0xff999999),
-                                  ),
-                                  SizedBox(width:4),
-                                  Text(
-                                    'Delete Selected',
-                                    style: TextStyle(
-                                      fontSize: 13,
-                                      color: Color(0xff999999),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
+                               IconButton(icon: Icon(Icons.delete_outline_outlined), onPressed: (){}),
+                              //  SizedBox(width: 4),
+                             Text(
+                               'Delete Selected',
+                               style: TextStyle(
+                                 fontSize: 13,
+                                 color: Color(0xff999999),
+                               ),
+                             ),
+                               SizedBox(width: 2),
+                               
+                      ],),
+                      // Center(
+                      //   child: Row(
+                      //     mainAxisAlignment: MainAxisAlignment.center,
+                      //     children: [
+                      //       Text(
+                      //         '18 items listed',
+                      //         style: TextStyle(
+                      //           fontSize: 13,
+                      //           color: Color(0xff999999),
+                      //         ),
+                      //       ),
+                      //       SizedBox(
+                      //         width: 10.8,
+                      //       ),
+                           
+                      //          IconButton(icon: Icon(Icons.done), onPressed: (){}),
+                      //          // SizedBox(width: 2),
+                      //           Text(
+                      //             'Select All',
+                      //             style: TextStyle(
+                      //               fontSize: 13,
+                      //               color: Color(0xff999999),
+                      //             ),
+                      //           ),
+                          
+                           
+                      //       IconButton(icon: Icon(Icons.delete_outline_outlined), onPressed: (){}),
+                      //         //  SizedBox(width: 4),
+                      //        Text(
+                      //          'Delete Selected',
+                      //          style: TextStyle(
+                      //            fontSize: 13,
+                      //            color: Color(0xff999999),
+                      //          ),
+                      //        ),
+                      //     ],
+                      //   ),
+                      // ),
                     ],
                   ),
                 ),
@@ -192,54 +160,93 @@ class _CartPageState extends State<CartPage> {
                   child: Center(
                     child: Container(
                       width: 327,
-                      height:386,
+                      height: 386,
                       margin: EdgeInsets.symmetric(horizontal: 24),
                       child: ListView.separated(
                         itemCount: imageList.length,
                         itemBuilder: (context, index) {
                           return GestureDetector(
-                            onTap: (){
-
-                            },
+                            onTap: () {},
                             child: Container(
                               width: 327,
                               height: 152,
                               child: Row(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  GestureDetector(onTap:(){
-                                      setState(() {
-                                      updateButton(Button.active);
-                                      });
-                                  },
-                                      child: Container(
-                                        width:16, height:16,color: activeColor,
-                                          child: Image.asset( 'assets/images/pick.png',width: 10,height: 10))),
-                                  SizedBox(width: 12,),
+
+                                  ///check box
+                                 Checkbox(  
+                      checkColor: Colors.greenAccent,  
+                      activeColor: Colors.red,  
+                      value: this.valuefirst,  
+                      onChanged: (bool value) {  
+                        setState(() {  
+                          this.valuefirst = value;  
+                        });  
+                      },  
+                    ),  
+                                  SizedBox(
+                                    width: 12,
+                                  ),
                                   Container(
                                     width: 210,
                                     height: 152,
                                     child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
                                         Container(
                                           width: 210,
-                                         child: Text(productList[index],
-                                         style: TextStyle(fontSize: 17,color: Color(0xff424347),fontWeight: FontWeight.bold),
-                                         ),
+                                          child: Text(
+                                            productList[index],
+                                            style: TextStyle(
+                                                fontSize: 17,
+                                                color: Color(0xff424347),
+                                                fontWeight: FontWeight.bold),
+                                          ),
                                         ),
-                                        SizedBox(height:8),
-                                        Text(vendorList[index],style: TextStyle(fontSize: 13,color: Color(0xffbbbbbb),fontWeight: FontWeight.normal),),
-                                        SizedBox(height:8),
+                                        SizedBox(height: 8),
+                                        Text(
+                                          vendorList[index],
+                                          style: TextStyle(
+                                              fontSize: 13,
+                                              color: Color(0xffbbbbbb),
+                                              fontWeight: FontWeight.normal),
+                                        ),
+                                        SizedBox(height: 8),
                                         Container(
-                                          width:148,
+                                          width: 148,
                                           height: 20,
                                           child: Row(
-                                            mainAxisAlignment: MainAxisAlignment.start,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
                                             children: [
-                                              Text(priceList[index],style: TextStyle(fontSize: 15,color: Color(0xffF39E28),fontWeight: FontWeight.normal),),
-                                              Container(width:14 ,child: Text('.',style: TextStyle(fontSize: 14,color: Color(0xffD8D8D8),fontWeight: FontWeight.w600,),)),
-                                              Text(stockList[index],style: TextStyle(fontSize: 15,color: Color(0xff3A953C),),),
+                                              Text(
+                                                priceList[index],
+                                                style: TextStyle(
+                                                    fontSize: 15,
+                                                    color: Color(0xffF39E28),
+                                                    fontWeight:
+                                                        FontWeight.normal),
+                                              ),
+                                              Container(
+                                                  width: 14,
+                                                  child: Text(
+                                                    '.',
+                                                    style: TextStyle(
+                                                      fontSize: 14,
+                                                      color: Color(0xffD8D8D8),
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                    ),
+                                                  )),
+                                              Text(
+                                                stockList[index],
+                                                style: TextStyle(
+                                                  fontSize: 15,
+                                                  color: Color(0xff3A953C),
+                                                ),
+                                              ),
                                             ],
                                           ),
                                         ),
@@ -248,55 +255,46 @@ class _CartPageState extends State<CartPage> {
                                           width: 136,
                                           height: 32,
                                           child: Row(
-                                            mainAxisAlignment:MainAxisAlignment.start,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
                                             children: [
-                                              GestureDetector(
-                                                onTap:(){
-                                                  setState(() {
-                                                    quantityList[index]--;
-                                                  });
-                                                },
-                                                child: Container(
-                                                  width:32,
-                                                  height: 32,
-                                                  color: Color(0xfff5f5f5),
-                                                  child: Center(
-                                                    child: Image.asset('assets/images/minus.png',width: 8,height: 2,color: Color(0xffbbbbbb),),
+                                              Container(
+                                                width: 32,
+                                                height: 32,
+                                                color: Color(0xfff5f5f5),
+                                                child: Center(
+                                                  child: IconButton(icon: Icon(Icons.add), onPressed: (){})
+                                                ),
+                                              ),
+                                              Container(
+                                                width: 32,
+                                                height: 32,
+                                                color: Color(0xfff5f5f5),
+                                                child: Center(
+                                                  child: Image.asset(
+                                                    'assets/images/1.png',
+                                                    width: 8,
+                                                    height: 2,
+                                                    color: Color(0xffbbbbbb),
                                                   ),
                                                 ),
                                               ),
                                               Container(
-                                                width:32,
+                                                width: 32,
                                                 height: 32,
                                                 color: Color(0xfff5f5f5),
                                                 child: Center(
-                                                  child: Text(quantityList[index].toString(),style: TextStyle(color: Color(0xffbbbbbb),fontSize: 14),),
-                                                ),
-                                              ),
-                                              GestureDetector(
-                                                onTap: (){
-                                                  setState(() {
-                                                    quantityList[index]++;
-                                                  });
-                                                },
-                                                child: Container(
-                                                  width:32,
-                                                  height: 32,
-                                                  color: Color(0xfff5f5f5),
-                                                  child: Center(
-                                                    child: Image.asset('assets/images/plus.png',width: 6,height: 15,color: Color(0xff979797),),
-                                                  ),
+                                                  child: IconButton(icon: Icon(Icons.remove), onPressed: (){})
                                                 ),
                                               ),
                                               Spacer(),
                                               Container(
-                                                width:32,
+                                                width: 32,
                                                 height: 32,
                                                 color: Color(0xfff5f5f5),
                                                 child: Center(
-                                                  child: Image.asset('assets/images/bin.png',width: 12,height: 14,color: Color(0xff979797,),
+                                                  child: IconButton(icon: Icon(Icons.delete_outline_outlined), onPressed: (){})
                                                 ),
-                                              ),
                                               ),
                                             ],
                                           ),
@@ -394,28 +392,39 @@ class _CartPageState extends State<CartPage> {
                           );
                         },
                       ),
-
                     ),
                   ),
                 ),
-                SizedBox(height:61),
+                SizedBox(height: 61),
+
+               
                 Center(
                   child: Container(
                     width: 327,
-                    height:22,
+                    height: 22,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text('Total ${imageList.length} Items',style: TextStyle(color: Color(0xff000000),fontSize: 13),),
-                        Text('₦35,000.00 ',style: TextStyle(color: Color(0xff000000),fontSize: 17, fontWeight: FontWeight.bold),),
+                        Text(
+                          'Total 2 Items',
+                          style:
+                              TextStyle(color: Color(0xff000000), fontSize: 13),
+                        ),
+                        Text(
+                          '₦35,000.00 ',
+                          style: TextStyle(
+                              color: Color(0xff000000),
+                              fontSize: 17,
+                              fontWeight: FontWeight.bold),
+                        ),
                       ],
                     ),
                   ),
                 ),
-                SizedBox(height:32),
+                SizedBox(height: 32),
                 Center(
                   child: GestureDetector(
-                    onTap:(){},
+                    onTap: () {},
                     child: Container(
                       decoration: BoxDecoration(
                         color: Color(0xff3A953C),
@@ -436,18 +445,18 @@ class _CartPageState extends State<CartPage> {
                     ),
                   ),
                 ),
-                SizedBox(height:16),
+                SizedBox(height: 16),
                 Center(
                   child: GestureDetector(
-                    onTap:(){},
+                    onTap: () {},
                     child: Container(
                       decoration: BoxDecoration(
                         color: Color(0xffe5e5e5),
                         borderRadius: BorderRadius.circular(5),
-                         border: Border.all(
-                           width: 1,
-                           color: Color(0xff10151A),
-                         ),
+                        border: Border.all(
+                          width: 1,
+                          color: Color(0xff10151A),
+                        ),
                       ),
                       child: Center(
                         child: Text(
@@ -461,11 +470,10 @@ class _CartPageState extends State<CartPage> {
                       ),
                       width: 327,
                       height: 47,
-
                     ),
                   ),
                 ),
-                SizedBox(height:38),
+                SizedBox(height: 38),
               ],
             ),
           ),

@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:sbsc_capstone_team_jupiter/constants.dart';
+import 'package:sbsc_capstone_team_jupiter/util/constants.dart';
 import 'package:sbsc_capstone_team_jupiter/widgets/colors.dart';
 import 'package:sbsc_capstone_team_jupiter/widgets/input.dart';
 import 'package:validators/validators.dart' as validator;

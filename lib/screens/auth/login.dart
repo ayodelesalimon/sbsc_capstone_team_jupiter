@@ -1,26 +1,28 @@
 import 'dart:convert';
-import 'dart:math';
 
+import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:form_field_validator/form_field_validator.dart';
-import 'package:rflutter_alert/rflutter_alert.dart';
-import 'package:sbsc_capstone_team_jupiter/constants.dart';
+import 'package:sbsc_capstone_team_jupiter/util/constants.dart';
 import 'package:sbsc_capstone_team_jupiter/model/auth/login.dart';
-import 'package:sbsc_capstone_team_jupiter/screens/home/home.dart';
+import 'package:sbsc_capstone_team_jupiter/screen/onboarding_forgot.dart';
+import 'package:sbsc_capstone_team_jupiter/screens/auth/forgot_password.dart';
 import 'package:sbsc_capstone_team_jupiter/screens/tab_controller.dart';
 import 'package:sbsc_capstone_team_jupiter/services/auth.dart';
 import 'package:sbsc_capstone_team_jupiter/services/base.dart';
-import 'package:sbsc_capstone_team_jupiter/test.dart';
+import 'package:sbsc_capstone_team_jupiter/services/check_connection.dart';
+//import 'package:sbsc_capstone_team_jupiter/test.dart';
 import 'package:sbsc_capstone_team_jupiter/widgets/alert.dart';
 import 'package:sbsc_capstone_team_jupiter/widgets/colors.dart';
 import 'package:sbsc_capstone_team_jupiter/widgets/input.dart';
 import 'package:sbsc_capstone_team_jupiter/widgets/loader.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 import 'package:validators/validators.dart' as validator;
 import 'package:http/http.dart' as http;
 import 'components/social_card.dart';
 import 'create_account.dart';
-import 'forgot_password.dart';
 
 class LoginPage extends StatefulWidget {
   final String name = 'loginPage';
@@ -34,49 +36,92 @@ class _LoginPageState extends State<LoginPage> {
   Login login = Login();
   int statusCode;
   Api apiK = Api();
+  CheckConnection _checkConnection = CheckConnection();
   final _formKey = GlobalKey<FormState>();
   final GlobalKey<State> _keyLoader = new GlobalKey<State>();
   final _globalKey = GlobalKey<ScaffoldMessengerState>();
 
   TextEditingController email = TextEditingController();
+  FocusNode emailFocus = FocusNode();
+  FocusNode passwordFocus = FocusNode();
 
   TextEditingController password = TextEditingController();
   bool showObscureText = true;
   bool showObscureTextPassword = true;
+
+  Future<Login> loginUser(String email, String password) async {
+    bool internetConnection =
+        await _checkConnection.checkInternetConnectivity();
+    if (internetConnection) {
+      final response = await http.post(
+        Uri.parse('https://aduabaecommerceapi.azurewebsites.net/login'),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(<String, String>{
+          'email': email,
+          'password': password,
+        }),
+      );
+      dynamic decodedResponse = jsonDecode(response.body);
+
+      if (response.statusCode == 200) {
+        if (decodedResponse['isSuccess'] == true) {
+          print(decodedResponse['data']['token']);
+          // Alert(
+          //   context: context,
+          //   content: "Login Sucessfully",
+          //   title: 'Login Success',
+          // );
+          Flushbar(
+            title: "Sucess",
+          );
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              settings: RouteSettings(name: "/tabPage"),
+              builder: (context) => TabView(),
+            ),
+          );
+          await decodeAndStoreToken(data: decodedResponse);
+        } else {
+          print(decodedResponse['message']);
+          Alert(
+            context: context,
+            content: decodedResponse['message'],
+            title: 'Login Error',
+          );
+        }
+        // If the server did return a 201 CREATED response,
+        // then parse the JSON.
+        print(response.body);
+
+        //  return Login.fromJson(jsonDecode(response.body));
+      } else {
+        print(response.statusCode);
+
+        // If the server did not return a 201 CREATED response,
+        // then throw an exception.
+
+      }
+    } else {
+      internetConnectionDialog(context);
+    }
+  }
+
+  @override
   void initState() {
     super.initState();
-    Future.delayed(Duration(seconds: 1)).then((_) => _displaySnackbar);
+    passwordFocus = FocusNode();
+    emailFocus = FocusNode();
   }
 
-// Display Snackbar
-  void get _displaySnackbar {
-    _globalKey.currentState.showSnackBar(SnackBar(
-        duration: Duration(minutes: 1),
-        content: Text('Your snackbar message')));
-  }
+  @override
+  void dispose() {
+    // Clean up the focus node when the Form is disposed.
+    passwordFocus.dispose();
+    emailFocus.dispose();
 
-  Future<Login> createAlbum(String email, String password) async {
-    final response = await http.post(
-      Uri.parse('https://aduabaecommerceapi.azurewebsites.net/login'),
-      headers: <String, String>{
-        'Content-Type': 'application/json; charset=UTF-8',
-      },
-      body: jsonEncode(<String, String>{
-        'email': email,
-        'password': password,
-      }),
-    );
-
-    if (response.statusCode == 200) {
-      // If the server did return a 201 CREATED response,
-      // then parse the JSON.
-      print(response.body);
-      return Login.fromJson(jsonDecode(response.body));
-    } else {
-      // If the server did not return a 201 CREATED response,
-      // then throw an exception.
-      throw Exception('Failed to create album.');
-    }
+    super.dispose();
   }
 
   @override
@@ -112,7 +157,7 @@ class _LoginPageState extends State<LoginPage> {
                                 ),
                               ),
                               Text(
-                                ' to your account',
+                                'to your account',
                                 style: TextStyle(
                                   fontWeight: FontWeight.w700,
                                   fontStyle: FontStyle.normal,
@@ -155,23 +200,23 @@ class _LoginPageState extends State<LoginPage> {
                     SizedBox(
                       height: 14,
                     ),
+                    spacer20,
+                    
                     Input(
-                      //focusNode: emailFocus,
+                      // focusNode: emailFocus,
                       controller: email,
-
                       hintText: 'Email Address',
-
                       styleColor: primaryColor,
                       obscureText: false,
                       hintStyleColor: Color(0xFF7C7C7C),
                       validator: (String value) {
-                        if (!validator.isEmail(value) && value.length < 1) {
+                        if (validator.isEmail(value) && value.length < 1) {
                           return 'Email Address is required';
                         }
                       },
-                      onSaved: (String value) {
-                        login.email = value;
-                      },
+                      // onSaved: (String value) {
+                      //   login.email = value;
+                      // },
                     ),
                     SizedBox(
                       height: 14,
@@ -194,7 +239,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     Input(
                       isPassword: true,
-                      //focusNode: emailFocus,
+                      //focusNode: passwordFocus,
                       controller: password,
                       showObscureText: showObscureTextPassword,
                       isPasswordColor: Color(0xFF7C7C7C),
@@ -208,25 +253,25 @@ class _LoginPageState extends State<LoginPage> {
                       hintText: 'Password',
                       styleColor: primaryColor,
                       validator: MultiValidator([
-                        RequiredValidator(errorText: 'password is required'),
+                       // RequiredValidator(errorText: 'Password is required'),
                         MinLengthValidator(8,
                             errorText:
                                 'password must be at least 8 digits long'),
-                        PatternValidator(r'(?=.*?[#?!@$%^&*-])',
+                       PatternValidator(r'(?=.*?[#?!@$%^&*-])',
                             errorText:
                                 'passwords must have at least one special character')
                       ]),
-                      onSaved: (String value) {
-                        login.password = value;
-                      },
+                      // onSaved: (String value) {
+                      //   login.password = value;
+                      // },
                     ),
                     spacer10,
                     GestureDetector(
                       onTap: () {
                         Navigator.of(context).push(
                           MaterialPageRoute(
-                            settings: RouteSettings(name: "/test"),
-                            builder: (context) => TestPage(),
+                            settings: RouteSettings(name: "/forgot_password"),
+                            builder: (context) => ForgotPassword(),
                           ),
                         );
                       },
@@ -246,53 +291,13 @@ class _LoginPageState extends State<LoginPage> {
                             onTap: () async {
                               if (_formKey.currentState.validate()) {
                                 _formKey.currentState.save();
-                                if (login.password.length < 1 ||
-                                    login.email.length < 1) {
-                                  print("object");
-                                }
-                                print(email.text);
-                                await createAlbum(email.text, password.text);
-                               Navigator.of(context).push(
-                                  MaterialPageRoute(
-                                    settings: RouteSettings(name: "/tabPage"),
-                                    builder: (context) => TabView(),
-                                  ),
-                                );
+                                showLoader(context);
+
+                                await loginUser(email.text, password.text);
+                                Loader.hide();
                               } else {
-                                Navigator.of(context).push(
-                                  MaterialPageRoute(
-                                    settings: RouteSettings(name: "/test"),
-                                    builder: (context) => TestPage(),
-                                  ),
-                                );
+                                print("Failed");
                               }
-
-                              // FocusScope.of(context).unfocus();
-                              // if (_formKey.currentState.validate()) {
-                              //   _formKey.currentState.save();
-                              //   showLoader(context);
-                              //   try {
-                              //     final loginData = await Auth.userLogin(login);
-
-                              //           //if(loginData['statusCode'] == 200){
-
-                              //          // }
-
-                              //     Loader.hide();
-
-                              //   } catch (e) {
-                              //     hideLoader();
-                              //     Alert(
-                              //       context: context,
-                              //       content: e,
-                              //       title: 'Login Error',
-                              //     );
-                              //   }
-                              // }
-
-                              // await signInMethod(
-                              //     email.value.text, password.value.text);
-                              // print(email.value.text);
                             },
                             child: Container(
                               width: 360,
@@ -331,11 +336,24 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       margin: EdgeInsets.only(bottom: 2.95),
                     ),
+                     SizedBox(
+                      height: 20,
+                    ),
+                    SocialLogin(
+                      width: 0.0,
+                      name: 'Sign in Apple ID ',
+                      textColor: Color(0xffffffff),
+                      fontColor: Color(0xffffffff),
+                      cardColor: Color(0xff000000),
+                      onTap: () {},
+                      icon: FontAwesomeIcons.apple,
+                    ),
                     SizedBox(
                       height: 20,
                     ),
                     SocialLogin(
-                      name: 'Register with Google',
+                      name: 'Sign with Google',
+                      width: 2.0,
                       textColor: Color(0xff10151a),
                       cardColor: Colors.white,
                       onTap: () {},
@@ -346,7 +364,8 @@ class _LoginPageState extends State<LoginPage> {
                       height: 20,
                     ),
                     SocialLogin(
-                      name: 'Register with Facebook ',
+                      width: 0.0,
+                      name: 'Sign in with Facebook ',
                       textColor: Color(0xffffffff),
                       cardColor: Color(0xff3D5B96),
                       fontColor: Color(0xffffffff),
@@ -358,19 +377,10 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                         );
                       },
-                      icon: FontAwesomeIcons.facebook,
+                      icon: FontAwesomeIcons.facebookF,
                     ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    SocialLogin(
-                      name: 'Sign in Apple ID ',
-                      textColor: Color(0xffffffff),
-                      fontColor: Color(0xffffffff),
-                      cardColor: Color(0xff000000),
-                      onTap: () {},
-                      icon: FontAwesomeIcons.apple,
-                    ),
+                   
+                    
                     SizedBox(
                       height: 14,
                     ),
@@ -419,50 +429,5 @@ class _LoginPageState extends State<LoginPage> {
             ),
           )),
     );
-  }
-
-  signInMethod(String email, String password) async {
-    String url = "https://aduabaecommerceapi.azurewebsites.net/login";
-    var response = await http
-        .post(Uri.parse(url), body: {"email": email, "password": password});
-
-    var jsonResponse;
-
-    if (response.statusCode == 200) {
-      jsonResponse = json.decode(response.body);
-      if (jsonResponse != null) {
-        print(jsonResponse['token']);
-        print(jsonResponse['message']); // for Printing the token
-
-        // Navigator used to enter inside app if the authentication is correct
-        Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(
-              builder: (BuildContext context) => TabView(),
-            ),
-            (Route<dynamic> route) => false);
-      }
-    } else {
-      //_displaySnackbar;
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: new Text("Error!!"),
-            content: new Text("Error message like email or password wrong!!!!"),
-            actions: <Widget>[
-              new FlatButton(
-                child: new Text("OK"),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-              ),
-            ],
-          );
-        },
-      );
-      print("Error message like email or password wrong!!!!"); // T
-      print(jsonResponse['token']);
-      print('hhhhhh>>>>> ${jsonResponse.message}'); // fooast
-    }
   }
 }
