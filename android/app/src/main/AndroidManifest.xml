@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.sbsc_capstone_team_jupiter">
    <application
-        android:label="Aduba Fresh"
+        android:label="Aduaba Fresh"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

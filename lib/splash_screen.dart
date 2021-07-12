@@ -1,69 +1,48 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:after_layout/after_layout.dart';
+import 'package:sbsc_capstone_team_jupiter/screens/auth/login.dart';
+import 'package:sbsc_capstone_team_jupiter/screens/landing_screen.dart';
 import 'package:sbsc_capstone_team_jupiter/screens/tab_controller.dart';
-import 'dart:async';
+import 'package:shared_preferences/shared_preferences.dart';
 
-import 'screens/auth/create_account.dart';
-import 'screens/auth/login.dart';
-
-class SplashScreenPage extends StatefulWidget {
+class Splash extends StatefulWidget {
   @override
-  _SplashScreenPageState createState() => _SplashScreenPageState();
+  SplashState createState() => new SplashState();
 }
 
-class _SplashScreenPageState extends State<SplashScreenPage> {
-  @override
-  void initState() {
-    super.initState();
-   new Future.delayed(
-        const Duration(seconds: 3),
-        () => Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => LoginPage()),
-            ));
+class SplashState extends State<Splash> with AfterLayoutMixin<Splash> {
+  Future checkFirstSeen() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    bool _seen = (prefs.getBool('seen') ?? false);
+
+    if (_seen) {
+      Navigator.of(context).pushReplacement(
+          new MaterialPageRoute(builder: (context) => new LandingScreen()));
+    } else {
+      await prefs.setBool('seen', true);
+      Navigator.of(context).pushReplacement(
+          new MaterialPageRoute(builder: (context) => new LandingScreen()));
+    }
   }
 
-  // startTime() async {
-  //   var duration = Duration(milliseconds: 250);
-  //   return Timer(duration, route);
-  // }
+  @override
+  void afterFirstLayout(BuildContext context) => checkFirstSeen();
 
-  // route() {
-  //   Navigator.pushNamed(context, '/home');
-  //   //Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoginPage()),);
-  // }
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    checkFirstSeen();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return new Scaffold(
       body: Container(
         decoration: BoxDecoration(
-            image: DecorationImage(
-                image: AssetImage(
-                  'assets/launch_image.png',
-                ),
-                fit: BoxFit.cover)),
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
-        //  child: Column(
-        //    children: [
-        //     SizedBox(height: 295.78,
-        //     ),
-        //      Image.asset('assets/logo.png',width: 500.62,height: 130.43,),
-        //      Spacer(),
-        //      Container(
-        //       // height: 195,width: 375,
-        //        child: Row(
-        //          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        //          children: [
-        //            Image.asset('assets/images/orange.png'),
-        //            Image.asset('assets/images/berry.png',),
-        //          ],
-        //        ),
-        //      ),
-        //    ],
-        //  ),
-        // child:Center(child: Image.asset('assets/logo.png',width: 300.62,height: 130.43,)),
+          image: DecorationImage(
+              image: AssetImage("assets/launch_logo.png"), fit: BoxFit.fill),
+        ),
       ),
     );
   }

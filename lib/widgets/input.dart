@@ -8,7 +8,7 @@ class Input extends StatelessWidget {
   final String hintText;
   final Function validator;
   final Function onSaved;
-  final Function onChanged;
+  //final Function onChanged;
   final Function toggleEye;
   //final KeyboardType keyboard;
   final String init;
@@ -27,7 +27,7 @@ class Input extends StatelessWidget {
   final Key key;
   final TextEditingController controller;
   final List<TextInputFormatter> inputFormatters;
-  final FocusNode focusNode;
+  //final FocusNode focusNode;
   final bool alignLabelWithHint;
   final FloatingLabelBehavior floatingLabelBehavior;
 
@@ -48,20 +48,20 @@ class Input extends StatelessWidget {
       this.labelText,
       this.maxLines = 1,
       this.borderColor = lighterGrey,
-      this.onChanged,
+     // this.onChanged,
       this.prefix,
       this.suffix,
       this.key,
       this.controller,
       this.inputFormatters,
-      this.focusNode,
+     // this.focusNode,
       this.alignLabelWithHint,
       this.floatingLabelBehavior});
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-        focusNode: focusNode,
+      //  focusNode: focusNode,
         inputFormatters: inputFormatters,
         controller: controller,
         key: key,
@@ -70,7 +70,7 @@ class Input extends StatelessWidget {
         cursorColor: styleColor,
         obscureText: obscureText,
         maxLines: maxLines,
-        onChanged: onChanged,
+       // onChanged: onChanged,
         decoration: InputDecoration(
           floatingLabelBehavior: floatingLabelBehavior,
           prefixIcon: prefix,

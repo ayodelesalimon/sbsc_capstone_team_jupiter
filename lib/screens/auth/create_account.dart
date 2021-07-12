@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:sbsc_capstone_team_jupiter/model/auth/register.dart';
@@ -9,6 +11,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sbsc_capstone_team_jupiter/widgets/input.dart';
 import 'package:sbsc_capstone_team_jupiter/widgets/loader.dart';
 import 'package:validators/validators.dart' as validator;
+import 'package:flushbar/flushbar.dart';
+import 'package:http/http.dart' as http;
 
 import 'login.dart';
 
@@ -31,10 +35,26 @@ class _CreateAccountState extends State<CreateAccount> {
   TextEditingController lastname = TextEditingController();
   TextEditingController password = TextEditingController();
   TextEditingController confirmpassword = TextEditingController();
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+  bool loading;
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    //  controller.dispose();
+    email.dispose();
+    password.dispose();
+    firstname.dispose();
+    lastname.dispose();
+    confirmpassword.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        key: _scaffoldKey,
         body: SingleChildScrollView(
           child: Container(
             margin: EdgeInsets.only(right: 24, left: 24),
@@ -95,6 +115,7 @@ class _CreateAccountState extends State<CreateAccount> {
                       height: 20,
                     ),
                     SocialLogin(
+                      width: 2.0,
                       name: 'Register with Google',
                       textColor: Color(0xff10151a),
                       cardColor: Colors.white,
@@ -106,6 +127,7 @@ class _CreateAccountState extends State<CreateAccount> {
                       height: 20,
                     ),
                     SocialLogin(
+                      width: 0.0,
                       name: 'Register with Facebook ',
                       textColor: Color(0xffffffff),
                       cardColor: Color(0xff3D5B96),
@@ -113,12 +135,13 @@ class _CreateAccountState extends State<CreateAccount> {
                       onTap: () {},
                       icon: FontAwesomeIcons.facebook,
                     ),
-                    SizedBox(
+                     SizedBox(
                       height: 20,
                     ),
                     SocialLogin(
-                      name: 'Sign in Apple ID ',
-                      textColor: Color(0xffffffff),
+                      width: 2.0,
+                      name: 'Sign in with Apple ID',
+                       textColor: Color(0xffffffff),
                       fontColor: Color(0xffffffff),
                       cardColor: Color(0xff000000),
                       onTap: () {},
@@ -291,15 +314,15 @@ class _CreateAccountState extends State<CreateAccount> {
                       },
                       hintStyleColor: Color(0xFF7C7C7C),
                       // hintStyleColor: Color(0xFF7C7C7C),
-                      // validator: MultiValidator([
-                      //   RequiredValidator(errorText: 'password is required'),
-                      //   MinLengthValidator(8,
-                      //       errorText:
-                      //           'password must be at least 8 digits long'),
-                      //   PatternValidator(r'(?=.*?[#?!@$%^&*-])',
-                      //       errorText:
-                      //           'passwords must have at least one special character')
-                      // ]),
+                      validator: MultiValidator([
+                        RequiredValidator(errorText: 'password is required'),
+                        MinLengthValidator(8,
+                            errorText:
+                                'password must be at least 8 digits long'),
+                        PatternValidator(r'(?=.*?[#?!@$%^&*-])',
+                            errorText:
+                                'passwords must have at least one special character')
+                      ]),
                       onSaved: (String value) {
                         register.password = value;
                       },
@@ -338,18 +361,18 @@ class _CreateAccountState extends State<CreateAccount> {
                       },
                       styleColor: primaryColor,
                       hintStyleColor: Color(0xFF7C7C7C),
-                      // validator: MultiValidator([
-                      //   RequiredValidator(errorText: 'password is required'),
-                      //   MinLengthValidator(8,
-                      //       errorText:
-                      //           'password must be at least 8 digits long'),
-                      //   PatternValidator(r'(?=.*?[#?!@$%^&*-])',
-                      //       errorText:
-                      //           'passwords must have at least one special character')
-                      // ]),
+                      validator: MultiValidator([
+                        RequiredValidator(errorText: 'password is required'),
+                        MinLengthValidator(8,
+                            errorText:
+                                'password must be at least 8 digits long'),
+                        PatternValidator(r'(?=.*?[#?!@$%^&*-])',
+                            errorText:
+                                'passwords must have at least one special character')
+                      ]),
 
                       onSaved: (String value) {
-                        register..confirmPassword = value;
+                        register.confirmPassword = value;
                       },
                     ),
                     SizedBox(
@@ -360,28 +383,17 @@ class _CreateAccountState extends State<CreateAccount> {
                         onTap: () async {
                           if (_formKey.currentState.validate()) {
                             _formKey.currentState.save();
-                            // showLoader(context);
-
-                            CircularProgressIndicator();
-                            try {
-                              final data = await Auth.userSignup(register);
-                              print(data);
-                              Navigator.of(context).push(
-                                MaterialPageRoute(
-                                  settings: RouteSettings(name: "/loginPage"),
-                                  builder: (context) => LoginPage(),
-                                ),
-                              );
-                             // Loader.hide();
-                            } catch (e) {
-                             hideLoader();
-                              Alert(
-                                context: context,
-                                content: e,
-                                title: 'Login Error',
-                              );
-                           }
-                         }
+                            showLoader(context);
+                            await registerUser(
+                                firstname.text,
+                                lastname.text,
+                                email.text,
+                                password.text,
+                                confirmpassword.text);
+                            Loader.hide();
+                          } else {
+                            print("Failed");
+                          }
                         },
                         child: Container(
                           width: 360,
@@ -454,5 +466,57 @@ class _CreateAccountState extends State<CreateAccount> {
         ),
       ),
     );
+  }
+
+  Future<Register> registerUser(String firstName, String lastName, String email, String password, String confirmPassword,) async {
+    final response = await http.post(
+      Uri.parse('https://aduabaecommerceapi.azurewebsites.net/register-user'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, String>{
+        'firstName': firstName,
+        'lastName': lastName,
+        'email': email,
+        'password': password,
+        'confirmPassword': confirmPassword,
+      }),
+    );
+    dynamic decodedResponse = jsonDecode(response.body);
+
+    if (response.statusCode == 200) {
+      if (decodedResponse['status'] == "Success") {
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            settings: RouteSettings(name: "/loginPage"),
+            builder: (context) => LoginPage(),
+          ),
+        );
+      } else {
+        print(decodedResponse['message']);
+        Alert(
+          context: context,
+          content: decodedResponse['message'],
+          title: 'Login Error',
+        );
+        
+      }
+      // If the server did return a 201 CREATED response,
+      // then parse the JSON.
+      print(response.body);
+
+      //  return Login.fromJson(jsonDecode(response.body));
+    } else {
+      print(response.statusCode);
+       Alert(
+          context: context,
+          content: decodedResponse['message'],
+          title: 'Error',
+        );
+
+      // If the server did not return a 201 CREATED response,
+      // then throw an exception.
+
+    }
   }
 }

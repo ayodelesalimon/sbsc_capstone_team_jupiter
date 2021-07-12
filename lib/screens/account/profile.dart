@@ -1,8 +1,10 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:sbsc_capstone_team_jupiter/constants.dart';
+import 'package:sbsc_capstone_team_jupiter/util/constants.dart';
 import 'package:sbsc_capstone_team_jupiter/screens/account/edit_profile.dart';
+import 'package:sbsc_capstone_team_jupiter/screens/auth/auto_login.dart';
+import 'package:sbsc_capstone_team_jupiter/services/base.dart';
 
 import '../tab_controller.dart';
 
@@ -15,6 +17,39 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
+  String userFirstName = '';
+  String userEmail = '';
+  String userLastName = '';
+  Future<void> getFirstNameFromLocalStorage() async {
+    final data = await getFromLocalStorage(name: 'firstName');
+    setState(() {
+      userFirstName = data;
+    });
+  }
+
+  Future<void> getEmailFromLocalStorage() async {
+    final data = await getFromLocalStorage(name: 'email');
+    setState(() {
+      userEmail = data;
+    });
+  }
+
+  Future<void> getLastNameFromLocalStorage() async {
+    final data = await getFromLocalStorage(name: 'lastName');
+    setState(() {
+      userLastName = data;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    getFirstNameFromLocalStorage().whenComplete(() => null);
+    getEmailFromLocalStorage().whenComplete(() => null);
+    getLastNameFromLocalStorage().whenComplete(() => null);
+  }
+
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
@@ -94,13 +129,13 @@ class _ProfileState extends State<Profile> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  "Oga Hafis",
+                                  "${userFirstName}, $userLastName",
                                   style: TextStyle(
                                       fontSize: 18,
                                       fontWeight: FontWeight.w700),
                                 ),
                                 spacer5,
-                                Text("ogahafis@sbsc.com"),
+                                Text(userEmail),
                                 spacer5,
                                 Text("+@346969699666")
                               ],
@@ -180,19 +215,12 @@ class _ProfileState extends State<Profile> {
             Center(
               child: GestureDetector(
                 onTap: () {
-                  // setState(() {
-                  //   if (_formKey.currentState.validate()) {
-                  //     print('perfect');
-                  //   } else {
-                  //     return null;
-                  //   }
-                  // Navigator.of(context).push(
-                  //   MaterialPageRoute(
-                  //     settings: RouteSettings(name: "/home"),
-                  //     builder: (context) => TabView(),
-                  //   ),
-                  // );
-                  //  });
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      settings: RouteSettings(name: "/home"),
+                      builder: (context) => AutoLoginPage(),
+                    ),
+                  );
                 },
                 child: Container(
                   width: 360,

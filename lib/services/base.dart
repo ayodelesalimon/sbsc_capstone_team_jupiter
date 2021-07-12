@@ -5,10 +5,56 @@ import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:http/http.dart' as http;
+import 'package:sbsc_capstone_team_jupiter/model/auth/login.dart';
 import 'package:sbsc_capstone_team_jupiter/model/error_model.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-import '../constants.dart';
+import '../util/constants.dart';
+import 'package:jwt_decoder/jwt_decoder.dart';
+errHandler({code, message}) async {
+  if (message.toString().isNotEmpty && message != null) {
+    final errMessage = message?.toString() ?? '';
 
+   // await Sentry.captureException(errMessage); printData('errMessage', errMessage);
+    return errMessage;
+  }
+}
+
+decodeAndStoreToken({data}) async {
+  // jsonDecode() method will decode json response
+  Map<String, dynamic> jsonDeCoded = data;
+  final userToken = jsonDeCoded['data']['token'];
+  final refreshToken = jsonDeCoded['data']['refreshToken'];
+
+  Map<String, dynamic> decodedToken = JwtDecoder.decode(userToken);
+  // setToLocalStorage() method will set your token's payload
+  await setToLocalStorage(name: 'token', data: userToken);
+  await setToLocalStorage(name: 'refToken', data: refreshToken);
+  await setToLocalStorage(name: 'firstName', data: decodedToken['FirstName']);
+  await setToLocalStorage(name: 'email', data: decodedToken['Email']);
+  await setToLocalStorage(name: 'lastName', data: decodedToken['LastName']);
+  await setToLocalStorage(name: 'userId', data: decodedToken['UserId']);
+
+  return UserMode.fromJson(decodedToken);
+}
+
+
+setToLocalStorage({String name, dynamic data}) async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  prefs.setString(name, data);
+}
+
+// getFromLocalStorage() method will get data from the local storage
+getFromLocalStorage({String name}) async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  String data = prefs.getString(name);
+  return data;
+}
+
+removeFromLocalStorage({String name}) async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  prefs.remove(name);
+}
 class Api {
   static get({String url}) async {
     printData('Api url', url);

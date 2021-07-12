@@ -7,7 +7,7 @@ Random random = new Random();
 
 const Color primaryColor = Color(0xFF369637);
 const Color lightPrimaryColor = Color(0XFF0CA2D9);
-const Color deepPrimaryColor = Color(0xFF2788E9);
+//const Color deepPrimaryColor = Color(0xFF2788E9);
 const Color lightGrey = Color(0xFF5F6368);
 const Color darkGrey = Color(0xFF3C4043);
 const Color yellow = Color(0xFFFF9D00);

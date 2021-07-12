@@ -9,11 +9,12 @@ class SocialLogin extends StatelessWidget {
     this.icon,
     this.cardColor,
     this.onTap,
-    this.fontColor,
+    this.fontColor, this.width,
   }) : super(key: key);
   final String name;
   final Color textColor, fontColor, cardColor;
   final IconData icon;
+  final double width;
 
   final Function onTap;
   @override
@@ -54,10 +55,10 @@ class SocialLogin extends StatelessWidget {
               decoration: BoxDecoration(
                   border: Border.all(
                       //color: Color(0xff10151a),
-                      width: 2.0,
+                      width: width,
                       style: BorderStyle.solid),
                   color: cardColor,
-                  borderRadius: BorderRadius.circular(10)),
+                  borderRadius: BorderRadius.circular(5)),
             )),
       ),
     );

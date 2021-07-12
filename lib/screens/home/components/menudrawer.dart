@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:sbsc_capstone_team_jupiter/constants.dart';
+import 'package:sbsc_capstone_team_jupiter/util/constants.dart';
 import 'package:sbsc_capstone_team_jupiter/screens/account/profile.dart';
 import 'package:sbsc_capstone_team_jupiter/screens/cart/cart.dart';
 import 'package:sbsc_capstone_team_jupiter/screens/category/categories_grid.dart';
 import 'package:sbsc_capstone_team_jupiter/screens/order/account_order.dart';
+import 'package:sbsc_capstone_team_jupiter/services/base.dart';
 
 class MyDrawer extends StatefulWidget {
   // final Function onTap;
@@ -15,6 +16,43 @@ class MyDrawer extends StatefulWidget {
 }
 
 class _MyDrawerState extends State<MyDrawer> {
+
+    String userFirstName = '';
+  String userEmail = '';
+  String userLastName = '';
+
+Future<void> getFirstNameFromLocalStorage() async {
+    final data = await getFromLocalStorage(name: 'firstName');
+    setState(() {
+      userFirstName = data;
+    });
+  }
+
+  Future<void> getEmailFromLocalStorage() async {
+    final data = await getFromLocalStorage(name: 'email');
+    setState(() {
+      userEmail = data;
+    });
+  }
+  Future<void> getLastNameFromLocalStorage() async {
+    final data = await getFromLocalStorage(name: 'lastName');
+    setState(() {
+      userLastName = data;
+    });
+  }
+
+  @override
+  void initState() {
+   
+
+    super.initState();
+  
+    getFirstNameFromLocalStorage().whenComplete(() => null);
+    getEmailFromLocalStorage().whenComplete(() => null);
+   
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -64,7 +102,7 @@ class _MyDrawerState extends State<MyDrawer> {
                            SizedBox(width: 20,),
                             Container(
                               child: Text(
-                                'Andrea Charles',
+                                '$userFirstName ' ' $userLastName',
                                 style: TextStyle(
                                   color: Color(0xff000000),
                                   fontSize: 17,

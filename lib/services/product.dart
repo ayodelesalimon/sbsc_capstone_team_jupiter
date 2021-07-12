@@ -6,7 +6,7 @@ import 'package:sbsc_capstone_team_jupiter/model/product/get_product.dart';
 import 'package:sbsc_capstone_team_jupiter/model/user_request/email_request_password.dart';
 import 'package:sbsc_capstone_team_jupiter/services/base.dart';
 
-import '../constants.dart';
+import '../util/constants.dart';
 
 //final adubaUrl = "https://aduabaecommerceapi.azurewebsites.net/Categories/add";
 

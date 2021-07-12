@@ -30,7 +30,7 @@ class _LandingScreenState extends State<LandingScreen> {
               ),
               content: new Text(
                 'Do you want to exit the App?',
-                style: TextStyle(color: Color(0xFF2788E9)),
+                style: TextStyle(color: primaryColor),
               ),
               backgroundColor: Colors.white,
               shape: RoundedRectangleBorder(
@@ -39,7 +39,7 @@ class _LandingScreenState extends State<LandingScreen> {
                 FlatButton(
                   child: new Text(
                     'Yes',
-                    style: TextStyle(color: Color(0xFF2788E9)),
+                    style: TextStyle(color: primaryColor),
                   ),
                   onPressed: () {
                     SystemNavigator.pop();
@@ -152,188 +152,212 @@ class _LandingScreenState extends State<LandingScreen> {
   swipeable({image, title, title4, title1, title2}) {
     final MediaQueryData _mediaQueryData = MediaQuery.of(context);
     print('size ${_mediaQueryData.size.height}');
-    return Container(
-      decoration: BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage("assets/$image"),
-          fit: BoxFit.cover,
-          colorFilter: new ColorFilter.mode(
-              Colors.lightGreenAccent.withOpacity(0.5), BlendMode.srcOver),
-        ),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(left: 18.0, bottom: 50),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                //SizedBox(height: 20),
-                SizedBox(
-                  height: _mediaQueryData.size.height / 2.5,
-                ),
-                Container(
-                  child: SmoothPageIndicator(
-                    controller: controller,
-                    count: 3,
-                    effect: WormEffect(
-                      dotColor: Colors.white,
-                      activeDotColor: Colors.green,
-                      radius: 10,
-                      dotHeight: 10,
-                      dotWidth: 10,
+    return Stack(
+      children: 
+        [
+          Image.asset(
+            "assets/$image",
+            fit: BoxFit.cover,
+            height: double.infinity,
+            width: double.infinity,),
+          
+          Container(
+          decoration: BoxDecoration(
+            // image: DecorationImage(
+              
+            //   image: AssetImage("assets/$image"),
+            //   fit: BoxFit.cover,
+
+            //   // colorFilter: new ColorFilter.mode(
+            //   //     Colors.lightGreenAccent.withOpacity(0.5), BlendMode.srcOver),
+            // ),
+             gradient: LinearGradient(
+                          begin: FractionalOffset.topCenter,
+                          end: FractionalOffset.bottomCenter,
+                          colors: [ Color.fromRGBO(242, 144, 47, 0.4),
+                            Color.fromRGBO(58, 149, 60, 0.16),
+                            Color.fromRGBO(0, 0, 0, 0.78)
+                          ],
+                          /*stops: [
+                            0,0.41,1.0
+                      ]
+                       */)
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(left: 18.0, bottom: 50),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    //SizedBox(height: 20),
+                    SizedBox(
+                      height: _mediaQueryData.size.height / 2.5,
                     ),
-                  ),
-                ),
-                SizedBox(
-                  height: 15,
-                ),
-
-                Text(
-                  title,
-                  softWrap: true,
-                  style: TextStyle(
-                    fontFamily: 'TT Norms Pro',
-                    color: Colors.white,
-                    fontSize: 25,
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
-
-                Text(
-                  title1,
-                  softWrap: true,
-                  style: TextStyle(
-                    fontFamily: 'TT Norms Pro',
-                    color: Colors.white,
-                    fontSize: 25,
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Text(
-                  title2,
-                  softWrap: true,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 18,
-                  ),
-                ),
-                Text(
-                  title4,
-                  softWrap: true,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 18,
-                  ),
-                ),
-                SizedBox(
-                  height: 50,
-                ),
-                // Container(
-                //     height: 50,
-                //     width: 350,
-                //     child: ElevatedButton(
-                //       style: ElevatedButton.styleFrom(
-                //         primary: primaryColor, // background
-                //         onPrimary: Colors.white, // foreground
-                //       ),
-                //       onPressed: () => Navigator.of(context)
-                //       .push(MaterialPageRoute(builder: (_) => TabView())),
-                //       child: Text(
-                //         "Get Started",
-                //         style: TextStyle(
-                //           fontFamily: 'TT Norms Pro',
-
-                //           fontWeight: FontWeight.w700,
-                //           color: Colors.white,
-                //           fontSize: 18,
-                //         ),
-                //       ),
-                //     )),
-              ],
-            ),
-          ),
-          Center(
-            child: GestureDetector(
-              onTap: () async {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    settings: RouteSettings(name: "/createAccount"),
-                    builder: (context) => CreateAccount(),
-                  ),
-                );
-              },
-              child: SizedBox(
-                  width: 360,
-                  height: 52,
-                  child: Container(
-                    child: Center(
-                        child: Text(
-                      'Get Started',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w800,
-                        fontSize: 16,
-                      ),
-                    )),
-                    decoration: BoxDecoration(
-                        color: primaryColor,
-                        borderRadius: BorderRadius.circular(10)),
-                  )),
-            ),
-          ),
-          SizedBox(
-            height: 15,
-          ),
-          Padding(
-            padding: const EdgeInsets.only(bottom: 25.0),
-            child: Center(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    "Have an account already?",
-                    softWrap: true,
-                    style: TextStyle(
-                      fontFamily: 'TT Norms Pro',
-                      color: Colors.white,
-                      fontSize: 16,
-                    ),
-                  ),
-                  SizedBox(
-                    width: 5,
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          settings: RouteSettings(name: "/loginPage"),
-                          builder: (context) => LoginPage(),
+                    Container(
+                      child: SmoothPageIndicator(
+                        controller: controller,
+                        count: 3,
+                        effect: WormEffect(
+                          dotColor: Colors.white,
+                          activeDotColor: Colors.green,
+                          radius: 10,
+                          dotHeight: 10,
+                          dotWidth: 10,
                         ),
-                      );
-                    },
-                    child: Text(
-                      "Sign In",
+                      ),
+                    ),
+                    SizedBox(
+                      height: 15,
+                    ),
+
+                    Text(
+                      title,
+                      softWrap: true,
+                      style: TextStyle(
+                        fontFamily: 'TT Norms Pro',
+                        color: Colors.white,
+                        fontSize: 25,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+
+                    Text(
+                      title1,
+                      softWrap: true,
+                      style: TextStyle(
+                        fontFamily: 'TT Norms Pro',
+                        color: Colors.white,
+                        fontSize: 25,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      title2,
                       softWrap: true,
                       style: TextStyle(
                         color: Colors.white,
-                        fontWeight: FontWeight.w800,
-                        fontSize: 16,
+                        fontSize: 18,
                       ),
                     ),
-                  ),
-                ],
+                    Text(
+                      title4,
+                      softWrap: true,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 18,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 62,
+                    ),
+                    // Container(
+                    //     height: 50,
+                    //     width: 350,
+                    //     child: ElevatedButton(
+                    //       style: ElevatedButton.styleFrom(
+                    //         primary: primaryColor, // background
+                    //         onPrimary: Colors.white, // foreground
+                    //       ),
+                    //       onPressed: () => Navigator.of(context)
+                    //       .push(MaterialPageRoute(builder: (_) => TabView())),
+                    //       child: Text(
+                    //         "Get Started",
+                    //         style: TextStyle(
+                    //           fontFamily: 'TT Norms Pro',
+
+                    //           fontWeight: FontWeight.w700,
+                    //           color: Colors.white,
+                    //           fontSize: 18,
+                    //         ),
+                    //       ),
+                    //     )),
+                  ],
+                ),
               ),
-            ),
+              Center(
+                child: GestureDetector(
+                  onTap: () async {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        settings: RouteSettings(name: "/createAccount"),
+                        builder: (context) => CreateAccount(),
+                      ),
+                    );
+                  },
+                  child: SizedBox(
+                      width: 327,
+                      height: 47,
+                      child: Container(
+                        child: Center(
+                            child: Text(
+                          'Get Started',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 19,
+                          ),
+                        )),
+                        decoration: BoxDecoration(
+                            color: primaryColor,
+                            borderRadius: BorderRadius.circular(10)),
+                      )),
+                ),
+              ),
+              SizedBox(
+                height: 16,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 25.0),
+                child: Center(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "Have an account already?",
+                        softWrap: true,
+                        style: TextStyle(
+                          fontFamily: 'TT Norms Pro',
+                          color: Colors.white,
+                          fontSize: 14,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 5,
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              settings: RouteSettings(name: "/loginPage"),
+                              builder: (context) => LoginPage(),
+                            ),
+                          );
+                        },
+                        child: Text(
+                          "Sign In",
+                          softWrap: true,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w800,
+                            fontSize: 14,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
