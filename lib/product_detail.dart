@@ -32,6 +32,12 @@ change(int status) {
   }
 }
 
+List <CartTile> cartTileList =[
+  CartTile(image:'assets/images/tomatoes.png', product:  'Herbsconnect Organic Acai Berry Powder Freeze Dried', availability:  'In stock', price:  '₦35,000.00', name:   'Emmanuel produce',),
+  CartTile(image:'assets/images/paint.png', product:  'Herbsconnect Organic Acai Berry Powder Freeze Dried', availability:  'In stock', price:  '₦35,000.00', name:   'Emmanuel produce',),
+  CartTile(image:'assets/images/turkey.png', product:  'Herbsconnect Organic Acai Berry Powder Freeze Dried', availability:  'In stock', price:  '₦35,000.00', name:   'Emmanuel produce',),
+
+];
 
 
 class ProductDetails extends StatefulWidget {
@@ -196,6 +202,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                       GestureDetector(
                         onTap:(){
                           Navigator.push(context,MaterialPageRoute(builder: (context)=> CartPage()),);
+                          cartTileList.add(CartTile(image:widget.image, name: widget.name, product: widget.product, price: widget.price, availability: 'In stock',));
                         },
                         child: Container(
                           width: 164,
@@ -241,6 +248,7 @@ class CartTile extends StatefulWidget {
 class _CartTileState extends State<CartTile> {
 
   int quantity = 1;
+
 
   var productList = [
     'Herbsconnect Organic Acai Berry Powder Freeze Dried',

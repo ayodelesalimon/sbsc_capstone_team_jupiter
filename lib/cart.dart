@@ -5,133 +5,35 @@ import 'package:sbsc_capstone_team_jupiter/discover.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:sbsc_capstone_team_jupiter/product_detail.dart';
-//
-// Future<CartTotal> fetchCartTotal() async {
-//   final response =
-//   await http.get(Uri.parse('https://jsonplaceholder.typicode.com/albums/1'));
-//
-//   if (response.statusCode == 200) {
-//     // If the server did return a 200 OK response,
-//     // then parse the JSON.
-//     return CartTotal.fromJson(jsonDecode(response.body));
-//   } else {
-//     // If the server did not return a 200 OK response,
-//     // then throw an exception.
-//     throw Exception('Failed to load album');
-//   }
-// }
-//
-//
-// class CartTotal {
-//
-//   final String message;
-//
-//   CartTotal({
-//     required this.message,
-//   });
-//
-//   factory CartTotal.fromJson(Map<String, dynamic> json) {
-//     return CartTotal(
-//       message: json['message'],
-//     );
-//   }
-// }
-//
-//
-//
-//
-// class ApiHelper {
-//
-//   static String baseEndpoint = 'http://aduabaecommerceapi.azurewebsites.net';
-//
-//   static Future<List<CartItemList>> getAllCart() async {
-//     List<CartItemList> cartItemList = [];
-//     String url = '$baseEndpoint/Cart​/get-cart-items';
-//
-//     http.Response _response = await http.get(Uri.parse(url));
-//     print(_response.body);
-//
-//     List decodedResponse = jsonDecode(_response.body);
-//     cartItemList =
-//         decodedResponse.map((json) => CartItemList.fromJson(json)).toList();
-//     return cartItemList;
-//   }
-//
-//
-//
-// }
-//
-//
-// class CartItemList {
-//   String? userId;
-//   String? productId;
-//   int? quantity;
-//   String? productName;
-//   String? productDescription;
-//   String? productUnitPrice;
-//   String? productImage;
-//   String? status;
-//   String? supplierName;
-//
-//   CartItemList({this.userId, this.productId,this.quantity, this.productDescription,this.productImage, this.productName, this.productUnitPrice, this.status, this.supplierName });
-//
-//   factory CartItemList.fromJson(Map<String, dynamic> json) {
-//     return CartItemList(
-//       userId: json['userId'],
-//       productId: json['productId'],
-//       quantity: json['quantity'],
-//       productName: json['productName'],
-//       productDescription:json['productDescription'],
-//       productUnitPrice: json['productUnitPrice'],
-//       productImage: json['productImage'],
-//       status: json['status'],
-//       supplierName:json['supplierName'],
-//     );
-//   }
-// }
-//
-//
-// Future<CartItem> deleteCartItem(String itemId) async {
-//   final http.Response response = await http.delete(
-//     Uri.parse('https://aduabaecommerceapi.azurewebsites.net/index.html/Cart/remove-cart-item$itemId'),
-//     headers: <String, String>{
-//       'Content-Type': 'application/json; charset=UTF-8',
-//     },
-//   );
-//
-//   if (response.statusCode == 200) {
-//     // If the server did return a 200 OK response,
-//     // then parse the JSON. After deleting,
-//     // you'll get an empty JSON `{}` response.
-//     // Don't return `null`, otherwise `snapshot.hasData`
-//     // will always return false on `FutureBuilder`.
-//     return CartItem.fromJson(jsonDecode(response.body));
-//   } else {
-//     // If the server did not return a "200 OK response",
-//     // then throw an exception.
-//     throw Exception('Failed to delete cartItem.');
-//   }
-// }
-//
-//
-//
-//
-//
-// // 'https://aduabaecommerceapi.azurewebsites.net/index.html/Cart​/get-cart-items
-//
-// class CartItem {
-//   final String? itemId;
-//
-//
-//   CartItem({this.itemId});
-//
-//   factory CartItem.fromJson(Map<String, dynamic> json) {
-//     return CartItem(
-//       itemId: json['itemId'],
-//
-//     );
-//   }
-// }
+
+
+
+Color active = Colors.red;
+Color check = Colors.deepOrange;
+
+update(int status) {
+  if (status == 1) {
+    if (active == Colors.red) {
+      active = Colors.white60;
+    }
+    else {
+      active = Colors.red;
+    }
+  }
+}
+
+
+change(int status) {
+  if (status == 1) {
+    if (check == Colors.deepOrange) {
+      check = Colors.grey;
+    }
+    else {
+      check = Colors.deepOrange;
+    }
+  }
+}
+
 
 class CartPage extends StatefulWidget {
   @override
@@ -139,6 +41,13 @@ class CartPage extends StatefulWidget {
 }
 
 class _CartPageState extends State<CartPage> {
+
+  List <CartTile> cartTileList =[
+     CartTile(image:'assets/images/tomatoes.png', product:  'Herbsconnect Organic Acai Berry Powder Freeze Dried', availability:  'In stock', price:  '₦35,000.00', name:   'Emmanuel produce',),
+    CartTile(image:'assets/images/paint.png', product:  'Herbsconnect Organic Acai Berry Powder Freeze Dried', availability:  'In stock', price:  '₦35,000.00', name:   'Emmanuel produce',),
+    CartTile(image:'assets/images/turkey.png', product:  'Herbsconnect Organic Acai Berry Powder Freeze Dried', availability:  'In stock', price:  '₦35,000.00', name:   'Emmanuel produce',),
+
+  ];
 
   var productList = [
     'Herbsconnect Organic Acai Berry Powder Freeze Dried',
@@ -419,6 +328,193 @@ class _CartPageState extends State<CartPage> {
             ),
           ),
         ),
+      ),
+    );
+  }
+}
+
+class CartTile extends StatefulWidget {
+
+  CartTile({required this.image,required this.name,required this.product,required this.availability,required this.price,});
+
+  final String image, name,price,product,availability;
+  @override
+  _CartTileState createState() => _CartTileState();
+}
+
+class _CartTileState extends State<CartTile> {
+
+  int quantity = 1;
+
+  var productList = [
+    'Herbsconnect Organic Acai Berry Powder Freeze Dried',
+    'Herbsconnect Organic Acai Berry Powder Freeze Dried',
+    'Herbsconnect Organic Acai Berry Powder Freeze Dried',
+
+  ];
+  var vendorList = [
+    'Emmanuel produce',
+    'Emmanuel produce',
+    'Emmanuel produce',
+  ];
+  var imageList = [
+    'assets/images/tomatoes.png',
+    'assets/images/paint.png',
+    'assets/images/turkey.png',
+  ];
+  var priceList = [
+    '₦35,000.00',
+    '₦35,000.00',
+    '₦35,000.00',
+  ];
+  var stockList = [
+    'In stock',
+    'In stock',
+    'In stock',
+  ];
+  //
+  // late Future<CartItem> _futureCartItem;
+  //
+  // bool _isLoading = true;
+  // List<CartItemList> cartItemList = [];
+  // Future<List<CartItemList>> getAllCart() async {
+  //   cartItemList = await ApiHelper.getAllCart();
+  //   setState(() {
+  //     _isLoading = false;
+  //   });
+  //
+  //   return cartItemList;
+  // }
+  //
+  // late Future<CartTotal> futureCartTotal;
+  //
+  //
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   getAllCart();
+  //   futureCartTotal = fetchCartTotal();
+  // }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 327,
+      height: 152,
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          GestureDetector(onTap:(){
+            setState(() {
+              change(1);
+            });
+          },
+            child: Container(
+              width:16, height:16,color: check,
+              child: Image.asset( 'assets/images/mark.png',width: 10,height: 10, color: Colors.white,),),),
+          SizedBox(width: 12,),
+          Container(
+            width: 210,
+            height: 152,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  width: 210,
+                  child: Text(widget.product,
+                    style: TextStyle(fontSize: 17,color: Color(0xff424347),fontWeight: FontWeight.bold),
+                  ),
+                ),
+                SizedBox(height:8),
+                Text(widget.name,style: TextStyle(fontSize: 13,color: Color(0xffbbbbbb),fontWeight: FontWeight.normal),),
+                SizedBox(height:8),
+                Container(
+                  width:148,
+                  height: 20,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(widget.price,style: TextStyle(fontSize: 15,color: Color(0xffF39E28),fontWeight: FontWeight.normal),),
+                      Container(width:14 ,child: Text('.',style: TextStyle(fontSize: 14,color: Color(0xffD8D8D8),fontWeight: FontWeight.w600,),)),
+                      Text(widget.availability,style: TextStyle(fontSize: 15,color: Color(0xff3A953C),),),
+                    ],
+                  ),
+                ),
+                Spacer(),
+                Container(
+                  width: 136,
+                  height: 32,
+                  child: Row(
+                    mainAxisAlignment:MainAxisAlignment.start,
+                    children: [
+                      GestureDetector(
+                        onTap:(){
+                          setState(() {
+                            quantity--;
+                          });
+                        },
+                        child: Container(
+                          width:32,
+                          height: 32,
+                          color: Color(0xfff5f5f5),
+                          child: Center(
+                            child: Image.asset('assets/images/minus.png',width: 8,height: 2,color: Color(0xffbbbbbb),),
+                          ),
+                        ),
+                      ),
+                      Container(
+                        width:32,
+                        height: 32,
+                        color: Color(0xfff5f5f5),
+                        child: Center(
+                          child: Text(quantity.toString(),style: TextStyle(color: Color(0xffbbbbbb),fontSize: 16),),
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: (){
+                          setState(() {
+                            quantity++;
+                          });
+                        },
+                        child: Container(
+                          width:32,
+                          height: 32,
+                          color: Color(0xfff5f5f5),
+                          child: Center(
+                            child: Image.asset('assets/images/plus.png',width: 6,height: 15,color: Color(0xff979797),),
+
+                          ),
+                        ),
+                      ),
+                      Spacer(),
+                      GestureDetector(
+                        onTap: (){
+                          cartTileList.remove(CartTile(image:widget.image, name: widget.name, product: widget.product, price: widget.price, availability: 'In stock',));
+                        },
+                        child: Container(
+                          width:32,
+                          height: 32,
+                          color: Color(0xfff5f5f5),
+                          child: Center(
+                            child: Image.asset('assets/images/bin.png',width: 12,height: 14,color: Color(0xff979797,),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Spacer(),
+          Expanded(
+            child: Container(
+              width: 78,
+              child: Image.asset(widget.image),
+            ),
+          ),
+        ],
       ),
     );
   }
