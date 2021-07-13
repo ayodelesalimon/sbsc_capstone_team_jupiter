@@ -50,6 +50,7 @@ dependencies:
   jwt_decoder:
   after_layout:
   intl:
+  search_page: ^2.0.0+1
   
   
 dev_dependencies:

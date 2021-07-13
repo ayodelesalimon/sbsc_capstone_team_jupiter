@@ -46,3 +46,11 @@ class ProductModel {
     return data;
   }
 }
+
+class ProductMode {
+  final String productName, description, status, imgUrl;
+  final int price, quantity;
+
+  ProductMode(this.description, this.price, this.productName, this.quantity,
+      this.status, this.imgUrl);
+}

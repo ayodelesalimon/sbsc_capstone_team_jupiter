@@ -1,11 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:sbsc_capstone_team_jupiter/screen/discover_search.dart';
+import 'package:sbsc_capstone_team_jupiter/screen/cart.dart';
+import 'package:sbsc_capstone_team_jupiter/screen/discover/discover_search.dart';
+//import 'package:sbsc_capstone_team_jupiter/screen/discover_search.dart';
+import 'package:sbsc_capstone_team_jupiter/screen/menu_drawer.dart';
 import 'package:sbsc_capstone_team_jupiter/screen/product_detail.dart';
 
-import 'cart.dart';
-import 'checkout_shipping.dart';
-import 'menu_drawer.dart';
+// import 'cart.dart';
+// import 'checkout_shipping.dart';
+// import 'menu_drawer.dart';
 
 
 

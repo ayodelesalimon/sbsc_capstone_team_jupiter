@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 //import 'package:sbsc_capstone_team_jupiter/product_detail.dart';
-import 'package:sbsc_capstone_team_jupiter/screen/checkout.dart';
-import 'package:sbsc_capstone_team_jupiter/screen/discover.dart';
+//import 'package:sbsc_capstone_team_jupiter/screen/checkout.dart';
+import 'package:sbsc_capstone_team_jupiter/screen/checkout/checkout.dart';
+//import 'package:sbsc_capstone_team_jupiter/screen/discover.dart';
+import 'package:sbsc_capstone_team_jupiter/screen/discover/discover.dart';
 import 'package:sbsc_capstone_team_jupiter/screen/product_detail.dart';
 //
 // Future<CartTotal> fetchCartTotal() async {

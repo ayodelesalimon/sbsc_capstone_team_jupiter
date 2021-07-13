@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sbsc_capstone_team_jupiter/screen/home.dart';
-import 'package:sbsc_capstone_team_jupiter/screen/discover_search.dart';
+//import 'package:sbsc_capstone_team_jupiter/screen/discover_search.dart';
 import 'package:sbsc_capstone_team_jupiter/screen/menu_drawer.dart';
 
 
