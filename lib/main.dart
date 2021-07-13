@@ -5,7 +5,6 @@ import 'package:flutter/services.dart';
 import 'package:sbsc_capstone_team_jupiter/providers/auth.dart';
 import 'package:sbsc_capstone_team_jupiter/providers/user_provider.dart';
 import 'package:sbsc_capstone_team_jupiter/providers/user_state.dart';
-import 'package:sbsc_capstone_team_jupiter/screen/category.dart';
 import 'package:sbsc_capstone_team_jupiter/screen/create_account.dart';
 import 'package:sbsc_capstone_team_jupiter/screen/home.dart';
 import 'package:sbsc_capstone_team_jupiter/screen/onboarding_forgot.dart';
@@ -120,7 +119,7 @@ class _MyAppState extends State<MyApp> {
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
             fontFamily: 'TT Norms Pro',
-            primarySwatch: Colors.blue,
+            primarySwatch: Colors.green,
           ),
 
           //initialRoute: initScreen != null ? '/' : '/onbo',

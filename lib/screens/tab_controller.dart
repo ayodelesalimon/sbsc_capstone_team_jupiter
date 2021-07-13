@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:sbsc_capstone_team_jupiter/screen/account_profile.dart';
-import 'package:sbsc_capstone_team_jupiter/screen/discover.dart';
+import 'package:sbsc_capstone_team_jupiter/screen/account/account_profile.dart';
+//import 'package:sbsc_capstone_team_jupiter/screen/discover.dart';
+import 'package:sbsc_capstone_team_jupiter/screen/discover/discover.dart';
 import 'package:sbsc_capstone_team_jupiter/screen/home.dart';
 //import 'package:sbsc_capstone_team_jupiter/screens/account/profile.dart';
 import 'package:sbsc_capstone_team_jupiter/screens/home/home.dart';
 import 'package:sbsc_capstone_team_jupiter/widgets/colors.dart';
-
 import 'discover/home.dart';
 
 class TabView extends StatefulWidget {

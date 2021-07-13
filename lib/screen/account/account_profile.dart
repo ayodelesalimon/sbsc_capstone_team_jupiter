@@ -2,11 +2,15 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:sbsc_capstone_team_jupiter/screen/account_editprofile.dart';
+import 'package:sbsc_capstone_team_jupiter/screen/account/account_checkoutpayment.dart';
+import 'package:sbsc_capstone_team_jupiter/screen/account/account_editprofile.dart';
+import 'package:sbsc_capstone_team_jupiter/screen/account/account_order.dart';
+import 'package:sbsc_capstone_team_jupiter/screen/account/account_shipping.dart';
+//import 'package:sbsc_capstone_team_jupiter/screen/account_editprofile.dart';
 import 'package:sbsc_capstone_team_jupiter/screen/wishlist.dart';
-import 'package:sbsc_capstone_team_jupiter/screen/account_order.dart';
-import 'package:sbsc_capstone_team_jupiter/screen/account_checkoutpayment.dart';
-import 'package:sbsc_capstone_team_jupiter/screen/account_shipping.dart';
+// import 'package:sbsc_capstone_team_jupiter/screen/account_order.dart';
+// import 'package:sbsc_capstone_team_jupiter/screen/account_checkoutpayment.dart';
+// import 'package:sbsc_capstone_team_jupiter/screen/account_shipping.dart';
 import 'package:sbsc_capstone_team_jupiter/screen/login.dart';
 import 'package:sbsc_capstone_team_jupiter/screens/auth/auto_login.dart';
 import 'package:sbsc_capstone_team_jupiter/services/base.dart';

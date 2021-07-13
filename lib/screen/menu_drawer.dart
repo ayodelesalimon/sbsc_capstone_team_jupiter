@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:sbsc_capstone_team_jupiter/screen/account/account_order.dart';
+import 'package:sbsc_capstone_team_jupiter/screen/account/account_profile.dart';
 import 'package:sbsc_capstone_team_jupiter/screen/cart.dart';
-import 'package:sbsc_capstone_team_jupiter/screen/category_search.dart';
+import 'package:sbsc_capstone_team_jupiter/screen/category/category.dart';
+//import 'package:sbsc_capstone_team_jupiter/screen/category_search.dart';
 import 'package:sbsc_capstone_team_jupiter/screen/wishlist.dart';
-import 'package:sbsc_capstone_team_jupiter/screen/account_order.dart';
-import 'package:sbsc_capstone_team_jupiter/screen/account_profile.dart';
 import 'package:sbsc_capstone_team_jupiter/services/base.dart';
 
-import 'category.dart';
+//import 'category.dart';
 class MyDrawer extends StatefulWidget {
   // final Function onTap;
   //

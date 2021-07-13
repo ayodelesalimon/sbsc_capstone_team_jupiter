@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:sbsc_capstone_team_jupiter/screen/discovery_detail.dart';
+import 'package:sbsc_capstone_team_jupiter/screens/category/categories_grid.dart';
+//import 'package:sbsc_capstone_team_jupiter/screen/discovery_detail.dart';
 //import 'package:sbsc_capstone_team_jupiter/discovery_detail.dart';
 
 class DiscoverSearchPage extends StatefulWidget {

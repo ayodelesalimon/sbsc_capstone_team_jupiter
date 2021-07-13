@@ -14,15 +14,22 @@ import 'package:flutter_svg/flutter_svg.dart';
 // import 'package:sbsc_capstone_team_jupiter/screens/discover/home.dart
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:sbsc_capstone_team_jupiter/model/product/get_product.dart';
+import 'package:sbsc_capstone_team_jupiter/screen/category/category.dart';
+import 'package:sbsc_capstone_team_jupiter/screen/discover/discover.dart';
+import 'package:sbsc_capstone_team_jupiter/screens/category/categories_grid.dart';
 import 'package:sbsc_capstone_team_jupiter/services/base.dart';
 import 'package:sbsc_capstone_team_jupiter/widgets/colors.dart';
 
+import 'package:search_page/search_page.dart';
+
 import 'cart.dart';
-import 'category.dart';
-import 'discover.dart';
-import 'discover_search.dart';
-import 'discovery_detail.dart';
+// import 'category.dart';
+// import 'discover.dart';
+// import 'discover_search.dart';
+// import 'discovery_detail.dart';
 import 'menu_drawer.dart';
+import 'prodetails.dart';
 import 'product_detail.dart';
 
 Color active = Colors.red;
@@ -82,6 +89,24 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  static List<ProductMode> searchProduct = [
+    ProductMode(
+        'Hello', 4060, 'Orange', 5, 'In Stock', 'assets/images/tomatoes.png'),
+    ProductMode(
+      'Hello',
+      3960,
+      'Mango',
+      5,
+      'In Stock',
+      'assets/images/paint.png',
+    ),
+    ProductMode(
+        'Hello', 2260, 'Pawpaw', 5, 'In Stock', 'assets/images/turkey.png'),
+    ProductMode(
+        'Hello', 2330, 'Citrus', 5, 'In Stock', 'assets/images/turkey.png'),
+    ProductMode('Hello', 60, 'Meat', 5, 'In Stock', 'assets/images/turkey.png'),
+  ];
+
   Future<bool> _onWillPop() async {
     return (await showDialog(
           context: context,
@@ -308,11 +333,52 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                         SizedBox(height: 24),
                         GestureDetector(
-                          onLongPress: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => DiscoverGridPage()),
+                          onTap: () {
+                            showSearch(
+                              context: context,
+                              delegate: SearchPage<ProductMode>(
+                                onQueryUpdate: (s) => print(s),
+                                items: searchProduct,
+                                searchLabel: 'Search Product',
+                                suggestion: Center(
+                                  child: Text('Serach Product'),
+                                ),
+                                failure: Center(
+                                  child: Text('No Product found :('),
+                                ),
+                                filter: (searchProduct) =>
+                                    [searchProduct.productName],
+                                builder: (searchProduct) => GestureDetector(
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              ProductDetailScreen(
+                                                  name:
+                                                      searchProduct.productName,
+                                                  description:
+                                                      searchProduct.description,
+                                                  image: searchProduct.imgUrl,
+                                                  product:
+                                                      searchProduct.productName,
+                                                  price: 100.toString())),
+                                    );
+                                  },
+                                  child: ListTile(
+                                    leading: Text(
+                                      searchProduct.productName,
+                                      style: TextStyle(
+                                        fontSize: 20,
+                                      ),
+                                    ),
+                                    trailing: Image.asset(searchProduct.imgUrl),
+                                    title: Text(searchProduct.status),
+                                    // subtitle: Text(person.surname),
+                                    // trailing: Text('${person.age} yo'),
+                                  ),
+                                ),
+                              ),
                             );
                           },
                           child: Container(
@@ -323,31 +389,80 @@ class _HomeScreenState extends State<HomeScreen> {
                               borderRadius: BorderRadius.circular(5),
                               color: Color(0xfff7f7f7),
                             ),
-                            child: TextField(
-                              decoration: InputDecoration(
-                                border: InputBorder.none,
-                                fillColor: Color(0xfff7f7f7),
-                                hintText: "Search product",
-                                hintStyle: TextStyle(
-                                  fontSize: 15,
-                                  color: Color(0xffbababa),
-                                ),
-                                prefixIcon: Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 16, right: 13),
-                                  child:  GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => DiscoverGridPage()),
-                            );
-                          },
-                                    child: Image.asset(
-                                      'assets/images/search.png',
-                                      width: 16,
-                                      height: 16,
-                                      color: Color(0xffBABABA),
+                            child: Container(
+                              child: TextField(
+                                decoration: InputDecoration(
+                                  border: InputBorder.none,
+                                  fillColor: Color(0xfff7f7f7),
+                                  hintText: "Search product",
+                                  hintStyle: TextStyle(
+                                    fontSize: 15,
+                                    color: Color(0xffbababa),
+                                  ),
+                                  prefixIcon: Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 16, right: 13),
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        showSearch(
+                                          context: context,
+                                          delegate: SearchPage<ProductMode>(
+                                            onQueryUpdate: (s) => print(s),
+                                            items: searchProduct,
+                                            searchLabel: 'Search Product',
+                                            suggestion: Center(
+                                              child: Text('Serach Product'),
+                                            ),
+                                            failure: Center(
+                                              child:
+                                                  Text('No Product found :('),
+                                            ),
+                                            filter: (searchProduct) =>
+                                                [searchProduct.productName],
+                                            builder: (searchProduct) =>
+                                                GestureDetector(
+                                              onTap: () {
+                                                Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          ProductDetailScreen(
+                                                              name:
+                                                                  searchProduct
+                                                                      .productName,
+                                                              description:
+                                                                  searchProduct
+                                                                      .description,
+                                                              image:
+                                                                  searchProduct
+                                                                      .imgUrl,
+                                                              product:
+                                                                  searchProduct
+                                                                      .productName,
+                                                              price: 100
+                                                                  .toString())),
+                                                );
+                                              },
+                                              child: ListTile(
+                                                leading: Text(
+                                                    searchProduct.productName),
+                                                trailing: Image.asset(
+                                                    searchProduct.imgUrl),
+                                                title:
+                                                    Text(searchProduct.status),
+                                                // subtitle: Text(person.surname),
+                                                // trailing: Text('${person.age} yo'),
+                                              ),
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                      child: Image.asset(
+                                        'assets/images/search.png',
+                                        width: 16,
+                                        height: 16,
+                                        color: Color(0xffBABABA),
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -721,7 +836,6 @@ class _FeaturedProductsCardState extends State<FeaturedProductsCard> {
       onTap: () {
         showProdDetails(
           context,
-          
           widget.image,
           widget.price,
           widget.name,
@@ -1021,15 +1135,14 @@ class _CategoriesState extends State<Categories> {
     return homeCategoriesModelList;
   }
 
-   var colorList = [liteGreen, lightRed, liteGreen, orange, cadetBlue
-  ];
+  var colorList = [liteGreen, lightRed, liteGreen, orange, cadetBlue];
   List<Map<String, dynamic>> categories = [
-      {"text": "Raw Food", "textColor": primaryColor, "cardColor": liteGreen},
-      {"text": "Spices", "textColor": darkRed, "cardColor": lightRed},
-      {"text": "Bakery", "textColor": primaryColor, "cardColor": liteGreen},
-      {"text": "Cosmetic", "textColor": yellow, "cardColor": orange},
-      {"text": "More", "textColor": darkLiver, "cardColor": cadetBlue},
-    ];
+    {"text": "Raw Food", "textColor": primaryColor, "cardColor": liteGreen},
+    {"text": "Spices", "textColor": darkRed, "cardColor": lightRed},
+    {"text": "Bakery", "textColor": primaryColor, "cardColor": liteGreen},
+    {"text": "Cosmetic", "textColor": yellow, "cardColor": orange},
+    {"text": "More", "textColor": darkLiver, "cardColor": cadetBlue},
+  ];
 
   @override
   void initState() {
@@ -1046,10 +1159,9 @@ class _CategoriesState extends State<Categories> {
         return Padding(
           padding: EdgeInsets.only(right: 8),
           child: CategoryCard(
-            text: homeCategoriesModelList[index].categoryName,
-            textColor: categories[index]["textColor"],
-            cardColor: colorList[index]
-          ),
+              text: homeCategoriesModelList[index].categoryName,
+              textColor: categories[index]["textColor"],
+              cardColor: colorList[index]),
         );
       },
       separatorBuilder: (context, index) {

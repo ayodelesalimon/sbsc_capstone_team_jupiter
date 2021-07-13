@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:sbsc_capstone_team_jupiter/screen/checkout_shipping.dart';
+import 'package:sbsc_capstone_team_jupiter/screen/checkout/checkout_shipping.dart';
+//import 'package:sbsc_capstone_team_jupiter/screen/checkout_shipping.dart';
 //import 'package:sbsc_capstone_team_jupiter/screen/account_shipping.dart';
 
 class CheckoutPage extends StatefulWidget {

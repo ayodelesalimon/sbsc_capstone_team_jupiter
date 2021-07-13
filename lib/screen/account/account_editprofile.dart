@@ -1,8 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:sbsc_capstone_team_jupiter/screen/account/account_profile.dart';
 import 'package:sbsc_capstone_team_jupiter/services/base.dart';
 import 'package:validators/validators.dart' as validator;
-import 'package:sbsc_capstone_team_jupiter/screen/account_profile.dart';
+//import 'package:sbsc_capstone_team_jupiter/screen/account_profile.dart';
 
 class EditProfile extends StatefulWidget {
   final String name = "editProfile";

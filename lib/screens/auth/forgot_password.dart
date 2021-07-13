@@ -386,7 +386,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                           onTap: () {
                             setState(() {
                               showLoader(context);
-                              final res = emailRequestOtp("user@gmail.com");
+                              final res = emailRequestOtp(email);
 
                               print(">>>>>>>>> ${res == null}");
                               Loader.hide();
