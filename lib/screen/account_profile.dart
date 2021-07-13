@@ -9,6 +9,7 @@ import 'package:sbsc_capstone_team_jupiter/screen/account_checkoutpayment.dart';
 import 'package:sbsc_capstone_team_jupiter/screen/account_shipping.dart';
 import 'package:sbsc_capstone_team_jupiter/screen/login.dart';
 import 'package:sbsc_capstone_team_jupiter/screens/auth/auto_login.dart';
+import 'package:sbsc_capstone_team_jupiter/services/base.dart';
 
 
 
@@ -20,6 +21,39 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
+  String userFirstName = '';
+  String userEmail = '';
+  String userLastName = '';
+  Future<void> getFirstNameFromLocalStorage() async {
+    final data = await getFromLocalStorage(name: 'firstName');
+    setState(() {
+      userFirstName = data;
+    });
+  }
+
+  Future<void> getEmailFromLocalStorage() async {
+    final data = await getFromLocalStorage(name: 'email');
+    setState(() {
+      userEmail = data;
+    });
+  }
+
+  Future<void> getLastNameFromLocalStorage() async {
+    final data = await getFromLocalStorage(name: 'lastName');
+    setState(() {
+      userLastName = data;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    getFirstNameFromLocalStorage().whenComplete(() => null);
+    getEmailFromLocalStorage().whenComplete(() => null);
+    getLastNameFromLocalStorage().whenComplete(() => null);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -88,12 +122,12 @@ class _ProfileState extends State<Profile> {
                                       crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
                                         Text(
-                                          "Andrea Charles",
+                                           "${userFirstName}, $userLastName",
                                           style: TextStyle(
                                               fontSize: 17,
                                               fontWeight: FontWeight.bold,color: Color(0xff10151a)),
                                         ),
-                                        Text("Andrea_charles@gmail.com", style: TextStyle(
+                                        Text(userEmail, style: TextStyle(
                                             fontSize: 13,color: Color(0xff999999)),),
                                         Text("+234 809 202 3024", style: TextStyle(
                                             fontSize: 13,

@@ -49,64 +49,8 @@ class _LoginPageState extends State<LoginPage> {
   bool showObscureText = true;
   bool showObscureTextPassword = true;
 
-  Future<Login> loginUser(String email, String password) async {
-    bool internetConnection =
-        await _checkConnection.checkInternetConnectivity();
-    if (internetConnection) {
-      final response = await http.post(
-        Uri.parse('https://aduabaecommerceapi.azurewebsites.net/login'),
-        headers: <String, String>{
-          'Content-Type': 'application/json; charset=UTF-8',
-        },
-        body: jsonEncode(<String, String>{
-          'email': email,
-          'password': password,
-        }),
-      );
-      dynamic decodedResponse = jsonDecode(response.body);
 
-      if (response.statusCode == 200) {
-        if (decodedResponse['isSuccess'] == true) {
-          print(decodedResponse['data']['token']);
-          // Alert(
-          //   context: context,
-          //   content: "Login Sucessfully",
-          //   title: 'Login Success',
-          // );
-          Flushbar(
-            title: "Sucess",
-          );
-          Navigator.of(context).push(
-            MaterialPageRoute(
-              settings: RouteSettings(name: "/tabPage"),
-              builder: (context) => TabView(),
-            ),
-          );
-          await decodeAndStoreToken(data: decodedResponse);
-        } else {
-          print(decodedResponse['message']);
-          Alert(
-            context: context,
-            content: decodedResponse['message'],
-            title: 'Login Error',
-          );
-        }
-        // If the server did return a 201 CREATED response,
-        // then parse the JSON.
-        print(response.body);
-
-        //  return Login.fromJson(jsonDecode(response.body));
-      } else {
-        print(response.statusCode);
-
-        // If the server did not return a 201 CREATED response,
-        // then throw an exception.
-
-      }
-    } else {
-      internetConnectionDialog(context);
-    }
-  }
+  
 
   @override
   void initState() {
@@ -201,7 +145,6 @@ class _LoginPageState extends State<LoginPage> {
                       height: 14,
                     ),
                     spacer20,
-                    
                     Input(
                       // focusNode: emailFocus,
                       controller: email,
@@ -253,11 +196,11 @@ class _LoginPageState extends State<LoginPage> {
                       hintText: 'Password',
                       styleColor: primaryColor,
                       validator: MultiValidator([
-                       // RequiredValidator(errorText: 'Password is required'),
+                        // RequiredValidator(errorText: 'Password is required'),
                         MinLengthValidator(8,
                             errorText:
                                 'password must be at least 8 digits long'),
-                       PatternValidator(r'(?=.*?[#?!@$%^&*-])',
+                        PatternValidator(r'(?=.*?[#?!@$%^&*-])',
                             errorText:
                                 'passwords must have at least one special character')
                       ]),
@@ -336,7 +279,7 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       margin: EdgeInsets.only(bottom: 2.95),
                     ),
-                     SizedBox(
+                    SizedBox(
                       height: 20,
                     ),
                     SocialLogin(
@@ -379,8 +322,6 @@ class _LoginPageState extends State<LoginPage> {
                       },
                       icon: FontAwesomeIcons.facebookF,
                     ),
-                   
-                    
                     SizedBox(
                       height: 14,
                     ),
@@ -429,5 +370,63 @@ class _LoginPageState extends State<LoginPage> {
             ),
           )),
     );
+  }
+  Future<Login> loginUser(String email, String password) async {
+    bool internetConnection =
+        await _checkConnection.checkInternetConnectivity();
+    if (internetConnection) {
+      final response = await http.post(
+        Uri.parse(BaseUrl.login),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(<String, String>{
+          'email': email,
+          'password': password,
+        }),
+      );
+      dynamic decodedResponse = jsonDecode(response.body);
+
+      if (response.statusCode == 200) {
+        if (decodedResponse['isSuccess'] == true) {
+          print(decodedResponse['data']['token']);
+          // Alert(
+          //   context: context,
+          //   content: "Login Sucessfully",
+          //   title: 'Login Success',
+          // );
+          Flushbar(
+            title: "Sucess",
+          );
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              settings: RouteSettings(name: "/tabPage"),
+              builder: (context) => TabView(),
+            ),
+          );
+          await decodeAndStoreToken(data: decodedResponse);
+        } else {
+          print(decodedResponse['message']);
+          Alert(
+            context: context,
+            content: decodedResponse['message'],
+            title: 'Login Error',
+          );
+        }
+        // If the server did return a 201 CREATED response,
+        // then parse the JSON.
+        print(response.body);
+
+        //  return Login.fromJson(jsonDecode(response.body));
+      } else {
+        print(response.statusCode);
+
+        // If the server did not return a 201 CREATED response,
+        // then throw an exception.
+
+      }
+    } else {
+      internetConnectionDialog(context);
+    }
   }
 }

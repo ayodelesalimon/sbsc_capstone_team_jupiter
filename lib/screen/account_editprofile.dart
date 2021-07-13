@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:sbsc_capstone_team_jupiter/services/base.dart';
 import 'package:validators/validators.dart' as validator;
 import 'package:sbsc_capstone_team_jupiter/screen/account_profile.dart';
 
@@ -11,6 +12,40 @@ class EditProfile extends StatefulWidget {
 }
 
 class _EditProfileState extends State<EditProfile> {
+
+  String userFirstName = '';
+  String userEmail = '';
+  String userLastName = '';
+  Future<void> getFirstNameFromLocalStorage() async {
+    final data = await getFromLocalStorage(name: 'firstName');
+    setState(() {
+      userFirstName = data;
+    });
+  }
+
+  Future<void> getEmailFromLocalStorage() async {
+    final data = await getFromLocalStorage(name: 'email');
+    setState(() {
+      userEmail = data;
+    });
+  }
+
+  Future<void> getLastNameFromLocalStorage() async {
+    final data = await getFromLocalStorage(name: 'lastName');
+    setState(() {
+      userLastName = data;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    getFirstNameFromLocalStorage().whenComplete(() => null);
+    getEmailFromLocalStorage().whenComplete(() => null);
+    getLastNameFromLocalStorage().whenComplete(() => null);
+  }
+
   TextEditingController firstname = TextEditingController();
   TextEditingController lastname = TextEditingController();
   TextEditingController phone = TextEditingController();
@@ -112,7 +147,7 @@ class _EditProfileState extends State<EditProfile> {
                         // width: 26.66.w,
                         height: 20,
                         child: Text(
-                          'Full Name',
+                          'First Name',
                           style: TextStyle(
                             color: Color(0xff10151a),
                             fontSize: 15,
@@ -132,6 +167,7 @@ class _EditProfileState extends State<EditProfile> {
                           borderRadius: BorderRadius.circular(5.0),
                         ),
                         child: TextFormField(
+                       //   initialValue: userFirstName,
                           textAlign: TextAlign.start,
                           keyboardType: TextInputType.text,
                           style: TextStyle(
@@ -141,8 +177,9 @@ class _EditProfileState extends State<EditProfile> {
                             fontSize: 15,
                           ),
                           decoration: InputDecoration(
+                          
                             border: OutlineInputBorder(),
-                            hintText: 'Andrea',
+                           hintText: userFirstName,
                             hintStyle: TextStyle(
                               fontStyle: FontStyle.normal,
                               fontWeight: FontWeight.normal,
@@ -178,6 +215,7 @@ class _EditProfileState extends State<EditProfile> {
                           borderRadius: BorderRadius.circular(5.0),
                         ),
                         child: TextFormField(
+                         // initialValue: userLastName,
                           textAlign: TextAlign.start,
                           keyboardType: TextInputType.text,
                           style: TextStyle(
@@ -188,7 +226,7 @@ class _EditProfileState extends State<EditProfile> {
                           ),
                           decoration: InputDecoration(
                             border: OutlineInputBorder(),
-                            hintText: 'Charles',
+                            hintText: userLastName,
                             hintStyle: TextStyle(
                               fontStyle: FontStyle.normal,
                               fontWeight: FontWeight.normal,
