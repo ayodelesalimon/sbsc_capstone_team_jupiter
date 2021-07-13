@@ -5,6 +5,8 @@ import 'package:sbsc_capstone_team_jupiter/screen/wishlist.dart';
 import 'package:sbsc_capstone_team_jupiter/screen/account_order.dart';
 import 'package:sbsc_capstone_team_jupiter/screen/account_profile.dart';
 import 'package:sbsc_capstone_team_jupiter/services/base.dart';
+
+import 'category.dart';
 class MyDrawer extends StatefulWidget {
   // final Function onTap;
   //
@@ -152,7 +154,7 @@ Future<void> getFirstNameFromLocalStorage() async {
                         SizedBox(height: 33,),
                         GestureDetector(
                           onTap: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => CategoryGridPage()),);
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => CategoryPage()),);
                           },
                           child: Container(
                             width: 123,

@@ -704,7 +704,7 @@ class FeaturedProductsCard extends StatefulWidget {
     @required this.image,
     @required this.name,
     @required this.product,
-    @required this.availability,
+    this.availability,
     @required this.price,
   });
 
@@ -721,6 +721,7 @@ class _FeaturedProductsCardState extends State<FeaturedProductsCard> {
       onTap: () {
         showProdDetails(
           context,
+          
           widget.image,
           widget.price,
           widget.name,
